@@ -34,11 +34,4 @@ public class Theme {
         this.ticketList.addAll(list);
     }
 
-    public void addTicket(Ticket ticket) {
-        if(this.ticketList == null) {
-            this.ticketList = new ArrayList<>();
-        }
-        this.ticketList.add(ticket);
-        ticket.setTheme(this);
-    }
 }

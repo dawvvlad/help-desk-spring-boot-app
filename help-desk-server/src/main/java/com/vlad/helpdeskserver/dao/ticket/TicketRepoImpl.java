@@ -22,6 +22,12 @@ public class TicketRepoImpl implements TicketRepo {
         entityManager.persist(ticket);
     }
 
+    @Override
+    @Transactional
+    public void update(Ticket ticket) {
+        entityManager.merge(ticket);
+    }
+
     @Transactional
     @Override
     public Ticket findById(Long id) {
