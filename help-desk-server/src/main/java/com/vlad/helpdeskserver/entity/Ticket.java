@@ -35,6 +35,9 @@ public class Ticket {
     @Column(name = "datetime")
     private String dateTime;
 
+    @OneToOne()
+    @JoinColumn(name = "message")
+    private Message message;
 
     public Ticket() {}
     public Ticket(String sender, String executor, TicketPrioriry priority, TicketStatus status, String dateTime) {
@@ -43,5 +46,15 @@ public class Ticket {
         this.priority = priority;
         this.status = status;
         this.dateTime = dateTime;
+    }
+
+    public void addMessage(Message mes) {
+        if(this.message == null) {
+            this.message = new Message();
+        }
+        this.message.setText(mes.getText());
+        for(MessageFile file : mes.getFileList()) {
+            this.message.addFile(file);
+        }
     }
 }

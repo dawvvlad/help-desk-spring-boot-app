@@ -17,6 +17,7 @@ public class ThemeDTO {
 
     public ThemeDTO() {}
     public ThemeDTO(Theme theme) {
+        this.id = theme.getId();
         this.name = theme.getName();
     }
 

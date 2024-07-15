@@ -17,6 +17,7 @@ public class MessageDTO {
 
     public MessageDTO() {}
     public MessageDTO(Message message) {
+        this.id = message.getId();
         this.text = message.getText();
         if(this.fileUrlList == null) {
             this.fileUrlList = new ArrayList<>();
