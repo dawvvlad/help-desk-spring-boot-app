@@ -46,6 +46,8 @@ public class TicketServiceImpl implements TicketService {
         ticket.setTheme(theme);
         ticket.addMessage(message);
 
+        System.out.println("Заявка создана");
+
         return ticketDTO;
     }
 
@@ -56,8 +58,8 @@ public class TicketServiceImpl implements TicketService {
 
         ticketRepo.update(ticket);
 
-        System.out.println("Ticket " + id + " updated: ");
-        System.out.println("Status: " + ticketStatus);
+        System.out.println("Заявка " + id + " обновлена: ");
+        System.out.println("Статус: " + ticketStatus);
     }
 
     @Override
@@ -67,25 +69,34 @@ public class TicketServiceImpl implements TicketService {
 
         ticketRepo.update(ticket);
 
-        System.out.println("Ticket " + id + " updated: ");
-        System.out.println("Executor: " + executorUsername);
+        System.out.println("Заявка " + id + " обновлена: ");
+        System.out.println("Исполнитель: " + executorUsername);
     }
 
     @Override
     public TicketDTO getTicket(Long id) {
         Ticket ticket = ticketRepo.findById(id);
+
+        System.out.println("Найдено: " + ticket);
+
         return new TicketDTO(ticket);
     }
 
     @Override
     public List<TicketDTO> getAllTickets() {
         List<Ticket> ticketList = ticketRepo.findAll();
-        List<TicketDTO> ticketDTOList = new ArrayList<>();
+        System.out.println("Найдено: " + ticketList);
 
+        if(ticketList.isEmpty()) {
+
+            System.out.println("Лист пуст. Возвращен пустой лист!");
+
+            return Collections.emptyList();
+        }
+        List<TicketDTO> ticketDTOList = new ArrayList<>();
         for(Ticket ticket : ticketList) {
             ticketDTOList.add(new TicketDTO(ticket));
         }
-
-        return ticketDTOList.isEmpty() ? Collections.emptyList() : ticketDTOList;
+        return ticketDTOList;
     }
 }
