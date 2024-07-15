@@ -56,4 +56,12 @@ public class Ticket {
             this.message.addFile(file);
         }
     }
+
+    public void addTheme(Theme theme) {
+        if(this.theme == null) {
+            this.theme = new Theme();
+        }
+        this.theme.setName(theme.getName());
+        theme.addTicket(this);
+    }
 }

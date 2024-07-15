@@ -28,22 +28,34 @@ public class TicketServiceImpl implements TicketService {
         this.themeRepo = themeRepo;
     }
 
-
     @Override
     public TicketDTO create(TicketDTO ticketDTO) {
-        Theme theme = themeRepo.findByName(ticketDTO.getTheme());
+        String themeName = ticketDTO.getTheme();
+        Theme theme;
+        if(themeName == null) {
+            theme = null;
+        }
+        else {
+            theme = themeRepo.findByName(themeName);
+        }
+
         Message message = new Message(ticketDTO.getMessage().getText());
 
         for(String url : ticketDTO.getMessage().getFileUrlList()) {
             message.addFile(new MessageFile(url));
         }
+
         Ticket ticket = new Ticket(ticketDTO.getSender(),
                 ticketDTO.getExecutor(),
                 ticketDTO.getPriority(),
                 ticketDTO.getStatus(),
                 ticketDTO.getDateTime());
 
-        ticket.setTheme(theme);
+        if(theme != null) {
+            ticket.addTheme(theme);
+        } else {
+            ticket.setTheme(null);
+        }
         ticket.addMessage(message);
 
         System.out.println("Заявка создана");
