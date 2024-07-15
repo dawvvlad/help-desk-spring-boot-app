@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,5 +24,15 @@ public class Message {
     private List<MessageFile> fileList;
 
     public Message() {}
+    public Message(String text) {
+        this.text = text;
+    }
 
+    public void addFile(MessageFile file) {
+        if(this.fileList == null) {
+            this.fileList = new ArrayList<>();
+        }
+        this.fileList.add(file);
+        file.setMessage(this);
+    }
 }

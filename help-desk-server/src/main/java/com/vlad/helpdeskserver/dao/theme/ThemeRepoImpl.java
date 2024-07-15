@@ -59,8 +59,11 @@ public class ThemeRepoImpl implements ThemeRepo{
     @Override
     @Transactional
     public List<Theme> findAll() {
-        List<Theme> themeList = entityManager.createQuery("from Theme", Theme.class)
-                .getResultList();
-        return themeList.isEmpty() ? Collections.emptyList() : themeList;
+        try {
+            return entityManager.createQuery("from Theme", Theme.class)
+                    .getResultList();
+        } catch (NoResultException e) {
+            return Collections.emptyList();
+        }
     }
 }

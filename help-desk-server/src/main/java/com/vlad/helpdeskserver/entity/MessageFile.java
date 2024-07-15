@@ -22,4 +22,8 @@ public class MessageFile {
     private String filePath;
 
     public MessageFile() {}
+    public MessageFile(String filePath) {
+        this.filePath = filePath;
+    }
+
 }
