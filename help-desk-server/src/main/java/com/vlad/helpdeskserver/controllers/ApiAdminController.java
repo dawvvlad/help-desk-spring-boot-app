@@ -31,22 +31,18 @@ public class ApiAdminController {
         return ResponseEntity.status(HttpStatus.CREATED).body(themeDTO);
     }
 
-    @PostMapping("/createTicket")
-    public ResponseEntity<TicketDTO> createTicket(@RequestBody TicketDTO ticketDTO) {
-        ticketService.create(ticketDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(ticketDTO);
-    }
-
-    @PatchMapping("/changeStatus/{id}")
-    public void changeStatus(@PathVariable("id") Long id, @RequestBody Map<String, TicketStatus> body) {
+    @PatchMapping("/changeTicketStatus/{ticketId}")
+    public void changeStatus(@PathVariable("ticketId") Long id, @RequestBody Map<String, TicketStatus> body) {
         ticketService.changeStatus(id, body.get("status"));
         System.out.println("Changed status to " + body.get("status"));
     }
 
-    @PatchMapping("/changeExecutor/{id}")
-    public void changePriority(@PathVariable("id") Long id, @RequestBody Map<String, String> body) {
+    @PatchMapping("/changeTicketExecutor/{ticketId}")
+    public void changePriority(@PathVariable("ticketId") Long id, @RequestBody Map<String, String> body) {
         ticketService.changeExecutor(id, body.get("executor"));
     }
+
+
 
 //    //test
 //    @GetMapping("/info")
