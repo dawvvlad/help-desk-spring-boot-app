@@ -6,27 +6,21 @@ import com.vlad.helpdeskserver.enums.TicketStatus;
 import com.vlad.helpdeskserver.service.theme.ThemeService;
 import com.vlad.helpdeskserver.service.ticket.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.ldap.userdetails.Person;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
-public class ApiController {
+@RequestMapping("/api/v1/admin")
+public class ApiAdminController {
 
     private final ThemeService themeService;
     private final TicketService ticketService;
 
     @Autowired
-    public ApiController(ThemeService themeService, TicketService ticketService) {
+    public ApiAdminController(ThemeService themeService, TicketService ticketService) {
         this.themeService = themeService;
         this.ticketService = ticketService;
     }
@@ -47,6 +41,11 @@ public class ApiController {
     public void changeStatus(@PathVariable("id") Long id, @RequestBody Map<String, TicketStatus> body) {
         ticketService.changeStatus(id, body.get("status"));
         System.out.println("Changed status to " + body.get("status"));
+    }
+
+    @PatchMapping("/changeExecutor/{id}")
+    public void changePriority(@PathVariable("id") Long id, @RequestBody Map<String, String> body) {
+        ticketService.changeExecutor(id, body.get("executor"));
     }
 
 //    //test

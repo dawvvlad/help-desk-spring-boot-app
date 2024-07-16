@@ -50,19 +50,23 @@ public class Ticket {
     }
 
     public void addMessage(Message mes) {
-        if(this.message == null) {
-            this.message = new Message();
-        }
-        this.message.setText(mes.getText());
-        for(MessageFile file : mes.getFileList()) {
-            this.message.addFile(file);
-        }
+        if(mes != null) {
+            if(this.message == null) {
+                this.message = new Message();
+            }
+            this.message.setText(mes.getText());
+            for(MessageFile file : mes.getFileList()) {
+                this.message.addFile(file);
+            }
+        } else this.message = null;
     }
 
     public void addTheme(Theme theme) {
-        if(this.theme == null) {
-            this.theme = new Theme();
-        }
-        this.setTheme(theme);
+        if(theme != null) {
+            if(this.theme == null) {
+                this.theme = new Theme();
+            }
+            this.setTheme(theme);
+        } else this.theme = null;
     }
 }

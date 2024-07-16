@@ -30,12 +30,19 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public TicketDTO create(TicketDTO ticketDTO) {
-        Theme theme = themeRepo.findById(ticketDTO.getThemeId());
-        Message message = new Message(ticketDTO.getMessage().getText());
+        Theme theme;
+        Message message;
 
-        for(String url : ticketDTO.getMessage().getFileUrlList()) {
-            message.addFile(new MessageFile(url));
-        }
+        if(ticketDTO.getThemeId() != null) {
+            theme = themeRepo.findById(ticketDTO.getThemeId());
+        } else theme = null;
+
+        if(ticketDTO.getMessage() != null) {
+           message = new Message(ticketDTO.getMessage().getText());
+            for(String url : ticketDTO.getMessage().getFileUrlList()) {
+                message.addFile(new MessageFile(url));
+            }
+        } else message = null;
 
         Ticket ticket = new Ticket(ticketDTO.getSender(),
                 ticketDTO.getExecutor(),
