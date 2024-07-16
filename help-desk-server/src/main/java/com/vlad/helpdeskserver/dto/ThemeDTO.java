@@ -27,6 +27,6 @@ public class ThemeDTO {
         }
 
         this.ticketList.add(ticketDTO);
-        ticketDTO.setTheme(this.getName());
+        ticketDTO.setThemeId(this.id);
     }
 }

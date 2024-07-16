@@ -25,6 +25,8 @@ public class ThemeServiceImpl implements ThemeService {
     public void create(String name) {
         Theme theme = new Theme(name);
         themeRepo.save(theme);
+
+        System.out.println("Создано: " + theme);
     }
 
     @Override

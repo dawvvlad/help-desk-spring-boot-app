@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "THEME")
+@Table(name = "theme")
 @Getter
 @Setter
 public class Theme {
@@ -32,12 +32,5 @@ public class Theme {
     public Theme(String name, List<Ticket> list) {
         this.name = name;
         this.ticketList.addAll(list);
-    }
-
-    public void addTicket(Ticket ticket) {
-        if(this.ticketList == null) {
-            this.ticketList = new ArrayList<>();
-        }
-        this.ticketList.add(ticket);
     }
 }

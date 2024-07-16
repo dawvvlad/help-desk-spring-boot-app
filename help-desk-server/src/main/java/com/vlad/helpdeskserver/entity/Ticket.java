@@ -25,16 +25,18 @@ public class Ticket {
     @Column(name = "executor_username")
     private String executor;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "priority")
     private TicketPrioriry priority;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private TicketStatus status;
 
     @Column(name = "datetime")
     private String dateTime;
 
-    @OneToOne()
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "message")
     private Message message;
 
@@ -61,7 +63,6 @@ public class Ticket {
         if(this.theme == null) {
             this.theme = new Theme();
         }
-        this.theme.setName(theme.getName());
-        theme.addTicket(this);
+        this.setTheme(theme);
     }
 }

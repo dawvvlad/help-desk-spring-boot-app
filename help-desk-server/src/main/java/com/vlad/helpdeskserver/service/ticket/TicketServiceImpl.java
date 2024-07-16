@@ -30,13 +30,10 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public TicketDTO create(TicketDTO ticketDTO) {
-        String themeName = ticketDTO.getTheme();
-        Theme theme;
-        if(themeName == null) {
-            theme = null;
-        }
-        else {
-            theme = themeRepo.findByName(themeName);
+        Theme theme = themeRepo.findById(ticketDTO.getThemeId());
+
+        if (theme == null) {
+            throw new IllegalArgumentException("Theme not found");
         }
 
         Message message = new Message(ticketDTO.getMessage().getText());
@@ -51,15 +48,12 @@ public class TicketServiceImpl implements TicketService {
                 ticketDTO.getStatus(),
                 ticketDTO.getDateTime());
 
-        if(theme != null) {
-            ticket.addTheme(theme);
-        } else {
-            ticket.setTheme(null);
-        }
+        ticket.addTheme(theme);
         ticket.addMessage(message);
 
         System.out.println("Заявка создана");
 
+        ticketRepo.save(ticket);
         return ticketDTO;
     }
 

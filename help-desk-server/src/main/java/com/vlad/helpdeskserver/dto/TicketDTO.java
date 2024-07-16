@@ -12,7 +12,7 @@ public class TicketDTO {
     private Long id;
     private String sender;
     private String executor;
-    private String theme;
+    private Long themeId;
     private MessageDTO message;
     private TicketStatus status;
     private TicketPrioriry priority;
@@ -23,7 +23,7 @@ public class TicketDTO {
         this.id = ticket.getId();
         this.sender = ticket.getSender();
         this.executor = ticket.getExecutor();
-        this.theme = ticket.getTheme().getName();
+        this.themeId = ticket.getTheme().getId();
         this.status = ticket.getStatus();
         this.priority = ticket.getPriority();
         this.dateTime = ticket.getDateTime();
