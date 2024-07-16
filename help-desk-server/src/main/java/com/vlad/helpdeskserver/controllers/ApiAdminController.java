@@ -42,4 +42,9 @@ public class ApiAdminController {
         ticketService.changeExecutor(id, body.get("executor"));
     }
 
+    @PatchMapping("/changeThemeName/{id}")
+    public void changeThemeName(@PathVariable("id") Long id, @RequestBody Map<String, String> body) {
+        themeService.changeName(id, body.get("name"));
+    }
+
 }
