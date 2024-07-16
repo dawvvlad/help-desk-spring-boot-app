@@ -111,4 +111,20 @@ public class TicketServiceImpl implements TicketService {
         }
         return ticketDTOList;
     }
+
+    @Override
+    public List<TicketDTO> getAllTicketsBySender(String username) {
+        List<Ticket> tickets = ticketRepo.findAllByUsername(username);
+        List<TicketDTO> ticketDTOList = new ArrayList<>();
+
+        if(tickets.isEmpty()) {
+            return Collections.emptyList();
+        } else {
+            for(Ticket ticket : tickets) {
+                ticketDTOList.add(new TicketDTO(ticket));
+            }
+            return ticketDTOList;
+        }
+
+    }
 }

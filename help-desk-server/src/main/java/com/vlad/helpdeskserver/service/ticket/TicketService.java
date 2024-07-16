@@ -14,4 +14,5 @@ public interface TicketService {
 
     TicketDTO getTicket(Long id);
     List<TicketDTO> getAllTickets();
+    List<TicketDTO> getAllTicketsBySender(String username);
 }

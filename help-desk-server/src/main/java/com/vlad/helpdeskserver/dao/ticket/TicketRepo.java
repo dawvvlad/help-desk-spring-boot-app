@@ -11,4 +11,5 @@ public interface TicketRepo {
     void update(Ticket ticket);
     Ticket findById(Long id);
     List<Ticket> findAll();
+    List<Ticket> findAllByUsername(String username);
 }

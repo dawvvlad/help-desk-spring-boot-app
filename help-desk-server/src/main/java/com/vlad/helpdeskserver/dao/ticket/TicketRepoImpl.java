@@ -48,4 +48,16 @@ public class TicketRepoImpl implements TicketRepo {
             return Collections.emptyList();
         }
     }
+
+    @Override
+    @Transactional
+    public List<Ticket> findAllByUsername(String username) {
+        try {
+            return entityManager.createQuery("select t from Ticket t where t.sender=:name", Ticket.class)
+                    .setParameter("name", username)
+                    .getResultList();
+        } catch (NoResultException e) {
+            return Collections.emptyList();
+        }
+    }
 }
