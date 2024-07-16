@@ -20,7 +20,7 @@ public class Message {
     @Column(name = "comment")
     private String text;
 
-    @OneToMany(mappedBy = "message")
+    @OneToMany(mappedBy = "message", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MessageFile> fileList;
 
     public Message() {}

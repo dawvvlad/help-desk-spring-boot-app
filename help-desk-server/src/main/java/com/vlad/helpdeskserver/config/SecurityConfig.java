@@ -14,9 +14,7 @@
 //
 //@Configuration
 //@EnableWebSecurity
-public class SecurityConfig {
-
-}
+//public class SecurityConfig {
 //
 //    @Value("${active.directory.domain}")
 //    private String adDomain;

@@ -31,11 +31,6 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public TicketDTO create(TicketDTO ticketDTO) {
         Theme theme = themeRepo.findById(ticketDTO.getThemeId());
-
-        if (theme == null) {
-            throw new IllegalArgumentException("Theme not found");
-        }
-
         Message message = new Message(ticketDTO.getMessage().getText());
 
         for(String url : ticketDTO.getMessage().getFileUrlList()) {
