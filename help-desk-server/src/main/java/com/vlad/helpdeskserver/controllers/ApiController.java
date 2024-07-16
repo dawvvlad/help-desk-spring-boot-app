@@ -2,6 +2,7 @@ package com.vlad.helpdeskserver.controllers;
 
 import com.vlad.helpdeskserver.dto.ThemeDTO;
 import com.vlad.helpdeskserver.dto.TicketDTO;
+import com.vlad.helpdeskserver.enums.TicketStatus;
 import com.vlad.helpdeskserver.service.theme.ThemeService;
 import com.vlad.helpdeskserver.service.ticket.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,12 @@ public class ApiController {
     public ResponseEntity<TicketDTO> createTicket(@RequestBody TicketDTO ticketDTO) {
         ticketService.create(ticketDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(ticketDTO);
+    }
+
+    @PatchMapping("/changeStatus/{id}")
+    public void changeStatus(@PathVariable("id") Long id, @RequestBody Map<String, TicketStatus> body) {
+        ticketService.changeStatus(id, body.get("status"));
+        System.out.println("Changed status to " + body.get("status"));
     }
 
 //    //test
