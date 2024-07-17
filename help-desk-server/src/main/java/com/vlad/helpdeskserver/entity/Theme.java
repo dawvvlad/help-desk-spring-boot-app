@@ -23,14 +23,18 @@ public class Theme {
     @OneToMany(mappedBy = "theme")
     private List<Ticket> ticketList;
 
+    @Column(name = "description")
+    private String description;
+
     public Theme() {}
 
     public Theme(String name) {
         this.name = name;
     }
 
-    public Theme(String name, List<Ticket> list) {
+    public Theme(String name, String description, List<Ticket> list) {
         this.name = name;
+        this.description = description;
         this.ticketList.addAll(list);
     }
 }

@@ -15,7 +15,6 @@ public class ThemeServiceImpl implements ThemeService {
 
     private final ThemeRepo themeRepo;
 
-
     @Autowired
     public ThemeServiceImpl(ThemeRepo themeRepo) {
         this.themeRepo = themeRepo;
@@ -34,6 +33,13 @@ public class ThemeServiceImpl implements ThemeService {
         Theme theme = themeRepo.findById(id);
         theme.setName(name);
 
+        themeRepo.update(theme);
+    }
+
+    @Override
+    public void changeDescription(Long id, String description) {
+        Theme theme = themeRepo.findById(id);
+        theme.setDescription(description);
         themeRepo.update(theme);
     }
 

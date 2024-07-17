@@ -13,11 +13,13 @@ import java.util.List;
 public class ThemeDTO {
     private Long id;
     private String name;
+    private String description;
     private List<TicketDTO> ticketList;
 
     public ThemeDTO() {}
     public ThemeDTO(Theme theme) {
         this.id = theme.getId();
+        this.description = theme.getDescription();
         this.name = theme.getName();
     }
 

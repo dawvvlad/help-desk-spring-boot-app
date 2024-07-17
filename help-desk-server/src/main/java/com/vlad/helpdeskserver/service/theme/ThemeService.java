@@ -9,6 +9,7 @@ import java.util.List;
 public interface ThemeService {
     void create(String name);
     void changeName(Long id, String name);
+    void changeDescription(Long id, String description);
     void delete(Long id);
     ThemeDTO getTheme(Long id);
     List<ThemeDTO> getAllThemes();
