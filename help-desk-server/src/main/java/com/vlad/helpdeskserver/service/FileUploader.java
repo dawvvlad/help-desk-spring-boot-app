@@ -52,8 +52,6 @@ public class FileUploader {
 
                 Files.copy(file.getInputStream(), filePath);
                 filePaths.add(filePath.toString());
-
-                System.out.println(filePaths);
             }
         }
 

@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class TicketWithFileRequest {
+public class TicketRequest {
     private Long id;
     private String sender;
     private String executor;
@@ -25,5 +25,5 @@ public class TicketWithFileRequest {
     private TicketPrioriry priority;
     private String dateTime;
 
-    public TicketWithFileRequest() {}
+    public TicketRequest() {}
 }

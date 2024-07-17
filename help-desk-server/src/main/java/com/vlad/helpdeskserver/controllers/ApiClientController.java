@@ -1,7 +1,9 @@
 package com.vlad.helpdeskserver.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vlad.helpdeskserver.dto.requests.TicketWithFileRequest;
+import com.vlad.helpdeskserver.dto.MessageDTO;
+import com.vlad.helpdeskserver.dto.TicketDTO;
+import com.vlad.helpdeskserver.dto.requests.TicketRequest;
 
 import com.vlad.helpdeskserver.service.FileUploader;
 import com.vlad.helpdeskserver.service.ticket.TicketService;
@@ -14,16 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import java.util.Random;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -38,22 +33,32 @@ public class ApiClientController {
     }
 
     @PostMapping("/createTicket")
-    public ResponseEntity<String> createTicket(@RequestParam("file") List<MultipartFile> files,
+    public ResponseEntity<?> createTicket(@RequestParam("file") List<MultipartFile> files,
                                                @RequestParam("message") String ticketJSON) throws IOException {
         try {
-            Random random = new Random();
-
-            // Маппинг в POJO
+            // map to POJO
             ObjectMapper mapper = new ObjectMapper();
-            TicketWithFileRequest ticket = mapper.readValue(ticketJSON, TicketWithFileRequest.class);
-
+            // read JSON and map to Ticket class
+            TicketRequest ticket = mapper.readValue(ticketJSON, TicketRequest.class);
             FileUploader fileUploader = new FileUploader();
 
-            List<String> filePaths = fileUploader.uploadFiles(files);
+            List<String> filePaths;
+            if(files != null) {
+                filePaths = fileUploader.uploadFiles(files);
+            } else {
+                filePaths = Collections.emptyList();
+            }
 
-            System.out.println(filePaths);
+            TicketDTO ticketDTO = new TicketDTO(ticket);
 
-            return ResponseEntity.ok("Files uploaded successfully");
+            MessageDTO messageDTO = new MessageDTO();
+            messageDTO.setText(ticket.getText());
+            messageDTO.setFileUrlList(filePaths);
+
+            ticketDTO.setMessage(messageDTO);
+            ticketService.create(ticketDTO);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(ticketDTO);
         } catch (IOException e) {
             logger.error("Error uploading files", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload files");
