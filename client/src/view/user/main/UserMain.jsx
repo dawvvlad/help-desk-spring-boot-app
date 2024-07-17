@@ -1,11 +1,24 @@
-import {Header} from "../../../components/header/Header.jsx";
+import {Ticket} from "../../../components/ticket/Ticket.jsx";
+import './main.css'
 
 export const UserMain = () => {
 
     return (
         <>
-            <Header/>
-            <h1>Hello User</h1>
+            <div className="container">
+                <div className="tickets">
+                    <Ticket/>
+                    <Ticket/>
+                    <Ticket/>
+                    <Ticket/>
+                    <Ticket/>
+                    <Ticket/>
+                    <Ticket/>
+                    <Ticket/>
+                    <Ticket/>
+                    <Ticket/>
+                </div>
+            </div>
         </>
     )
 }
