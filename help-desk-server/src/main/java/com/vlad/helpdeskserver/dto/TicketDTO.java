@@ -1,5 +1,6 @@
 package com.vlad.helpdeskserver.dto;
 
+import com.vlad.helpdeskserver.dto.requests.TicketWithFileRequest;
 import com.vlad.helpdeskserver.entity.Ticket;
 import com.vlad.helpdeskserver.enums.TicketPrioriry;
 import com.vlad.helpdeskserver.enums.TicketStatus;
@@ -29,4 +30,15 @@ public class TicketDTO {
         this.dateTime = ticket.getDateTime();
         this.message = new MessageDTO(ticket.getMessage());
     }
+
+//    public TicketDTO(TicketWithFileRequest ticketWithFileRequest) {
+//        this.id = ticketWithFileRequest.getId();
+//        this.sender = ticketWithFileRequest.getSender();
+//        this.executor = ticketWithFileRequest.getExecutor();
+//        this.themeId = ticketWithFileRequest.getThemeId();
+//        this.status = ticketWithFileRequest.getStatus();
+//        this.priority = ticketWithFileRequest.getPriority();
+//        this.dateTime = ticketWithFileRequest.getDateTime();
+//    }
+
 }

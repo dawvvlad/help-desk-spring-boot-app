@@ -1,14 +1,23 @@
 package com.vlad.helpdeskserver.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vlad.helpdeskserver.dto.TicketDTO;
+import com.vlad.helpdeskserver.dto.requests.TicketWithFileRequest;
+//import com.vlad.helpdeskserver.mapper.TicketWithFileRequestMapper;
 import com.vlad.helpdeskserver.service.ticket.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Base64;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -22,9 +31,22 @@ public class ApiClientController {
     }
 
     @PostMapping("/createTicket")
-    public ResponseEntity<TicketDTO> createTicket(@RequestBody TicketDTO ticketDTO) {
-        ticketService.create(ticketDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(ticketDTO);
+    public ResponseEntity<String> createTicket(@RequestParam("file") List<MultipartFile> files,
+                                               @RequestParam("message") String ticketJSON) throws IOException {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            TicketWithFileRequest ticket = mapper.readValue(ticketJSON, TicketWithFileRequest.class);
+
+            System.out.println(ticket.getSender());
+            System.out.println(files);
+           for(MultipartFile file : files) {
+               System.out.println(file.getOriginalFilename());
+           }
+
+            return ResponseEntity.ok("File uploaded successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload file");
+        }
     }
 
 

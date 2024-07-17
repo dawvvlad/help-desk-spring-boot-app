@@ -25,10 +25,21 @@ public class ApiAdminController {
         this.ticketService = ticketService;
     }
 
+    /* theme */
     @PostMapping("/createTheme")
     public ResponseEntity<ThemeDTO> createTheme(@RequestBody ThemeDTO themeDTO) {
         themeService.create(themeDTO.getName());
         return ResponseEntity.status(HttpStatus.CREATED).body(themeDTO);
+    }
+    @DeleteMapping("/deleteTheme/{id}")
+    public ResponseEntity<ThemeDTO> deleteTheme(@PathVariable Long id) {
+        themeService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @PatchMapping("/changeThemeName/{id}")
+    public void changeThemeName(@PathVariable("id") Long id, @RequestBody Map<String, String> body) {
+        themeService.changeName(id, body.get("name"));
     }
 
     @PatchMapping("/changeTicketStatus/{ticketId}")
@@ -42,9 +53,6 @@ public class ApiAdminController {
         ticketService.changeExecutor(id, body.get("executor"));
     }
 
-    @PatchMapping("/changeThemeName/{id}")
-    public void changeThemeName(@PathVariable("id") Long id, @RequestBody Map<String, String> body) {
-        themeService.changeName(id, body.get("name"));
-    }
+
 
 }
