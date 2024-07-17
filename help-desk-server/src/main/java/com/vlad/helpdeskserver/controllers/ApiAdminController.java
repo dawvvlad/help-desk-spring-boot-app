@@ -66,7 +66,7 @@ public class ApiAdminController {
     }
 
     @PatchMapping("/changeTicketCommentBeforeClose/{ticketId}")
-    public void changeCommentBeforeClose(@PathVariable("ticketId") Long id, Map<String, String> comment) {
+    public void changeCommentBeforeClose(@PathVariable("ticketId") Long id, @RequestBody Map<String, String> comment) {
         ticketService.changeCommentBefore(id, comment.get("comment"));
     }
 
@@ -75,13 +75,31 @@ public class ApiAdminController {
         bannerService.create(bannerDTO);
     }
 
-    @GetMapping("/banner/{id}")
+    @GetMapping("/banners/{id}")
     public ResponseEntity<BannerDTO> getBanner(@PathVariable("id") Long id) {
         BannerDTO bannerDTO = bannerService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(bannerDTO);
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping("/deleteBanner/{id}")
+    public void deleteBanner(@PathVariable("id") Long id) {
+        bannerService.delete(id);
+    }
+
+    @PatchMapping("/changeBannerStatus/{id}")
+    public void changeBannerStatus(@PathVariable("id") Long id, @RequestBody Map<String, String> status) {
+        bannerService.changeStatus(id, status.get("status"));
+    }
+
+    @PatchMapping("/changeBanner/{id}")
+    public void changeBanner(@PathVariable("id") Long id, Map<String, String> changes) {
+        if(changes.get("title") != null) {
+            bannerService.changeTitle(id, changes.get("status"));
+        }
+        if(changes.get("description") != null) {
+            bannerService.changeDescription(id, changes.get("description"));
+        }
+    }
 
     @GetMapping("/banners")
     public ResponseEntity<List<BannerDTO>> getAllBanners() {
