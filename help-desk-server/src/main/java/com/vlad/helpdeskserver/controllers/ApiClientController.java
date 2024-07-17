@@ -2,7 +2,8 @@ package com.vlad.helpdeskserver.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vlad.helpdeskserver.dto.requests.TicketWithFileRequest;
-//import com.vlad.helpdeskserver.mapper.TicketWithFileRequestMapper;
+
+import com.vlad.helpdeskserver.service.FileUploader;
 import com.vlad.helpdeskserver.service.ticket.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,21 +11,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/api/v1")
 public class ApiClientController {
 
     private final TicketService ticketService;
-    private final Path root = Paths.get("uploads/");
+    private static final Logger logger = LoggerFactory.getLogger(ApiClientController.class);
 
     @Autowired
     public ApiClientController(TicketService ticketService) {
@@ -35,19 +41,25 @@ public class ApiClientController {
     public ResponseEntity<String> createTicket(@RequestParam("file") List<MultipartFile> files,
                                                @RequestParam("message") String ticketJSON) throws IOException {
         try {
+            Random random = new Random();
+
+            // Маппинг в POJO
             ObjectMapper mapper = new ObjectMapper();
             TicketWithFileRequest ticket = mapper.readValue(ticketJSON, TicketWithFileRequest.class);
 
-            System.out.println(ticket);
-            System.out.println(files);
+            FileUploader fileUploader = new FileUploader();
 
-            for(MultipartFile file : files) {
-                Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
-            }
+            List<String> filePaths = fileUploader.uploadFiles(files);
 
-            return ResponseEntity.ok("File uploaded successfully");
+            System.out.println(filePaths);
+
+            return ResponseEntity.ok("Files uploaded successfully");
+        } catch (IOException e) {
+            logger.error("Error uploading files", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload files");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload file");
+            logger.error("Unexpected error", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Unexpected error occurred");
         }
     }
 
