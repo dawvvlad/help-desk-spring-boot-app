@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Random;
 
 public class FileUploader {
-    private final Path root = Paths.get("uploads/");
+    private final Path root = Paths.get("uploads");
     private final Logger logger = LoggerFactory.getLogger(ApiClientController.class);
     private final Random random = new Random();
 
