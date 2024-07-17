@@ -6,6 +6,8 @@ import com.vlad.helpdeskserver.entity.Banner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -29,31 +31,49 @@ public class BannerServiceImpl implements BannerService {
 
     @Override
     public void changeTitle(Long id, String title) {
-
+        Banner banner = bannerRepo.find(id);
+        banner.setTitle(title);
+        bannerRepo.update(banner);
     }
 
     @Override
     public void changeStatus(Long id, String status) {
-
+        Banner banner = bannerRepo.find(id);
+        banner.setTitle(status);
+        bannerRepo.update(banner);
     }
 
     @Override
     public void changeDescription(Long id, String description) {
-
+        Banner banner = bannerRepo.find(id);
+        banner.setTitle(description);
+        bannerRepo.update(banner);
     }
 
     @Override
     public void delete(Long id) {
-
+        Banner banner = bannerRepo.find(id);
+        bannerRepo.delete(banner);
     }
 
     @Override
     public BannerDTO findById(Long id) {
-        return null;
+        Banner banner = bannerRepo.find(id);
+        return new BannerDTO(banner);
     }
 
     @Override
     public List<BannerDTO> findAll() {
-        return List.of();
+        List<Banner> banners = bannerRepo.findAll();
+        List<BannerDTO> bannerDTOs = new ArrayList<>();
+        if(banners == null || banners.isEmpty()) {
+            return Collections.emptyList();
+        } else {
+            for(Banner banner : banners) {
+                bannerDTOs.add(new BannerDTO(banner));
+            }
+        }
+
+        return bannerDTOs;
     }
 }
