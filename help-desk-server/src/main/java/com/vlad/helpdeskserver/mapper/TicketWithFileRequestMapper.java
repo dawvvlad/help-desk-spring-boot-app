@@ -14,7 +14,7 @@
 //
 //public class TicketWithFileRequestMapper {
 //
-//    private static final String UPLOADED_FOLDER = "./uploads/";
+//    private static final String UPLOADED_FOLDER = "../uploads/";
 //
 //    public TicketDTO saveFile(TicketWithFileRequest ticketWithFileRequest) throws IOException {
 //

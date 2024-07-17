@@ -13,18 +13,17 @@ import java.util.List;
 @Setter
 @ToString
 public class TicketWithFileRequest {
-//    private Long id;
-//    private String sender;
-//    private String executor;
-//    private Long themeId;
+    private Long id;
+    private String sender;
+    private String executor;
+    private Long themeId;
 
     //message
-    private String sender;
+    private String text;
 
-//    private TicketStatus status;
-//    private TicketPrioriry priority;
-//    private String dateTime;
-//    private String data;
+    private TicketStatus status;
+    private TicketPrioriry priority;
+    private String dateTime;
 
     public TicketWithFileRequest() {}
 }
