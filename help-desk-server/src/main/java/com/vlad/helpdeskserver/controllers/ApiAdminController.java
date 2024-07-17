@@ -1,15 +1,19 @@
 package com.vlad.helpdeskserver.controllers;
 
+import com.vlad.helpdeskserver.dto.BannerDTO;
 import com.vlad.helpdeskserver.dto.ThemeDTO;
 import com.vlad.helpdeskserver.dto.TicketDTO;
 import com.vlad.helpdeskserver.enums.TicketStatus;
+import com.vlad.helpdeskserver.service.banner.BannerService;
 import com.vlad.helpdeskserver.service.theme.ThemeService;
 import com.vlad.helpdeskserver.service.ticket.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -18,11 +22,19 @@ public class ApiAdminController {
 
     private final ThemeService themeService;
     private final TicketService ticketService;
+    private final BannerService bannerService;
 
     @Autowired
-    public ApiAdminController(ThemeService themeService, TicketService ticketService) {
+    public ApiAdminController(ThemeService themeService, TicketService ticketService, BannerService bannerService) {
         this.themeService = themeService;
         this.ticketService = ticketService;
+        this.bannerService = bannerService;
+    }
+
+    @GetMapping("/tickets")
+    public ResponseEntity<List<TicketDTO>> getAllTickets() {
+        List<TicketDTO> tickets = ticketService.getAllTickets();
+        return ResponseEntity.status(HttpStatus.OK).body(tickets);
     }
 
     /* theme */
@@ -58,5 +70,22 @@ public class ApiAdminController {
         ticketService.changeCommentBefore(id, comment.get("comment"));
     }
 
+    @PostMapping("/createBanner")
+    public void createBanner(@RequestBody BannerDTO bannerDTO) {
+        bannerService.create(bannerDTO);
+    }
 
+    @GetMapping("/banner/{id}")
+    public ResponseEntity<BannerDTO> getBanner(@PathVariable("id") Long id) {
+        BannerDTO bannerDTO = bannerService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(bannerDTO);
+    }
+
+    @DeleteMapping("/")
+
+    @GetMapping("/banners")
+    public ResponseEntity<List<BannerDTO>> getAllBanners() {
+        List<BannerDTO> bannerDTOs = bannerService.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(bannerDTOs);
+    }
 }
