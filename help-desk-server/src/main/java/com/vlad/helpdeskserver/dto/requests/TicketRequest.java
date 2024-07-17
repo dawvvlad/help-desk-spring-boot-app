@@ -24,6 +24,7 @@ public class TicketRequest {
     private TicketStatus status;
     private TicketPrioriry priority;
     private String dateTime;
+    private String commentBeforeClose = null;
 
     public TicketRequest() {}
 }

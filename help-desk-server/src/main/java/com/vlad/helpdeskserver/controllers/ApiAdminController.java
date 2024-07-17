@@ -53,6 +53,10 @@ public class ApiAdminController {
         ticketService.changeExecutor(id, body.get("executor"));
     }
 
+    @PatchMapping("/changeTicketCommentBeforeClose/{ticketId}")
+    public void changeCommentBeforeClose(@PathVariable("ticketId") Long id, Map<String, String> comment) {
+        ticketService.changeCommentBefore(id, comment.get("comment"));
+    }
 
 
 }

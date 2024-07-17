@@ -82,6 +82,13 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
+    public void changeCommentBefore(Long id, String comment) {
+        Ticket ticket = ticketRepo.findById(id);
+        ticket.setCommentBeforeClose(comment);
+        ticketRepo.update(ticket);
+    }
+
+    @Override
     public TicketDTO getTicket(Long id) {
         Ticket ticket = ticketRepo.findById(id);
 
