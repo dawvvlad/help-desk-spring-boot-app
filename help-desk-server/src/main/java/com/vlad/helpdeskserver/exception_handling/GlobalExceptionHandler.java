@@ -1,7 +1,6 @@
 package com.vlad.helpdeskserver.exception_handling;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,7 +16,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler
-    public ResponseEntity<IncorrectRequest> handleException(NoSuchValueException e) {
+    public ResponseEntity<IncorrectRequest> handleException(Exception e) {
         IncorrectRequest incorrectRequest = new IncorrectRequest();
         incorrectRequest.setInfo(e.getMessage());
         return new ResponseEntity<IncorrectRequest>(incorrectRequest, HttpStatus.BAD_REQUEST);
