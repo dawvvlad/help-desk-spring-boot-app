@@ -6,6 +6,7 @@ import com.vlad.helpdeskserver.dto.ThemeDTO;
 import com.vlad.helpdeskserver.dto.TicketDTO;
 import com.vlad.helpdeskserver.dto.requests.TicketRequest;
 
+import com.vlad.helpdeskserver.exception_handling.NoSuchValueException;
 import com.vlad.helpdeskserver.service.FileUploader;
 import com.vlad.helpdeskserver.service.theme.ThemeService;
 import com.vlad.helpdeskserver.service.ticket.TicketService;
@@ -40,18 +41,32 @@ public class ApiClientController {
     @GetMapping("/tickets/{id}")
     public ResponseEntity<TicketDTO> getTicket(@PathVariable("id") Long id) {
         TicketDTO ticketDTO = ticketService.getTicket(id);
+
+        if(ticketDTO == null) {
+            throw new NoSuchValueException("Ticket not found");
+        }
+
         return ResponseEntity.status(HttpStatus.OK).body(ticketDTO);
     }
 
     @GetMapping("/tickets/{sender}")
     public ResponseEntity<List<TicketDTO>> getTicketsBySender(@PathVariable("sender") String sender) {
         List<TicketDTO> ticketDTOs = ticketService.getAllTicketsBySender(sender);
+
+        if(ticketDTOs == null) {
+            throw new NoSuchValueException("Tickets not found");
+        }
         return ResponseEntity.status(HttpStatus.OK).body(ticketDTOs);
     }
 
     @GetMapping("/themes")
     public ResponseEntity<List<ThemeDTO>> getAllThemes() {
         List<ThemeDTO> themes = themeService.getAllThemes();
+
+        if(themes == null) {
+            throw new NoSuchValueException("Themes not found");
+        }
+
         return ResponseEntity.status(HttpStatus.OK).body(themes);
     }
 

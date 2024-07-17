@@ -4,6 +4,7 @@ import com.vlad.helpdeskserver.dto.BannerDTO;
 import com.vlad.helpdeskserver.dto.ThemeDTO;
 import com.vlad.helpdeskserver.dto.TicketDTO;
 import com.vlad.helpdeskserver.enums.TicketStatus;
+import com.vlad.helpdeskserver.exception_handling.NoSuchValueException;
 import com.vlad.helpdeskserver.service.banner.BannerService;
 import com.vlad.helpdeskserver.service.theme.ThemeService;
 import com.vlad.helpdeskserver.service.ticket.TicketService;
@@ -34,6 +35,11 @@ public class ApiAdminController {
     @GetMapping("/tickets")
     public ResponseEntity<List<TicketDTO>> getAllTickets() {
         List<TicketDTO> tickets = ticketService.getAllTickets();
+
+        if(tickets == null) {
+            throw new NoSuchValueException("Tickets not found");
+        }
+
         return ResponseEntity.status(HttpStatus.OK).body(tickets);
     }
 
@@ -43,6 +49,7 @@ public class ApiAdminController {
         themeService.create(themeDTO.getName());
         return ResponseEntity.status(HttpStatus.CREATED).body(themeDTO);
     }
+
     @DeleteMapping("/deleteTheme/{id}")
     public ResponseEntity<ThemeDTO> deleteTheme(@PathVariable Long id) {
         themeService.delete(id);
@@ -78,6 +85,11 @@ public class ApiAdminController {
     @GetMapping("/banners/{id}")
     public ResponseEntity<BannerDTO> getBanner(@PathVariable("id") Long id) {
         BannerDTO bannerDTO = bannerService.findById(id);
+
+        if(bannerDTO == null) {
+            throw new NoSuchValueException("Banner not found");
+        }
+
         return ResponseEntity.status(HttpStatus.OK).body(bannerDTO);
     }
 
@@ -104,6 +116,11 @@ public class ApiAdminController {
     @GetMapping("/banners")
     public ResponseEntity<List<BannerDTO>> getAllBanners() {
         List<BannerDTO> bannerDTOs = bannerService.findAll();
+
+        if(bannerDTOs == null) {
+            throw new NoSuchValueException("Banners not found");
+        }
+
         return ResponseEntity.status(HttpStatus.OK).body(bannerDTOs);
     }
 }
