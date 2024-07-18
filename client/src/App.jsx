@@ -12,8 +12,12 @@ function App() {
               <Routes>
                   <Route path="/" element={<Layout/>}>
                   {user === 1 ?
-                      <Route index element={<UserMain/>}/> :
-                      <Route index element={<AdminMain/>}/>}
+                      <Route path={"/"} element={<UserMain/>}>
+                          <Route path="alltickets" element={<UserMain />} />
+                      </Route>:
+                      <Route path={"/"} element={<AdminMain/>}>
+                          <Route path="alltickets" element={<UserMain />} />
+                      </Route>}
                   </Route>
               </Routes>
           </Router>

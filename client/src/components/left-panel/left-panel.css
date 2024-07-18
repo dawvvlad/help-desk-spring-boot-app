@@ -1,0 +1,64 @@
+.left-panel {
+    width: 350px;
+    height: 91vh;
+    background-color: #edf0f8;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    border-radius: 10px;
+}
+
+.ticket-wrapper {
+    width: 100%;
+}
+
+.ticket-wrapper > h2 {
+    color: #2F4F8EFF;
+    font-weight: 700;
+    font-size: 30px;
+    margin: 30px 0 80px 75px;
+
+}
+.links {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-around;
+    font-size: 20px;
+}
+
+.link {
+    padding: 15px 20px;
+    margin-left: 70px;
+    border-radius: 8px;
+    background-color: white;
+    width: 180px;
+
+
+    transition: .2s linear;
+}
+
+.link:hover {
+    background-color: #1c0a5c;
+    color: white;
+}
+
+.button {
+    margin-left: 70px;
+    width: 180px;
+    text-align: center;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    background-color: #2F4F8EFF;
+    margin-top: 50px;
+
+    transition: .2s linear;
+}
+
+.button:hover {
+    background-color: #1c0a5c;
+    color: #ffffff;
+}

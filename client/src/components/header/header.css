@@ -1,38 +1,39 @@
 .header {
-    width: 100%;
-    background-color: #535bf2;
+    background-color: #2F4F8EFF;
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
     padding: 20px;
     z-index: 100;
 }
 
 .logo {
-    left: 10px;
     text-align: center;
-    float: left;
-}
-
-.links {
-    width: 80%;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex: 1 1 0;
+    justify-content: left;
     align-items: center;
-}
-
-.link {
-    padding: 10px;
-    color: white;
-    transition: .2s;
-}
-
-.link:hover {
-    color: #9f9ff9;
+    margin-left: 50px;
 }
 
 .logo > h2 {
     color: white;
+}
+.user-info {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    margin-right: 50px;
+}
+
+.avatar {
+    font-size: 20px;
+    margin: 0 20px;
+    color: white;
+    background-color: #46c9f1;
+    padding: 10px 10px;
+    border-radius: 50%;
 }
