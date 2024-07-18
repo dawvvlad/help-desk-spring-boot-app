@@ -11,7 +11,6 @@
 h1, h2, p {
   margin: 0;
   padding: 0;
-  text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.12);
 }
 
 .right-panel {
@@ -19,8 +18,7 @@ h1, h2, p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-
+  justify-content: start;
 }
 
 .text {
@@ -93,6 +91,27 @@ button:focus-visible {
 .link.active, .button.active {
   color: white;
   background-color: #1c0a5c;
+}
+
+.tickets-panel {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 80px;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tickets-panel > p {
+  text-align: center;
+  flex: 1 1 0;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 15px;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  color: black;
 }
 
 @media (prefers-color-scheme: light) {

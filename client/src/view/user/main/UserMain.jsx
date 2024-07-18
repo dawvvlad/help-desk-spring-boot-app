@@ -1,5 +1,5 @@
 import './main.css'
-import {LeftPanelUser} from "../../../components/left-panel/user/LeftPanelUser.jsx";
+import {LeftPanelUser} from "../../../components/left-panel/LeftPanelUser.jsx";
 import {Outlet} from "react-router-dom";
 import {useEffect} from "react";
 

@@ -1,4 +1,4 @@
-import '../left-panel.css'
+import './left-panel.css'
 import {NavLink} from "react-router-dom";
 
 export const LeftPanelUser = () => {
@@ -8,20 +8,20 @@ export const LeftPanelUser = () => {
                 <div className={"link-wrapper"}>
                     <h2>Ваши заявки</h2>
                     <div className={"link-wrapper links"}>
-                        <NavLink className={({isActive}) => isActive ? 'link active' : 'link'} to={"all_tickets"}>
+                        <NavLink className={({isActive}) => isActive ? 'link active' : 'link'} to={"tickets/all"}>
                             Все
                         </NavLink>
-                        <NavLink className={"link"} to={"wait_tickets"}>
+                        <NavLink className={"link"} to={"tickets/wait"}>
                             Ожидают
                         </NavLink>
-                        <NavLink className={"link"} to={"open_tickets"}>
+                        <NavLink className={"link"} to={"tickets/open"}>
                             В работе
                         </NavLink>
-                        <NavLink className={"link"} to={"closed_tickets"}>
+                        <NavLink className={"link"} to={"tickets/closed"}>
                             Закрытые
                         </NavLink>
 
-                        <NavLink className={"button"} to={"create_ticket"}>Создать заявку</NavLink>
+                        <NavLink className={"button"} to={"tickets/create"}>Создать заявку</NavLink>
                     </div>
                 </div>
             </div>
