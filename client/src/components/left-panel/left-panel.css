@@ -35,9 +35,12 @@
     border-radius: 8px;
     background-color: white;
     width: 180px;
-
-
     transition: .2s linear;
+}
+
+.link.active, .button.active {
+    color: white;
+    background-color: #1c0a5c;
 }
 
 .link:hover {
