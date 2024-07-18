@@ -1,27 +1,28 @@
-import {useEffect} from "react";
+import {useContext, useEffect} from "react";
 import {Ticket} from "../ticket/Ticket.jsx";
+import {ContextProvider} from "../../context/Context.jsx";
+import {TicketTopPanel} from "../ticket/TicketTopPanel.jsx";
 
 export const AllTickets = () => {
 
+    const {resources, setResources} = useContext(ContextProvider)
+    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
     useEffect(function addTitle () {
-        document.title = "HelpDesk - Все зявки"
+        document.title = "HelpDesk - Все зявки";
+
+        setResources(arr);
+        console.log(arr);
+
     }, []);
 
-    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     return (
         <>
             <div className={"container right-panel"}>
-                <div className={"tickets-panel"}>
-                    <p className={"text ticket-p"}>Номер</p>
-                    <p className={"text ticket-p"}>Тема</p>
-                    <p className={"text ticket-p"}>Статус</p>
-                    <p className={"text ticket-p"}>Исполнитель</p>
-                    <p className={"text ticket-p"}>Приоритет</p>
-                    <p className={"text ticket-p"}>Дата/Время</p>
-                </div>
+                <TicketTopPanel/>
 
-                {arr.map((e) => {
+                {resources.map((e) => {
                     return <Ticket key={e} id={e} value={e}/>
                 })}
 

@@ -7,7 +7,7 @@ const initialValue = {
     userData: [],
     resources: [],
     isLoading: false,
-    targetId: undefined
+    targetId: undefined,
 }
 
 export const Context = ({ children }) => {
