@@ -7,8 +7,6 @@ export const OpenTickets = () => {
     const {resources, setResources} = useContext(ContextProvider)
 
     useEffect(function addTitle () {
-        document.title = "HelpDesk - Все зявки";
-
         setResources(resources.filter(e => e > 4));
         console.log(resources);
 

@@ -3,7 +3,6 @@ import {useEffect} from "react";
 export const WaitTickets = () => {
 
     useEffect(function addTitle () {
-        document.title = "HelpDesk - Неактивные зявки"
     }, []);
 
     return (

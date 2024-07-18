@@ -9,11 +9,8 @@ export const AllTickets = () => {
     const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     useEffect(function addTitle () {
-        document.title = "HelpDesk - Все зявки";
-
         setResources(arr);
         console.log(arr);
-
     }, []);
 
 
