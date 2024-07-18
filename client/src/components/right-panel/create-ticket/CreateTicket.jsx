@@ -5,13 +5,12 @@ import {TicketForm} from "../../form/TicketForm.jsx";
 export const CreateTicket = () => {
     return (
         <div className={"container right-panel"}>
-            <div>
-                <h1>Create</h1>
-            </div>
             <div className="form-container">
                 <TicketForm/>
                 <DragFileInput/>
+                <button className={"button"}>Отправить заявку</button>
             </div>
+
         </div>
     );
 }

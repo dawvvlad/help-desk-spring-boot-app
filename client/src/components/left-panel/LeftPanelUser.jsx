@@ -21,7 +21,7 @@ export const LeftPanelUser = () => {
                             Закрытые
                         </NavLink>
 
-                        <NavLink className={"button"} to={"tickets/create"}>Создать заявку</NavLink>
+                        <NavLink className={"button nav-button"} to={"tickets/create"}>Создать заявку</NavLink>
                     </div>
                 </div>
             </div>

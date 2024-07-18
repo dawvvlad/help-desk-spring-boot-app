@@ -8,6 +8,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  font-size: 16px;
+
+}
+
 h1, h2, p {
   margin: 0;
   padding: 0;
@@ -39,6 +44,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
 
 h1 {
@@ -47,27 +53,25 @@ h1 {
 }
 
 .button {
-  margin-left: 70px;
-  width: 180px;
+  font-family: 'Montserrat', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   text-align: center;
   padding: 15px 20px;
   border-radius: 8px;
   color: white;
   background-color: #2F4F8EFF;
-  margin-top: 50px;
-
   transition: .2s linear;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+  border: none;
+
+  font-weight: 600;
 }
 
 .button:hover {
   background-color: #1c0a5c;
   color: #ffffff;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+
 
 .link {
   padding: 15px 20px;
