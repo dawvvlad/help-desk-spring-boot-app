@@ -5,20 +5,20 @@ export const LeftPanelUser = () => {
     return (
         <>
             <div className={"left-panel"}>
-                <div className={"ticket-wrapper"}>
+                <div className={"link-wrapper"}>
                     <h2>Ваши заявки</h2>
-                    <div className={"ticket-wrapper links"}>
-                        <NavLink className={({isActive}) => isActive ? 'link active' : 'link'} to={"allTickets"}>
+                    <div className={"link-wrapper links"}>
+                        <NavLink className={({isActive}) => isActive ? 'link active' : 'link'} to={"all_tickets"}>
                             Все
                         </NavLink>
-                        <NavLink className={"link"} to={"openTickets"}>
+                        <NavLink className={"link"} to={"open_tickets"}>
                             В работе
                         </NavLink>
-                        <NavLink className={"link"} to={"closedTickets"}>
+                        <NavLink className={"link"} to={"closed_tickets"}>
                             Закрытые
                         </NavLink>
 
-                        <NavLink className={"button"} to={"createTicket"}>Создать заявку</NavLink>
+                        <NavLink className={"button"} to={"create_ticket"}>Создать заявку</NavLink>
                     </div>
                 </div>
             </div>
