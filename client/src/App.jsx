@@ -7,7 +7,7 @@ import {AllTickets} from "./components/right-panel/all-tickets/AllTickets.jsx";
 import {OpenTickets} from "./components/right-panel/open-tickets/OpenTickets.jsx";
 import {ClosedTickets} from "./components/right-panel/closed-tickets/ClosedTickets.jsx";
 import {CreateTicket} from "./components/right-panel/create-ticket/CreateTicket.jsx";
-import {useEffect} from "react";
+import {WaitTickets} from "./components/right-panel/wait_tickets/WaitTickets.jsx";
 
 function App() {
     let user = 1;
@@ -21,7 +21,7 @@ function App() {
                       <Route path={"/"} element={<UserMain/>}>
                           <Route index element={<Navigate to="all_tickets" />} />
                           <Route path="all_tickets" element={<AllTickets/>} />
-                          <Route path="wait_tickets" element={<AllTickets/>} />
+                          <Route path="wait_tickets" element={<WaitTickets/>} />
                           <Route path="open_tickets" element={<OpenTickets/>} />
                           <Route path="closed_tickets" element={<ClosedTickets />} />
                           <Route path="create_ticket" element={<CreateTicket />} />

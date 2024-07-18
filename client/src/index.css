@@ -11,7 +11,7 @@
 h1, h2, p {
   margin: 0;
   padding: 0;
-  text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.07);
+  text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.12);
 }
 
 .right-panel {
@@ -59,7 +59,7 @@ h1 {
   margin-top: 50px;
 
   transition: .2s linear;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.22);
 }
 
 .button:hover {
@@ -78,7 +78,7 @@ button:focus-visible {
   background-color: white;
   width: 180px;
   transition: .1s linear;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.22);
 }
 
 .link:active, .button:active {
