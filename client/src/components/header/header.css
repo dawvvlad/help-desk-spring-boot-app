@@ -6,6 +6,8 @@
     align-items: center;
     padding: 20px;
     z-index: 100;
+
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.22);
 }
 
 .logo {

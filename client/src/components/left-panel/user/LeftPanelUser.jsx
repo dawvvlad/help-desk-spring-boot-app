@@ -11,6 +11,9 @@ export const LeftPanelUser = () => {
                         <NavLink className={({isActive}) => isActive ? 'link active' : 'link'} to={"all_tickets"}>
                             Все
                         </NavLink>
+                        <NavLink className={"link"} to={"wait_tickets"}>
+                            Ожидают
+                        </NavLink>
                         <NavLink className={"link"} to={"open_tickets"}>
                             В работе
                         </NavLink>

@@ -21,6 +21,7 @@ function App() {
                       <Route path={"/"} element={<UserMain/>}>
                           <Route index element={<Navigate to="all_tickets" />} />
                           <Route path="all_tickets" element={<AllTickets/>} />
+                          <Route path="wait_tickets" element={<AllTickets/>} />
                           <Route path="open_tickets" element={<OpenTickets/>} />
                           <Route path="closed_tickets" element={<ClosedTickets />} />
                           <Route path="create_ticket" element={<CreateTicket />} />

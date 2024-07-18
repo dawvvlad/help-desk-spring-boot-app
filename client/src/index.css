@@ -59,7 +59,7 @@ h1 {
   margin-top: 50px;
 
   transition: .2s linear;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.22);
 }
 
 .button:hover {
@@ -78,7 +78,7 @@ button:focus-visible {
   background-color: white;
   width: 180px;
   transition: .1s linear;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.22);
 }
 
 .link:active, .button:active {
