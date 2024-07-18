@@ -76,3 +76,11 @@ fieldset{
     border-bottom:1px solid #efefef;
     margin-bottom:5px;
 }
+
+.form {
+    width: 60%;
+}
+
+.input__wrapper {
+    width: 100%;
+}

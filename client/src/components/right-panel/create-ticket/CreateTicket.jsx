@@ -1,22 +1,21 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './create-ticket.css';
 
 export const CreateTicket = () => {
     const fileselectRef = useRef(null);
     const filedragRef = useRef(null);
     const messagesRef = useRef(null);
-
-    /* вывод сообщений */
-    function Output(msg) {
-        let m = messagesRef.current;
-        m.innerHTML = msg + m.innerHTML;
-    }
+    const [files, setFiles] = useState([]);
 
     useEffect(() => {
         if (window.File && window.FileList && window.FileReader) {
             Init();
         }
     }, []);
+
+    useEffect(() => {
+        console.log(files)
+    }, [files]);
 
     /* инициализация */
     function Init() {
@@ -30,8 +29,6 @@ export const CreateTicket = () => {
         filedrag.addEventListener("dragleave", FileDragHover, false);
         filedrag.addEventListener("drop", FileSelectHandler, false);
         filedrag.style.display = "block";
-
-        /* удаление кнопки сабмитта */
     }
 
     function FileDragHover(e) {
@@ -42,46 +39,33 @@ export const CreateTicket = () => {
 
     function FileSelectHandler(e) {
         FileDragHover(e);
-        // проходимся по объекту FileList
-        let files = e.target.files || e.dataTransfer.files;
-        // парсим все объекты типа File
-        for (let i = 0, f; f = files[i]; i++) {
-            ParseFile(f);
-        }
-    }
-
-    function ParseFile(file) {
-        Output(
-            "<p>File information: <strong>" + file.name +
-            "</strong> type: <strong>" + file.type +
-            "</strong> size: <strong>" + file.size +
-            "</strong> bytes</p>"
-        );
+        let newFiles = Array.from(e.target.files || e.dataTransfer.files);
+        setFiles(prevFiles => [...prevFiles, ...newFiles]);
     }
 
     return (
         <div className={"container right-panel"}>
-
             <div>
-                <h1>
-                    Create
-                </h1>
+                <h1>Create</h1>
             </div>
 
             <form className={"form"}>
-                <textarea name="text" placeholder="Текст сообщения" className={"message-text"}/>
+                <textarea name="text" placeholder="Текст сообщения" className={"message-text"} />
 
                 <fieldset>
-                    <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000"/>
-                    <div>
+                    <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
+                    <div className={"input-wrapper"}>
                         <label htmlFor="fileselect">Выберите файлы для загрузки:</label>
+                        <br />
                         <input type={"file"} id="fileselect" name="fileselect[]" multiple="multiple"
-                               ref={fileselectRef}/>
+                               ref={fileselectRef} className={"input input__file"} />
                         <div id="filedrag" ref={filedragRef}>Или перетащите их сюда</div>
                     </div>
                 </fieldset>
             </form>
-            <div id="messages" ref={messagesRef}></div>
+            <div id="messages" ref={messagesRef}>
+                <p>Файлов выбрано: {files.length}</p>
+            </div>
         </div>
     );
 }
