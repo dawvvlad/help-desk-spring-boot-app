@@ -5,14 +5,20 @@
     border-radius: 10px;
     padding: 20px;
 
+    background-color: #f8fbfb;
+
     white-space: pre-wrap;
     overflow-wrap: break-word;
     line-height: 1.5;
     box-sizing: border-box;
     resize: none;
-    border: none;
+    border: 1px solid rgba(28, 10, 92, 0.2);
     font-family: 'Montserrat', serif;
     font-size: 18px;
+}
+
+.message-text::placeholder {
+    color: black;
 }
 
 .message-text:focus {
@@ -38,9 +44,8 @@
     background: #555; /* Цвет ползунка при наведении */
 }
 
-
 body{
-    background: none repeat scroll 0% 0% #EFEFEF;
+    background: none repeat scroll 0% 0% rgb(255, 255, 255);
 }
 .wrapper{
     background: none repeat scroll 0% 0% #FFFFFF;
@@ -81,6 +86,7 @@ fieldset{
     width: 60%;
 }
 
-.input__wrapper {
-    width: 100%;
+fieldset {
+    border-radius: 15px;
+    border: 1px solid rgba(28, 10, 92, 0.2);
 }
