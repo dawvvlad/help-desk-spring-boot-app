@@ -1,7 +1,7 @@
-import './left-panel.css'
+import '../left-panel.css'
 import {NavLink} from "react-router-dom";
 
-export const LeftPanel = () => {
+export const LeftPanelUser = () => {
     return (
         <>
             <div className={"left-panel"}>

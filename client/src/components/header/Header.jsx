@@ -9,7 +9,7 @@ export const Header = () => {
     return (
         <header className={"header"}>
             <div className={"logo"}>
-                <h2>ККЗ</h2>
+                <h2>Служба техподдержки</h2>
             </div>
             <div className={"container user-info"}>
                 <p className={"text avatar"}>{avatar}</p>

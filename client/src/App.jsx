@@ -7,9 +7,15 @@ import {AllTickets} from "./components/right-panel/all-tickets/AllTickets.jsx";
 import {OpenTickets} from "./components/right-panel/open-tickets/OpenTickets.jsx";
 import {ClosedTickets} from "./components/right-panel/closed-tickets/ClosedTickets.jsx";
 import {CreateTicketModal} from "./components/create-ticket-modal/CreateTicketModal.jsx";
+import {useEffect} from "react";
 
 function App() {
     let user = 1;
+
+    useEffect(function addTitle () {
+        document.title = "HelpDesk"
+    }, []);
+
   return (
       <Context>
           <Router>

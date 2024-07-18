@@ -1,5 +1,5 @@
 import './main.css'
-import {LeftPanel} from "../../../components/left-panel/LeftPanel.jsx";
+import {LeftPanelUser} from "../../../components/left-panel/user/LeftPanelUser.jsx";
 import {Outlet} from "react-router-dom";
 
 
@@ -8,7 +8,7 @@ export const UserMain = () => {
     return (
         <>
             <div className="container main">
-                <LeftPanel/>
+                <LeftPanelUser/>
                 <Outlet/>
             </div>
         </>
