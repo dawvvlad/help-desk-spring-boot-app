@@ -50,15 +50,30 @@ export const CreateTicket = () => {
             </div>
 
             <form className={"form"}>
-                <textarea name="text" placeholder="Текст сообщения" className={"message-text"} />
+                <select name={"select"} className={"select"}>
+                    <option name={"option"}>
+                        1
+                    </option>
+                    <option name={"option"}>
+                        2
+                    </option>
+                    <option name={"option"}>
+                        3
+                    </option>
+                    <option name={"option"}>
+                        4
+                    </option>
+                </select>
+
+                <textarea name="text" placeholder="Текст сообщения" className={"message-text"}/>
 
                 <fieldset>
-                    <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
+                    <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000"/>
                     <div className={"input-wrapper"}>
                         <label htmlFor="fileselect">Выберите файлы для загрузки:</label>
-                        <br />
+                        <br/>
                         <input type={"file"} id="fileselect" name="fileselect[]" multiple="multiple"
-                               ref={fileselectRef} className={"input input__file"} />
+                               ref={fileselectRef} className={"input input__file"}/>
                         <div id="filedrag" ref={filedragRef}>Или перетащите их сюда</div>
                     </div>
                 </fieldset>
