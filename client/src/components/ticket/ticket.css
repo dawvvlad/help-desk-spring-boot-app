@@ -7,7 +7,10 @@
     cursor: pointer;
     border-bottom: 1px solid rgba(0, 0, 0, 0.07);
     transition: .2s linear;
+}
 
+.tickets-wrapper:nth-child(even) {
+    background-color: rgba(38, 5, 237, 0.05);
 }
 
 .tickets-wrapper > p {
@@ -19,9 +22,10 @@
     max-width: 100%;
     font-size: 15px;
     color: black;
+
 }
 .tickets-wrapper:hover {
-    background-color: #edf0f8;
+    background-color: rgba(0, 90, 255, 0.15);
 }
 
 .priority {
