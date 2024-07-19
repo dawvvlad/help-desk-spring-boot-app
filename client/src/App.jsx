@@ -11,7 +11,8 @@ import {WaitTickets} from "./components/right-panel/WaitTickets.jsx";
 import {TicketPage} from "./view/ticket-page/TicketPage.jsx";
 
 function App() {
-    let user = 0;
+    let user = 0
+    ;
 
     return (
         <>
@@ -21,7 +22,8 @@ function App() {
                         <Route path="/" element={<Layout/>}>
                             {user === 1 ?
                                 <Route path={"/"} element={<UserMain/>}>
-                                    <Route index element={<Navigate to="tickets/all" />} />
+                                    <Route index element={<Navigate to="tickets/wait" />} />
+                                    <Route path="tickets" element={<Navigate to="/tickets/wait" />} />
                                     <Route path="tickets/all" element={<AllTickets/>} />
                                     <Route path="tickets/wait" element={<WaitTickets/>} />
                                     <Route path="tickets/open" element={<OpenTickets/>} />
@@ -30,6 +32,8 @@ function App() {
                                     <Route path="tickets/:id" element={<TicketPage />} />
                                 </Route> :
                                 <Route path={"/"} element={<AdminMain/>}>
+                                    <Route index element={<Navigate to="tickets/new" />} />
+                                    <Route path="tickets" element={<Navigate to="/tickets/new" />} />
                                     <Route path="tickets/all" element={<AllTickets/>} />
                                     <Route path="tickets/new" element={<WaitTickets/>} />
                                     <Route path="tickets/open" element={<OpenTickets/>} />

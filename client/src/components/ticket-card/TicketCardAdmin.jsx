@@ -3,6 +3,8 @@ import './ticket-card.css'
 // eslint-disable-next-line react/prop-types
 export const TicketCardAdmin = ({ticketId}) => {
 
+    const status = 'В работе'
+
     return (
         <div className={"container right-panel"}>
             <div className={"ticket-page"}>
@@ -41,7 +43,8 @@ export const TicketCardAdmin = ({ticketId}) => {
                     <p>24.12.2023 18:00</p>
                 </div>
 
-                <button className={"button"}>Взять в работу</button>
+                {status === 'В работе' ? <button className={"button closing-button"}>Закрыть заявку</button> :
+                    <button className={"button"}>Взять в работу</button>}
             </div>
         </div>
     )

@@ -11,17 +11,18 @@ export const LeftPanelAdmin = () => {
                         <NavLink className={({isActive}) => isActive ? 'link active' : 'link'} to={"tickets/all"}>
                             Все
                         </NavLink>
+                        <NavLink className={"link"} to={"tickets/new"}>
+                            Новые
+                        </NavLink>
                         <NavLink className={"link"} to={"tickets/open"}>
                             В работе
                         </NavLink>
-                        <NavLink className={"link"} to={"tickets/new"}>
-                            Ожидают
-                        </NavLink>
+
                         <NavLink className={"link"} to={"tickets/closed"}>
                             Закрытые
                         </NavLink>
 
-                        <NavLink className={"button nav-button"} to={"tickets/create"}>Создать заявку</NavLink>
+                        <NavLink className={"button nav-button"} to={"tickets/create"}>Инструменты</NavLink>
                     </div>
                 </div>
             </div>
