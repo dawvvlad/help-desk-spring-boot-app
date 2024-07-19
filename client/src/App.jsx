@@ -9,9 +9,10 @@ import {ClosedTickets} from "./components/right-panel/ClosedTickets.jsx";
 import {CreateTicket} from "./components/right-panel/create-ticket/CreateTicket.jsx";
 import {WaitTickets} from "./components/right-panel/WaitTickets.jsx";
 import {TicketPage} from "./view/ticket-page/TicketPage.jsx";
+import {Settings} from "./view/settings/Settings.jsx";
 
 function App() {
-    let user = 0
+    let user = 1
     ;
 
     return (
@@ -39,6 +40,7 @@ function App() {
                                     <Route path="tickets/open" element={<OpenTickets/>} />
                                     <Route path="tickets/closed" element={<ClosedTickets />} />
                                     <Route path="tickets/:id" element={<TicketPage />} />
+                                    <Route path="settings" element={<Settings />} />
                                 </Route>
                             }
                         </Route>
