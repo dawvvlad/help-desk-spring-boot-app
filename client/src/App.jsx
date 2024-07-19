@@ -10,9 +10,10 @@ import {CreateTicket} from "./components/right-panel/create-ticket/CreateTicket.
 import {WaitTickets} from "./components/right-panel/WaitTickets.jsx";
 import {TicketPage} from "./view/ticket-page/TicketPage.jsx";
 import {Settings} from "./view/settings/Settings.jsx";
+import {PageNotFound} from "./view/page-not-found/PageNotFound.jsx";
 
 function App() {
-    let user = 1
+    let user = 0
     ;
 
     return (
@@ -21,6 +22,7 @@ function App() {
                 <Router>
                     <Routes>
                         <Route path="/" element={<Layout/>}>
+                            <Route path={"*"} element={<PageNotFound/>}/>
                             {user === 1 ?
                                 <Route path={"/"} element={<UserMain/>}>
                                     <Route index element={<Navigate to="tickets/wait" />} />
@@ -30,7 +32,7 @@ function App() {
                                     <Route path="tickets/open" element={<OpenTickets/>} />
                                     <Route path="tickets/closed" element={<ClosedTickets />} />
                                     <Route path="tickets/create" element={<CreateTicket />} />
-                                    <Route path="tickets/:id" element={<TicketPage />} />
+                                    <Route path="ticket/:id" element={<TicketPage />} />
                                 </Route> :
                                 <Route path={"/"} element={<AdminMain/>}>
                                     <Route index element={<Navigate to="tickets/new" />} />
@@ -39,7 +41,7 @@ function App() {
                                     <Route path="tickets/new" element={<WaitTickets/>} />
                                     <Route path="tickets/open" element={<OpenTickets/>} />
                                     <Route path="tickets/closed" element={<ClosedTickets />} />
-                                    <Route path="tickets/:id" element={<TicketPage />} />
+                                    <Route path="ticket/:id" element={<TicketPage />} />
                                     <Route path="settings" element={<Settings />} />
                                 </Route>
                             }

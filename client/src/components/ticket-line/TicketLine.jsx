@@ -54,7 +54,7 @@ export const TicketLine = (props) => {
     }, [])
 
     return (
-        <Link className={"tickets-wrapper"} to={`/tickets/${value}`}>
+        <Link className={"tickets-wrapper"} to={`/ticket/${value}`}>
                 <p className={"text ticket-p"}>{"#" + value}</p>
                 <p className={"text ticket-p"}>{ticketInfo.theme}</p>
                 <p className={"text ticket-p status"}>{ticketInfo.status}</p>
