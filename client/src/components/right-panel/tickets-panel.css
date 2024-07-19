@@ -1,0 +1,6 @@
+.tickets-container {
+    width: 100%;
+    position: relative;
+    top: 80px;
+    z-index: 1;
+}

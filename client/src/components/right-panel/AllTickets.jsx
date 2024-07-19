@@ -2,6 +2,7 @@ import {useContext, useEffect} from "react";
 import {Ticket} from "../ticket/Ticket.jsx";
 import {ContextProvider} from "../../context/Context.jsx";
 import {TicketTopPanel} from "../ticket/TicketTopPanel.jsx";
+import './tickets-panel.css'
 
 export const AllTickets = () => {
 
@@ -18,9 +19,12 @@ export const AllTickets = () => {
         <>
             <div className={"container right-panel"}>
                 <TicketTopPanel/>
-                {resources.map((e) => {
-                    return <Ticket key={e} id={e} value={e}/>
-                })}
+                <div className={"tickets-container"}>
+                    {resources.map((e) => {
+                        return <Ticket key={e} id={e} value={e}/>
+                    })}
+
+                </div>
 
 
             </div>

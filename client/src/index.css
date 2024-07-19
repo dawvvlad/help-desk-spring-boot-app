@@ -32,6 +32,7 @@ h1, h2, p {
   flex-direction: column;
   align-items: center;
   justify-content: start;
+  overflow-y: hidden;
 }
 
 .text {
@@ -104,13 +105,16 @@ h1 {
 }
 
 .tickets-panel {
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   align-items: center;
   height: 80px;
   font-weight: bold;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  position: fixed;
+  z-index: 100;
+  background-color: white;
 }
 
 .tickets-panel > p {
