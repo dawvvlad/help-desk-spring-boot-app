@@ -22,7 +22,7 @@ export const LeftPanelAdmin = () => {
                             Закрытые
                         </NavLink>
 
-                        <NavLink className={"button nav-button"} to={"tickets/create"}>Инструменты</NavLink>
+                        <NavLink className={"button nav-button"} to={"settings"}>Инструменты</NavLink>
                     </div>
                 </div>
             </div>
