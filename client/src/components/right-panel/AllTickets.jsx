@@ -6,7 +6,7 @@ import {TicketTopPanel} from "../ticket/TicketTopPanel.jsx";
 export const AllTickets = () => {
 
     const {resources, setResources} = useContext(ContextProvider)
-    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
     useEffect(function addTitle () {
         setResources(arr);
@@ -18,10 +18,10 @@ export const AllTickets = () => {
         <>
             <div className={"container right-panel"}>
                 <TicketTopPanel/>
-
                 {resources.map((e) => {
                     return <Ticket key={e} id={e} value={e}/>
                 })}
+
 
             </div>
         </>

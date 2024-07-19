@@ -1,6 +1,5 @@
 .left-panel {
-    width: 400px;
-    min-height: 100vh;
+    width: 30%;
     background-color: #edf0f8;
     display: flex;
     flex-direction: column;
@@ -8,6 +7,8 @@
     justify-content: start;
     border-radius: 10px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.11);
+    position: fixed;
+    height: 100vh;
 }
 
 .link-wrapper {
@@ -16,6 +17,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
+    top: 50px;
 }
 
 .link-wrapper > h2 {
