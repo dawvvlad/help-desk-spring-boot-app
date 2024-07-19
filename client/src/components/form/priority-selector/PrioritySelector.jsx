@@ -14,7 +14,7 @@ const PrioritySelector = () => {
     };
 
     return (
-        <>
+        <div className={"priority-container"}>
             <h2 className={"priority-selector__title"}>Выберите приоритет заявки: </h2>
             <div className="priority-selector">
                 <label className="priority-option">
@@ -54,7 +54,7 @@ const PrioritySelector = () => {
                     Высокий
                 </label>
             </div>
-        </>
+        </div>
     );
 };
 

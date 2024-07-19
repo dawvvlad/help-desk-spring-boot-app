@@ -9,6 +9,12 @@
     text-align: center;
 }
 
+.priority-container {
+    border: 1px solid rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
 .priority-selector__title {
     margin-top: 20px;
     text-align: center;

@@ -24,7 +24,7 @@ h1, h2, p {
 }
 
 .right-panel {
-  width: 70%;
+  width: 85%;
   position: absolute;
   right: 0;
   top: 70px;
@@ -111,7 +111,7 @@ h1 {
   height: 80px;
   font-weight: bold;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
+  background-color: wheat;
 
 }
 
