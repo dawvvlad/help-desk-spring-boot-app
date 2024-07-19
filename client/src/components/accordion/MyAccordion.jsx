@@ -19,11 +19,10 @@ export const MyAccordion = ({ themes }) => {
 
     useEffect(() => {
         console.log(selectedTheme);
-
     }, [selectedTheme]);
 
-    const addTheme = (id) => {
-        setSelectedTheme(id);
+    const handleThemeClick = (id) => {
+        setSelectedTheme(prev => prev === id ? null : id);
     };
 
     return (
@@ -39,11 +38,19 @@ export const MyAccordion = ({ themes }) => {
                             key={theme.id}
                             className={`accordion__content ${selectedTheme === theme.id ? 'selected' : ''}`}
                             data-id={theme.id}
-                            onClick={() => addTheme(theme.id)}
+                            onClick={() => handleThemeClick(theme.id)}
                         >
                             {theme.name}
                         </div>
                     ))}
+                    <div
+                        key={themes.length}
+                        className={`accordion__content ${selectedTheme === null ? 'selected' : ''}`}
+                        data-id={null}
+                        onClick={() => handleThemeClick(null)}
+                    >
+                        Другое (нет темы)...
+                    </div>
                 </div>
             </div>
         </div>

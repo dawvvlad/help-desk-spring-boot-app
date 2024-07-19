@@ -1,0 +1,55 @@
+.priority-selector {
+    padding: 20px 0;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.priority-selector__title {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.priority-option {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.priority-option input {
+    display: none;
+}
+
+.priority-option .checkmark {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #1c0a5c;
+    background: #fff;
+    margin-right: 10px;
+    position: relative;
+}
+
+.priority-option input:checked + .checkmark {
+    background: #1c0a5c;
+    border: 2px solid #1c0a5c;
+}
+
+.priority-option input:checked + .checkmark::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
