@@ -117,9 +117,7 @@
     background: #555; /* Цвет ползунка при наведении */
 }
 
-body{
-    background: none repeat scroll 0% 0% rgb(255, 255, 255);
-}
+
 .wrapper{
     background: none repeat scroll 0% 0% #FFFFFF;
     margin: 150px auto;

@@ -1,5 +1,5 @@
 .left-panel {
-    width: 350px;
+    width: 400px;
     height: 100vh;
     background-color: #edf0f8;
     display: flex;
@@ -12,28 +12,31 @@
 
 .link-wrapper {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .link-wrapper > h2 {
     color: #2F4F8EFF;
     font-weight: 700;
     font-size: 30px;
-    margin: 80px 0 80px 75px;
+    margin: 80px 0;
 
 }
 .links {
     height: 420px;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
     justify-content: space-around;
     font-size: 20px;
 }
 
 .nav-button {
-    margin-left: 70px;
-    width: 180px;
-    margin-top: 50px;
+    width: 200px;
+    margin-top: 30px;
 
 }
 
