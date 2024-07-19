@@ -1,20 +1,39 @@
 import './ticket-form.css'
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 export const DragFileInput = () => {
     const [files, setFiles] = useState([]);
     const [dragging, setDragging] = useState(false);
+    const [previews, setPreviews] = useState({}); // Хранение предварительных просмотров
+
+    useEffect(() => {
+        const newPreviews = {};
+
+        files.forEach((file, index) => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const fileType = file.type.split('/')[0];
+                if (fileType === 'image') {
+                    newPreviews[index] = e.target.result;
+                    setPreviews(prev => ({ ...prev, ...newPreviews }));
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+
+        console.log(files)
+    }, [files]);
 
     const handleFiles = (event) => {
         const newFiles = Array.from(event.target.files);
-        setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+        setFiles(prevFiles => [...prevFiles, ...newFiles]);
     };
 
     const handleDrop = (event) => {
         event.preventDefault();
         setDragging(false);
         const newFiles = Array.from(event.dataTransfer.files);
-        setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+        setFiles(prevFiles => [...prevFiles, ...newFiles]);
     };
 
     const handleDragOver = (event) => {
@@ -28,18 +47,11 @@ export const DragFileInput = () => {
     };
 
     const removeFile = (index) => {
-        setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
-    };
-
-    const renderPreview = (file, index) => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            const fileType = file.type.split('/')[0];
-            if (fileType === 'image') {
-                document.getElementById(`preview-${index}`).src = e.target.result;
-            }
-        };
-        reader.readAsDataURL(file);
+        setFiles(prevFiles => prevFiles.filter((_, i) => i !== index));
+        setPreviews(prevPreviews => {
+            const { [index]: _, ...rest } = prevPreviews;
+            return rest;
+        });
     };
 
     return (
@@ -65,7 +77,11 @@ export const DragFileInput = () => {
                 {files.map((file, index) => (
                     <div key={index} className="preview-item">
                         {file.type.startsWith('image/') ? (
-                            <img id={`preview-${index}`} alt={file.name} />
+                            <img
+                                src={previews[index] || ''}
+                                alt={file.name}
+                                id={`preview-${index}`}
+                            />
                         ) : (
                             <div className="file-icon">📄</div>
                         )}
@@ -75,7 +91,6 @@ export const DragFileInput = () => {
                     </div>
                 ))}
             </div>
-            {files.map((file, index) => renderPreview(file, index))}
         </div>
     );
 }

@@ -17,9 +17,13 @@ export const MyAccordion = ({ themes }) => {
         };
     }, []);
 
+    useEffect(() => {
+        console.log(selectedTheme);
+
+    }, [selectedTheme]);
+
     const addTheme = (id) => {
         setSelectedTheme(id);
-        console.log(selectedTheme);
     };
 
     return (
