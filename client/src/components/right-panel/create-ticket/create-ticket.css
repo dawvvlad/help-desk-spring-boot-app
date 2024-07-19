@@ -1,6 +1,5 @@
 .form-container {
     width: 50%;
-    height: 600px;
     margin-top: 70px;
     display: flex;
     flex-direction: column;
@@ -9,6 +8,6 @@
 }
 
 .form-container > button {
-    margin-top: 10px;
+    margin: 10px auto 30px auto;
 }
 
