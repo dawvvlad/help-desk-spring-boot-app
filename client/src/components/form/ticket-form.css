@@ -19,10 +19,19 @@
     width: 50%;
 
     margin: 0 auto;
+
+    transition: .1s linear;
 }
 
-.dropZone > p {
-    width: 100%;
+.drop-zone > p {
+}
+
+.drop-zone:hover {
+    background-color: rgba(0, 255, 47, 0.17);
+}
+
+.dragging {
+    background-color: rgba(0, 255, 47, 0.17);
 }
 
 .preview {
