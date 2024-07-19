@@ -8,6 +8,7 @@ import {OpenTickets} from "./components/right-panel/OpenTickets.jsx";
 import {ClosedTickets} from "./components/right-panel/ClosedTickets.jsx";
 import {CreateTicket} from "./components/right-panel/create-ticket/CreateTicket.jsx";
 import {WaitTickets} from "./components/right-panel/WaitTickets.jsx";
+import {TicketPage} from "./view/ticket-page/TicketPage.jsx";
 
 function App() {
     let user = 1;
@@ -25,6 +26,7 @@ function App() {
                           <Route path="tickets/open" element={<OpenTickets/>} />
                           <Route path="tickets/closed" element={<ClosedTickets />} />
                           <Route path="tickets/create" element={<CreateTicket />} />
+                          <Route path="tickets/:id" element={<TicketPage />} />
                       </Route>:
                       <Route path={"/"} element={<AdminMain/>}>
                           <Route path="openTickets/*" element={<UserMain />} />

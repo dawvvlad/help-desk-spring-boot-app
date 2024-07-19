@@ -2,6 +2,8 @@ import './create-ticket.css';
 import {DragFileInput} from "../../form/DragFileInput.jsx";
 import {TicketForm} from "../../form/TicketForm.jsx";
 import {MyAccordion} from "../../accordion/MyAccordion.jsx";
+import {useContext, useEffect} from "react";
+import {ContextProvider} from "../../../context/Context.jsx";
 
 export const CreateTicket = () => {
     const ths = [
@@ -11,6 +13,12 @@ export const CreateTicket = () => {
         { id: '4', name: 'Нужна новая мышка' },
         { id: '5', name: 'Требуется настройка VPN' },
     ];
+    const { setResources } = useContext(ContextProvider);
+
+    useEffect(() => {
+        setResources(ths)
+    }, []);
+
     return (
         <div className={"container right-panel"}>
             <h2 className={"create-h2"}>
