@@ -2,6 +2,7 @@ import './my-accordion.css';
 import { useEffect, useState } from "react";
 import { ItcAccordion } from "../../Accordion.js";
 
+// eslint-disable-next-line react/prop-types
 export const MyAccordion = ({ themes }) => {
     const [selectedTheme, setSelectedTheme] = useState(null);
 
@@ -18,7 +19,7 @@ export const MyAccordion = ({ themes }) => {
 
     const addTheme = (id) => {
         setSelectedTheme(id);
-        console.log("Selected Theme ID:", selectedTheme);
+        console.log(selectedTheme);
     };
 
     return (
