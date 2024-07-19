@@ -1,8 +1,18 @@
+import {useEffect} from "react";
+import {Outlet} from "react-router-dom";
+import {LeftPanelAdmin} from "../../../components/left-panel/LeftPanelAdmin.jsx";
+
 export const AdminMain = () => {
+    useEffect(() => {
+        document.title = "HelpDesk"
+    }, []);
 
     return (
         <>
-            <h1>Hello Admin</h1>
+            <div className="container main">
+                <LeftPanelAdmin/>
+                <Outlet/>
+            </div>
         </>
     )
 }

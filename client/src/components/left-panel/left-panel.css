@@ -21,12 +21,11 @@
     top: 50px;
 }
 
-.link-wrapper > h2 {
+.user-panel__h2 {
     color: #2F4F8EFF;
     font-weight: 700;
     font-size: 30px;
     margin: 120px auto 20px auto;
-
 }
 .links {
     height: 420px;
@@ -43,4 +42,10 @@
 
 }
 
-
+.admin-panel__h2 {
+    text-align: center;
+    color: #2F4F8EFF;
+    font-weight: 700;
+    font-size: 20px;
+    margin: 120px auto 20px auto;
+}

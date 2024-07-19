@@ -11,31 +11,38 @@ import {WaitTickets} from "./components/right-panel/WaitTickets.jsx";
 import {TicketPage} from "./view/ticket-page/TicketPage.jsx";
 
 function App() {
-    let user = 1;
+    let user = 0;
 
-  return (
-      <Context>
-          <Router>
-              <Routes>
-                  <Route path="/" element={<Layout/>}>
-                  {user === 1 ?
-                      <Route path={"/"} element={<UserMain/>}>
-                          <Route index element={<Navigate to="tickets/all" />} />
-                          <Route path="tickets/all" element={<AllTickets/>} />
-                          <Route path="tickets/wait" element={<WaitTickets/>} />
-                          <Route path="tickets/open" element={<OpenTickets/>} />
-                          <Route path="tickets/closed" element={<ClosedTickets />} />
-                          <Route path="tickets/create" element={<CreateTicket />} />
-                          <Route path="tickets/:id" element={<TicketPage />} />
-                      </Route>:
-                      <Route path={"/"} element={<AdminMain/>}>
-                          <Route path="openTickets/*" element={<UserMain />} />
-                      </Route>}
-                  </Route>
-              </Routes>
-          </Router>
-      </Context>
-  )
+    return (
+        <>
+            <Context>
+                <Router>
+                    <Routes>
+                        <Route path="/" element={<Layout/>}>
+                            {user === 1 ?
+                                <Route path={"/"} element={<UserMain/>}>
+                                    <Route index element={<Navigate to="tickets/all" />} />
+                                    <Route path="tickets/all" element={<AllTickets/>} />
+                                    <Route path="tickets/wait" element={<WaitTickets/>} />
+                                    <Route path="tickets/open" element={<OpenTickets/>} />
+                                    <Route path="tickets/closed" element={<ClosedTickets />} />
+                                    <Route path="tickets/create" element={<CreateTicket />} />
+                                    <Route path="tickets/:id" element={<TicketPage />} />
+                                </Route> :
+                                <Route path={"/"} element={<AdminMain/>}>
+                                    <Route path="tickets/all" element={<AllTickets/>} />
+                                    <Route path="tickets/new" element={<WaitTickets/>} />
+                                    <Route path="tickets/open" element={<OpenTickets/>} />
+                                    <Route path="tickets/closed" element={<ClosedTickets />} />
+                                    <Route path="tickets/:id" element={<TicketPage />} />
+                                </Route>
+                            }
+                        </Route>
+                    </Routes>
+                </Router>
+            </Context>
+        </>
+    )
 }
 
-export default App
+export default App;
