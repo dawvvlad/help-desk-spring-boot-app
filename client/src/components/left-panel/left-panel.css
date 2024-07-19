@@ -1,6 +1,6 @@
 .left-panel {
     width: 400px;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #edf0f8;
     display: flex;
     flex-direction: column;
@@ -22,7 +22,7 @@
     color: #2F4F8EFF;
     font-weight: 700;
     font-size: 30px;
-    margin: 80px 0;
+    margin: 120px auto 20px auto;
 
 }
 .links {

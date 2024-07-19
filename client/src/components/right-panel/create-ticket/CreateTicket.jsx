@@ -13,6 +13,9 @@ export const CreateTicket = () => {
     ];
     return (
         <div className={"container right-panel"}>
+            <h2 className={"create-h2"}>
+                Создание новой заявки
+            </h2>
             <div className="form-container">
                 <MyAccordion themes={ths}/>
                 <TicketForm/>
