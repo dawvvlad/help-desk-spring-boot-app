@@ -72,10 +72,10 @@ public class ApiAdminController {
         ticketService.changeExecutor(id, body.get("executor"));
     }
 
-    @PatchMapping("/changeTicketCommentBeforeClose/{ticketId}")
-    public void changeCommentBeforeClose(@PathVariable("ticketId") Long id, @RequestBody Map<String, String> comment) {
-        ticketService.changeCommentBefore(id, comment.get("comment"));
-    }
+//    @PatchMapping("/changeTicketCommentBeforeClose/{ticketId}")
+//    public void changeCommentBeforeClose(@PathVariable("ticketId") Long id, @RequestBody Map<String, String> comment) {
+//        ticketService.changeCommentBefore(id, comment.get("comment"));
+//    }
 
     @PostMapping("/createBanner")
     public void createBanner(@RequestBody BannerDTO bannerDTO) {

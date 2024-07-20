@@ -37,13 +37,6 @@ public class ThemeServiceImpl implements ThemeService {
     }
 
     @Override
-    public void changeDescription(Long id, String description) {
-        Theme theme = themeRepo.findById(id);
-        theme.setDescription(description);
-        themeRepo.update(theme);
-    }
-
-    @Override
     public void delete(Long id) {
         Theme theme = themeRepo.findById(id);
         themeRepo.delete(theme);

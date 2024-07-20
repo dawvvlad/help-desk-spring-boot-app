@@ -30,7 +30,7 @@ public class TicketDTO {
         this.priority = ticket.getPriority();
         this.dateTime = ticket.getDateTime();
         this.message = new MessageDTO(ticket.getMessage());
-        this.commentBeforeClose = ticket.getCommentBeforeClose();
+//        this.commentBeforeClose = ticket.getCommentBeforeClose();
     }
 
     public TicketDTO(TicketRequest ticketWithFileRequest) {

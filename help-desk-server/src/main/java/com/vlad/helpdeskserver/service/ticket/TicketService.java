@@ -11,7 +11,7 @@ public interface TicketService {
     TicketDTO create(TicketDTO ticketDTO);
     void changeStatus(Long id, TicketStatus ticketStatus);
     void changeExecutor(Long id, String executorUsername);
-    void changeCommentBefore(Long id, String comment);
+//    void changeCommentBefore(Long id, String comment);
 
     TicketDTO getTicket(Long id);
     List<TicketDTO> getAllTickets();
