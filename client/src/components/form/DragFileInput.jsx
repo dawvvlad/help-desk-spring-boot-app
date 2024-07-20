@@ -1,7 +1,7 @@
 import './ticket-form.css'
 import { useEffect, useState } from "react";
 
-export const DragFileInput = () => {
+export const DragFileInput = ({fls, setFls}) => {
     const [files, setFiles] = useState([]);
     const [dragging, setDragging] = useState(false);
     const [previews, setPreviews] = useState({}); // Хранение предварительных просмотров
@@ -21,7 +21,8 @@ export const DragFileInput = () => {
             reader.readAsDataURL(file);
         });
 
-        console.log(files)
+        console.log(fls)
+        setFls(files)
     }, [files]);
 
     const handleFiles = (event) => {

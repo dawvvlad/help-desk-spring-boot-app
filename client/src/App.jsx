@@ -13,7 +13,7 @@ import {Settings} from "./view/settings/Settings.jsx";
 import {PageNotFound} from "./view/page-not-found/PageNotFound.jsx";
 
 function App() {
-    let user = 0
+    let user = 1
     ;
 
     return (
