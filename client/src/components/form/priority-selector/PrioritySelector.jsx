@@ -1,16 +1,23 @@
-import './priority-selector.css'
-import {useState} from "react"; // Подключаем стили
+import './priority-selector.css';
+import { useEffect, useState } from "react";
 
-const PrioritySelector = () => {
-    // Состояние для хранения выбранного приоритета
-    const [selectedPriority, setSelectedPriority] = useState('');
+const PrioritySelector = ({ ticket, setTicket }) => {
+    const [selectedPriority, setSelectedPriority] = useState(ticket.priority || '');
 
-    // Функция для обработки изменения выбора
+    useEffect(() => {
+        setSelectedPriority(ticket.priority || '');
+    }, [ticket.priority]);
+
     const handlePriorityChange = (event) => {
         const newPriority = event.target.value;
         setSelectedPriority(newPriority);
         console.log(`Выбранный приоритет: ${newPriority}`);
         console.log(`ID выбранного элемента: ${event.target.id}`);
+
+        setTicket({
+            ...ticket,
+            priority: newPriority
+        });
     };
 
     return (

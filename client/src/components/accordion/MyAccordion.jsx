@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ItcAccordion } from "../../Accordion.js";
 
 // eslint-disable-next-line react/prop-types
-export const MyAccordion = ({ themes }) => {
+export const MyAccordion = ({ themes, ticket, setTicket }) => {
     const [selectedTheme, setSelectedTheme] = useState(null);
 
     useEffect(() => {
@@ -23,6 +23,10 @@ export const MyAccordion = ({ themes }) => {
 
     const handleThemeClick = (id) => {
         setSelectedTheme(prev => prev === id ? null : id);
+        setTicket({
+            ...ticket,
+            themeId: id
+        })
     };
 
     return (
