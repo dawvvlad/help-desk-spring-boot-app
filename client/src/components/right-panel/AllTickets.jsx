@@ -11,21 +11,26 @@ export const AllTickets = () => {
     const [pageSize, setPageSize] = useState(10);
 
     useEffect(() => {
-        setIsLoading(true);
-        fetchItems(currentPage, pageSize)
-            .then(data => {
+        const fetchData = async () => {
+            setIsLoading(true);
+            try {
+                const data = await fetchItems(currentPage, pageSize);
                 setTickets(data.content);
                 setTotalPages(data.totalPages);
-                setIsLoading(false);
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error("Error fetching tickets:", error);
+            } finally {
                 setIsLoading(false);
-            });
+            }
+        };
+
+        fetchData();
     }, [currentPage, pageSize]);
 
     const handlePageChange = (page) => {
-        setCurrentPage(page);
+        if (page >= 0 && page < totalPages) {
+            setCurrentPage(page);
+        }
     };
 
     const fetchItems = async (page, size) => {
@@ -44,24 +49,22 @@ export const AllTickets = () => {
                 <div className="container right-panel">
                     <TicketTopPanel />
                     <div className="tickets-container">
-                        {tickets.map(ticket => {
-                            console.log("Rendering ticket:", ticket); // Логируем каждый билет перед рендерингом
-                            return <TicketLine key={ticket.id} id={ticket.id} value={ticket} />;
-                        })}
+                        {tickets.map(ticket => (
+                            <TicketLine key={ticket.id} id={ticket.id} value={ticket} />
+                        ))}
                     </div>
 
-                    <div>
-                        <div>
-                            {Array.from({ length: totalPages }, (_, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => handlePageChange(index)}
-                                    disabled={index === currentPage}
-                                >
-                                    {index + 1}
-                                </button>
-                            ))}
-                        </div>
+                    <div className="pagination">
+                        {Array.from({ length: totalPages }, (_, index) => (
+                            <button
+                                className={"button"}
+                                key={index}
+                                onClick={() => handlePageChange(index)}
+                                disabled={index === currentPage}
+                            >
+                                {index + 1}
+                            </button>
+                        ))}
                     </div>
                 </div>
             )}

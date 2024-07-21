@@ -31,11 +31,9 @@ export const CreateTicket = () => {
     function postTicket() {
         const requestData = new FormData();
         requestData.append("message", JSON.stringify(ticket));
-        if (files.length > 0) {
-            files.forEach(file => {
-                requestData.append("files", file);
-            })
-        }
+        files.forEach(e => {
+            requestData.append("file", e);
+        });
 
         fetch("/api/v1/createTicket", {
             method: "post",
