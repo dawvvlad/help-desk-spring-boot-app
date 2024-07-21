@@ -58,9 +58,11 @@ public class Ticket {
                 this.message = new Message();
             }
             this.message.setText(mes.getText());
-            for(MessageFile file : mes.getFileList()) {
-                this.message.addFile(file);
-            }
+            if(mes.getFileList() != null && !mes.getFileList().isEmpty()) {
+                for(MessageFile file : mes.getFileList()) {
+                    this.message.addFile(file);
+                }
+            } else this.message.setFileList(null);
         } else this.message = null;
     }
 

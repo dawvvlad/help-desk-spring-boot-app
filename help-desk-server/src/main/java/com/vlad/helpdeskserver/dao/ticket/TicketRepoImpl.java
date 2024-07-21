@@ -5,6 +5,10 @@ import com.vlad.helpdeskserver.enums.TicketStatus;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,5 +75,19 @@ public class TicketRepoImpl implements TicketRepo {
         } catch (NoResultException e) {
             return Collections.emptyList();
         }
+    }
+
+    @Override
+    public Page<Ticket> findAll(Pageable pageable) {
+        String queryStr = "select t from Ticket t order by t.id desc";
+        TypedQuery<Ticket> query = entityManager.createQuery(queryStr, Ticket.class);
+
+        int totalRows = query.getResultList().size();
+        query.setFirstResult((int) pageable.getOffset());
+        query.setMaxResults(pageable.getPageSize());
+
+        List<Ticket> items = query.getResultList();
+
+        return new PageImpl<>(items, pageable, totalRows);
     }
 }

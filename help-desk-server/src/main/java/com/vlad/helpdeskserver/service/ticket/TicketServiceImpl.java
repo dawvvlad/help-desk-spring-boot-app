@@ -11,11 +11,15 @@ import com.vlad.helpdeskserver.entity.Theme;
 import com.vlad.helpdeskserver.entity.Ticket;
 import com.vlad.helpdeskserver.enums.TicketStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TicketServiceImpl implements TicketService {
@@ -146,6 +150,18 @@ public class TicketServiceImpl implements TicketService {
             return ticketResponseList;
         }
 
+    }
+
+    @Override
+    public Page<TicketResponse> getAllTicketResponse(Pageable pageable) {
+        Page<Ticket> ticketsPage = ticketRepo.findAll(pageable);
+        List<TicketResponse> ticketResponseList = ticketsPage
+                .stream()
+                .map(TicketResponse::new)
+                .collect(Collectors.toList());
+
+
+        return new PageImpl<>(ticketResponseList, pageable, ticketsPage.getTotalElements());
     }
 
     @Override

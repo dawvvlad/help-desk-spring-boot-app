@@ -1,6 +1,5 @@
 package com.vlad.helpdeskserver;
 
-import com.vlad.helpdeskserver.enums.TicketPrioriry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

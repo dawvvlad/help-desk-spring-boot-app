@@ -2,6 +2,8 @@ package com.vlad.helpdeskserver.dao.ticket;
 
 import com.vlad.helpdeskserver.entity.Ticket;
 import com.vlad.helpdeskserver.enums.TicketStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,4 +16,6 @@ public interface TicketRepo {
     List<Ticket> findAll();
     List<Ticket> findAllByUsername(String username);
     List<Ticket> findAllByStatus(TicketStatus status);
+
+    Page<Ticket> findAll(Pageable pageable);
 }

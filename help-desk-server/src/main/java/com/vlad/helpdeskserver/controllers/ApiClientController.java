@@ -71,8 +71,9 @@ public class ApiClientController {
     }
 
     @PostMapping("/createTicket")
-    public ResponseEntity<?> createTicket(@RequestParam("file") List<MultipartFile> files,
+    public ResponseEntity<?> createTicket(@RequestParam(value = "file", required = false)  List<MultipartFile> files,
                                                @RequestParam("message") String ticketJSON) throws IOException {
+
         try {
             // map to POJO
             ObjectMapper mapper = new ObjectMapper();
@@ -81,7 +82,7 @@ public class ApiClientController {
             FileUploader fileUploader = new FileUploader();
 
             List<String> filePaths;
-            if(files != null) {
+            if(files != null && !files.isEmpty()) {
                 filePaths = fileUploader.uploadFiles(files);
             } else {
                 filePaths = Collections.emptyList();

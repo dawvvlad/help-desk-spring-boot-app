@@ -3,6 +3,8 @@ package com.vlad.helpdeskserver.service.ticket;
 import com.vlad.helpdeskserver.dto.TicketDTO;
 import com.vlad.helpdeskserver.dto.TicketResponse;
 import com.vlad.helpdeskserver.enums.TicketStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,4 +23,5 @@ public interface TicketService {
     List<TicketResponse> getAllTicketResponse();
     List<TicketResponse> getAllTicketResponseByStatus(TicketStatus status);
 
+    Page<TicketResponse> getAllTicketResponse(Pageable pageable);
 }

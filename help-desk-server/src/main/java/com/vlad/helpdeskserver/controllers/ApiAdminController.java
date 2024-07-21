@@ -10,11 +10,13 @@ import com.vlad.helpdeskserver.service.banner.BannerService;
 import com.vlad.helpdeskserver.service.theme.ThemeService;
 import com.vlad.helpdeskserver.service.ticket.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +44,14 @@ public class ApiAdminController {
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(tickets);
+    }
+
+    @GetMapping("/ticketsPages")
+    public Page<TicketResponse> getAllTicketsPages(@RequestParam(defaultValue = "0") int page,
+                                                   @RequestParam(defaultValue = "10") int size) {
+
+
+        return ticketService.getAllTicketResponse(PageRequest.of(page, size));
     }
 
     /* theme */

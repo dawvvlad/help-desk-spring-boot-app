@@ -9,12 +9,14 @@ import {ClosedTickets} from "./components/right-panel/ClosedTickets.jsx";
 import {CreateTicket} from "./components/right-panel/create-ticket/CreateTicket.jsx";
 import {WaitTickets} from "./components/right-panel/WaitTickets.jsx";
 import {TicketPage} from "./view/ticket-page/TicketPage.jsx";
-import {Settings} from "./view/settings/Settings.jsx";
+import {Settings} from "./view/admin/settings/Settings.jsx";
 import {PageNotFound} from "./view/page-not-found/PageNotFound.jsx";
+import {BannerSettings} from "./view/admin/settings/banners/BannerSettings.jsx";
+import {ThemesSettings} from "./view/admin/settings/themes/ThemesSettings.jsx";
+import {UploadOrderSettings} from "./view/admin/settings/upload-order/UploadOrderSettings.jsx";
 
 function App() {
-    let user = 1
-    ;
+    let user = 1;
 
     return (
         <>
@@ -43,6 +45,9 @@ function App() {
                                     <Route path="tickets/closed" element={<ClosedTickets />} />
                                     <Route path="ticket/:id" element={<TicketPage />} />
                                     <Route path="settings" element={<Settings />} />
+                                    <Route path="settings/themes" element={<ThemesSettings />} />
+                                    <Route path="settings/banners" element={<BannerSettings />} />
+                                    <Route path="settings/upload-order" element={<UploadOrderSettings />} />
                                 </Route>
                             }
                         </Route>
