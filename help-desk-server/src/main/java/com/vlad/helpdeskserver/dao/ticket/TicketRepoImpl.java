@@ -1,6 +1,7 @@
 package com.vlad.helpdeskserver.dao.ticket;
 
 import com.vlad.helpdeskserver.entity.Ticket;
+import com.vlad.helpdeskserver.enums.TicketStatus;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
@@ -42,7 +43,7 @@ public class TicketRepoImpl implements TicketRepo {
     @Transactional
     public List<Ticket> findAll() {
         try {
-            return entityManager.createQuery("from Ticket ", Ticket.class)
+            return entityManager.createQuery("from Ticket t ORDER BY t.id DESC", Ticket.class)
                     .getResultList();
         } catch (NoResultException e) {
             return Collections.emptyList();
@@ -53,8 +54,19 @@ public class TicketRepoImpl implements TicketRepo {
     @Transactional
     public List<Ticket> findAllByUsername(String username) {
         try {
-            return entityManager.createQuery("select t from Ticket t where t.sender=:name", Ticket.class)
+            return entityManager.createQuery("select t from Ticket t where t.sender=:name ORDER BY t.id DESC", Ticket.class)
                     .setParameter("name", username)
+                    .getResultList();
+        } catch (NoResultException e) {
+            return Collections.emptyList();
+        }
+    }
+
+    @Override
+    public List<Ticket> findAllByStatus(TicketStatus status) {
+        try {
+            return entityManager.createQuery("select t from Ticket t where t.status=:status ORDER BY t.id DESC", Ticket.class)
+                    .setParameter("status", status)
                     .getResultList();
         } catch (NoResultException e) {
             return Collections.emptyList();

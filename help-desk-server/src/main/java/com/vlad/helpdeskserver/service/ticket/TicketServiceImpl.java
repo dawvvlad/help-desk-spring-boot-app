@@ -4,6 +4,7 @@ import com.vlad.helpdeskserver.dao.theme.ThemeRepo;
 import com.vlad.helpdeskserver.dao.ticket.TicketRepo;
 import com.vlad.helpdeskserver.dto.MessageDTO;
 import com.vlad.helpdeskserver.dto.TicketDTO;
+import com.vlad.helpdeskserver.dto.TicketResponse;
 import com.vlad.helpdeskserver.entity.Message;
 import com.vlad.helpdeskserver.entity.MessageFile;
 import com.vlad.helpdeskserver.entity.Theme;
@@ -103,7 +104,6 @@ public class TicketServiceImpl implements TicketService {
         System.out.println("Найдено: " + ticketList);
 
         if(ticketList.isEmpty()) {
-
             System.out.println("Лист пуст. Возвращен пустой лист!");
 
             return Collections.emptyList();
@@ -113,6 +113,39 @@ public class TicketServiceImpl implements TicketService {
             ticketDTOList.add(new TicketDTO(ticket));
         }
         return ticketDTOList;
+    }
+
+    @Override
+    public List<TicketResponse> getAllTicketResponse() {
+        List<Ticket> ticketList = ticketRepo.findAll();
+        System.out.println("Найдено: " + ticketList);
+
+        if(ticketList.isEmpty()) {
+            System.out.println("Лист пуст. Возвращен пустой лист!");
+
+            return Collections.emptyList();
+        }
+        List<TicketResponse> ticketDTOList = new ArrayList<>();
+        for(Ticket ticket : ticketList) {
+            ticketDTOList.add(new TicketResponse(ticket));
+        }
+        return ticketDTOList;
+    }
+
+    @Override
+    public List<TicketResponse> getAllTicketResponseByStatus(TicketStatus status) {
+        List<Ticket> tickets = ticketRepo.findAllByStatus(status);
+        List<TicketResponse> ticketResponseList = new ArrayList<>();
+
+        if(tickets.isEmpty()) {
+            return Collections.emptyList();
+        } else {
+            for(Ticket ticket : tickets) {
+                ticketResponseList.add(new TicketResponse(ticket));
+            }
+            return ticketResponseList;
+        }
+
     }
 
     @Override
@@ -127,6 +160,22 @@ public class TicketServiceImpl implements TicketService {
                 ticketDTOList.add(new TicketDTO(ticket));
             }
             return ticketDTOList;
+        }
+
+    }
+
+    @Override
+    public List<TicketResponse> getAllTicketResponseBySender(String username) {
+        List<Ticket> tickets = ticketRepo.findAllByUsername(username);
+        List<TicketResponse> ticketResponseList = new ArrayList<>();
+
+        if(tickets.isEmpty()) {
+            return Collections.emptyList();
+        } else {
+            for(Ticket ticket : tickets) {
+                ticketResponseList.add(new TicketResponse(ticket));
+            }
+            return ticketResponseList;
         }
 
     }

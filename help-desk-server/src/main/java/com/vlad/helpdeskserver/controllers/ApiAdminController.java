@@ -3,6 +3,7 @@ package com.vlad.helpdeskserver.controllers;
 import com.vlad.helpdeskserver.dto.BannerDTO;
 import com.vlad.helpdeskserver.dto.ThemeDTO;
 import com.vlad.helpdeskserver.dto.TicketDTO;
+import com.vlad.helpdeskserver.dto.TicketResponse;
 import com.vlad.helpdeskserver.enums.TicketStatus;
 import com.vlad.helpdeskserver.exception_handling.NoSuchValueException;
 import com.vlad.helpdeskserver.service.banner.BannerService;
@@ -33,8 +34,8 @@ public class ApiAdminController {
     }
 
     @GetMapping("/tickets")
-    public ResponseEntity<List<TicketDTO>> getAllTickets() {
-        List<TicketDTO> tickets = ticketService.getAllTickets();
+    public ResponseEntity<List<TicketResponse>> getAllTickets() {
+        List<TicketResponse> tickets = ticketService.getAllTicketResponse();
 
         if(tickets == null) {
             throw new NoSuchValueException("Tickets not found");

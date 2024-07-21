@@ -25,7 +25,11 @@ public class TicketDTO {
         this.id = ticket.getId();
         this.sender = ticket.getSender();
         this.executor = ticket.getExecutor();
-        this.themeId = ticket.getTheme().getId();
+
+        if(ticket.getTheme() == null) {
+            this.themeId = null;
+        } else this.themeId = ticket.getTheme().getId();
+
         this.status = ticket.getStatus();
         this.priority = ticket.getPriority();
         this.dateTime = ticket.getDateTime();
