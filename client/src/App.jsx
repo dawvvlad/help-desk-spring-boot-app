@@ -16,7 +16,7 @@ import {ThemesSettings} from "./view/admin/settings/themes/ThemesSettings.jsx";
 import {UploadOrderSettings} from "./view/admin/settings/upload-order/UploadOrderSettings.jsx";
 
 function App() {
-    let user = 1;
+    let user = 0;
 
     return (
         <>

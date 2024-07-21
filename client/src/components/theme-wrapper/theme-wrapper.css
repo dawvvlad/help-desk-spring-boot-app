@@ -1,0 +1,20 @@
+.theme-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+
+}
+
+.theme-wrapper__buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 40%;
+}
+
+.theme-wrapper__buttons > button:last-child {
+    background-color: #c10202;
+}

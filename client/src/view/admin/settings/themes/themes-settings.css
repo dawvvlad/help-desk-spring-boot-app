@@ -1,0 +1,21 @@
+.settings-container {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    margin-top: 100px;
+    justify-content: start;
+    width: 70%;
+}
+
+.settings-link {
+    margin-right: 40px;
+}
+
+.settings-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
