@@ -26,7 +26,7 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
             .then((data) => data.json())
             .then((data) => {
                 setTicketInfo(data);
-                setMessage(data.message);
+                setMessage(data.message || {});
                 console.log(data);
             })
             .catch((err) => console.error(err))
