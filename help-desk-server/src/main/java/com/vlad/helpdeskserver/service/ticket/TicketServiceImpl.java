@@ -103,6 +103,15 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
+    public TicketResponse getTicketResponse(Long id) {
+        Ticket ticket = ticketRepo.findById(id);
+
+        System.out.println("Найдено: " + ticket);
+
+        return new TicketResponse(ticket);
+    }
+
+    @Override
     public List<TicketDTO> getAllTickets() {
         List<Ticket> ticketList = ticketRepo.findAll();
         System.out.println("Найдено: " + ticketList);

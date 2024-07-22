@@ -5,7 +5,7 @@ import {TicketCardUser} from "../../components/ticket-card/TicketCardUser.jsx";
 
 export const TicketPage = () => {
     const {id} = useParams();
-    const isAdmin = 0;
+    const isAdmin = 1;
 
     return (
         <>

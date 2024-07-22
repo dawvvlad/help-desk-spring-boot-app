@@ -42,16 +42,28 @@ public class ApiClientController {
         this.themeService = themeService;
     }
 
-    @GetMapping("/tickets/{id}")
-    public ResponseEntity<TicketDTO> getTicket(@PathVariable("id") Long id) {
-        TicketDTO ticketDTO = ticketService.getTicket(id);
+//    @GetMapping("/tickets/{id}")
+//    public ResponseEntity<TicketDTO> getTicket(@PathVariable("id") Long id) {
+//        TicketDTO ticketDTO = ticketService.getTicket(id);
+//
+//        if(ticketDTO == null) {
+//            throw new NoSuchValueException("Ticket not found");
+//        }
+//
+//        return ResponseEntity.status(HttpStatus.OK).body(ticketDTO);
+//    }
 
-        if(ticketDTO == null) {
+    @GetMapping("/ticket/{id}")
+    public ResponseEntity<TicketResponse> getTicket(@PathVariable("id") Long id) {
+        TicketResponse ticketResponse = ticketService.getTicketResponse(id);
+
+        if(ticketResponse == null) {
             throw new NoSuchValueException("Ticket not found");
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body(ticketDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(ticketResponse);
     }
+
     @GetMapping("/ticketsPages/{status}")
     public Page<TicketResponse> getAllTicketsPages(@PathVariable("status") TicketStatus status,
                                                    @RequestParam(defaultValue = "0") int page,

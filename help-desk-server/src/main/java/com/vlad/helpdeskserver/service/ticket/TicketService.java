@@ -16,6 +16,7 @@ public interface TicketService {
     void changeExecutor(Long id, String executorUsername);
 //    void changeCommentBefore(Long id, String comment);
     TicketDTO getTicket(Long id);
+    TicketResponse getTicketResponse(Long id);
     List<TicketDTO> getAllTickets();
     List<TicketDTO> getAllTicketsBySender(String username);
 

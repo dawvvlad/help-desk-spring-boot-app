@@ -12,6 +12,11 @@ public class ViewController {
         return "index.html";
     }
 
+    @GetMapping("ticket/**")
+    public String getTicket() {
+        return "forward:/index.html";
+    }
+
     @GetMapping("tickets/**")
     public String getTickets() {
         return "forward:/index.html";
