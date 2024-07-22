@@ -1,13 +1,14 @@
 import { useReducer, createContext } from "react"
 import { reducer } from './reducer.jsx'
 
-export const ContextProvider = createContext()
+export const ContextProvider = createContext(null)
 
 const initialValue = {
-    userData: [],
+    userData: {},
     resources: [],
     isLoading: false,
     targetId: undefined,
+    isAdmin: false
 }
 
 export const Context = ({ children }) => {
@@ -31,6 +32,11 @@ export const Context = ({ children }) => {
     state.setTargetId = (data) => {
         dispatch({ type: "SET_TARGET_ID", payload: data })
     }
+
+    state.setIsAdmin = (data) => {
+        dispatch({type: "SET_IS_ADMIN", payload: data})
+    }
+
 
     return (
         <ContextProvider.Provider value={state}>

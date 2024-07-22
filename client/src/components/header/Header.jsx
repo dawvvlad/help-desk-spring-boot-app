@@ -1,10 +1,15 @@
 import './header.css'
+import {useEffect} from "react";
 
-export const Header = () => {
-    const username = "Владислав Голиков";
+export const Header = ({user}) => {
+    const username = user.info?.cn?.[0] || "Имя пользователя";
+
+    // Разделите имя на части
     let avatarArray = username.split(" ");
-    const avatar = avatarArray[0][0] + avatarArray[1][0]
-    console.log(avatar)
+    // Создайте аватар из первых букв имени и фамилии
+    const avatar = avatarArray.length > 1
+        ? avatarArray[0][0] + avatarArray[1][0]
+        : username[0] || "A"; // Значение по умолчанию если имя пустое
 
     return (
         <header className={"header"}>

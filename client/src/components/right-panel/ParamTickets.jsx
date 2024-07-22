@@ -8,7 +8,7 @@ export const ParamTickets = () => {
     const [tickets, setTickets] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
-    const [pageSize, setPageSize] = useState(10);
+    const [pageSize, setPageSize] = useState(14);
     const {status} = useParams();
 
     useEffect(() => {

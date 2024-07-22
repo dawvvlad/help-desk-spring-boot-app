@@ -22,6 +22,11 @@ export const reducer = (state, { type, payload }) => {
                 ...state,
                 targetId: payload
             }
+        case "SET_IS_ADMIN":
+            return {
+                ...state,
+                isAdmin: payload
+            }
         default: return state;
     }
 }

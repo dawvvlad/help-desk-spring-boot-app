@@ -55,7 +55,7 @@ public class ApiClientController {
     @GetMapping("/ticketsPages/{status}")
     public Page<TicketResponse> getAllTicketsPages(@PathVariable("status") TicketStatus status,
                                                    @RequestParam(defaultValue = "0") int page,
-                                                   @RequestParam(defaultValue = "10") int size,
+                                                   @RequestParam(defaultValue = "14") int size,
                                                    @RequestParam("username") String username) {
 
         return ticketService.getAllTicketResponse(PageRequest.of(page, size), status, username);
@@ -63,7 +63,7 @@ public class ApiClientController {
 
     @GetMapping("/ticketsPages")
     public Page<TicketResponse> getAllTicketsPages(@RequestParam(defaultValue = "0") int page,
-                                                   @RequestParam(defaultValue = "10") int size,
+                                                   @RequestParam(defaultValue = "14") int size,
                                                    @RequestParam("username") String username) {
 
         return ticketService.getAllTicketResponse(PageRequest.of(page, size), username);

@@ -48,7 +48,7 @@ public class ApiAdminController {
 
     @GetMapping("/ticketsPages")
     public Page<TicketResponse> getAllTicketsPages(@RequestParam(defaultValue = "0") int page,
-                                                   @RequestParam(defaultValue = "10") int size) {
+                                                   @RequestParam(defaultValue = "14") int size) {
 
         return ticketService.getAllTicketResponse(PageRequest.of(page, size));
     }

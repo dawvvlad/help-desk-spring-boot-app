@@ -5,15 +5,17 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.ldap.userdetails.Person;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/api/v1")
 public class UserInfoController {
 
-    @GetMapping("/info")
+    @GetMapping("/userInfo")
     public Map<String, Object> getCurrentUser(Authentication authentication) {
         Map<String, Object> userInfo = new HashMap<>();
         if(authentication != null && authentication.getPrincipal() instanceof UserDetails) {
