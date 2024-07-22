@@ -1,9 +1,9 @@
 .tickets-container {
     width: 100%;
     position: relative;
-    top: 80px;
+    top: 50px;
     z-index: 1;
-    height: 900px;
+    height: 85vh;
 }
 
 .pagination {

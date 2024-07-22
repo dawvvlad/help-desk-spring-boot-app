@@ -4,13 +4,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vlad.helpdeskserver.dto.MessageDTO;
 import com.vlad.helpdeskserver.dto.ThemeDTO;
 import com.vlad.helpdeskserver.dto.TicketDTO;
+import com.vlad.helpdeskserver.dto.TicketResponse;
 import com.vlad.helpdeskserver.dto.requests.TicketRequest;
 
+import com.vlad.helpdeskserver.enums.TicketStatus;
 import com.vlad.helpdeskserver.exception_handling.NoSuchValueException;
 import com.vlad.helpdeskserver.service.FileUploader;
 import com.vlad.helpdeskserver.service.theme.ThemeService;
 import com.vlad.helpdeskserver.service.ticket.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -48,15 +52,21 @@ public class ApiClientController {
 
         return ResponseEntity.status(HttpStatus.OK).body(ticketDTO);
     }
+    @GetMapping("/ticketsPages/{status}")
+    public Page<TicketResponse> getAllTicketsPages(@PathVariable("status") TicketStatus status,
+                                                   @RequestParam(defaultValue = "0") int page,
+                                                   @RequestParam(defaultValue = "10") int size,
+                                                   @RequestParam("username") String username) {
 
-    @GetMapping("/tickets/{sender}")
-    public ResponseEntity<List<TicketDTO>> getTicketsBySender(@PathVariable("sender") String sender) {
-        List<TicketDTO> ticketDTOs = ticketService.getAllTicketsBySender(sender);
+        return ticketService.getAllTicketResponse(PageRequest.of(page, size), status, username);
+    }
 
-        if(ticketDTOs == null) {
-            throw new NoSuchValueException("Tickets not found");
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(ticketDTOs);
+    @GetMapping("/ticketsPages")
+    public Page<TicketResponse> getAllTicketsPages(@RequestParam(defaultValue = "0") int page,
+                                                   @RequestParam(defaultValue = "10") int size,
+                                                   @RequestParam("username") String username) {
+
+        return ticketService.getAllTicketResponse(PageRequest.of(page, size), username);
     }
 
     @GetMapping("/themes")

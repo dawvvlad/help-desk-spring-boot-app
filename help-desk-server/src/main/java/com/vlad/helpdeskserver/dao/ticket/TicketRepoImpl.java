@@ -90,4 +90,51 @@ public class TicketRepoImpl implements TicketRepo {
 
         return new PageImpl<>(items, pageable, totalRows);
     }
+
+    @Override
+    public Page<Ticket> findAll(Pageable pageable, TicketStatus status) {
+        String queryStr = "select t from Ticket t where t.status=:status order by t.id desc";
+        TypedQuery<Ticket> query = entityManager.createQuery(queryStr, Ticket.class)
+                .setParameter("status", status);
+
+        int totalRows = query.getResultList().size();
+        query.setFirstResult((int) pageable.getOffset());
+        query.setMaxResults(pageable.getPageSize());
+
+        List<Ticket> items = query.getResultList();
+
+        return new PageImpl<>(items, pageable, totalRows);
+    }
+
+
+    @Override
+    public Page<Ticket> findAll(Pageable pageable, TicketStatus status, String username) {
+        String queryStr = "select t from Ticket t where t.status=:status and t.sender=:username order by t.id desc";
+        TypedQuery<Ticket> query = entityManager.createQuery(queryStr, Ticket.class)
+                .setParameter("status", status)
+                .setParameter("username", username);
+
+        int totalRows = query.getResultList().size();
+        query.setFirstResult((int) pageable.getOffset());
+        query.setMaxResults(pageable.getPageSize());
+
+        List<Ticket> items = query.getResultList();
+
+        return new PageImpl<>(items, pageable, totalRows);
+    }
+
+    @Override
+    public Page<Ticket> findAll(Pageable pageable, String username) {
+        String queryStr = "select t from Ticket t where t.sender=:username order by t.id desc";
+        TypedQuery<Ticket> query = entityManager.createQuery(queryStr, Ticket.class)
+                .setParameter("username", username);
+
+        int totalRows = query.getResultList().size();
+        query.setFirstResult((int) pageable.getOffset());
+        query.setMaxResults(pageable.getPageSize());
+
+        List<Ticket> items = query.getResultList();
+
+        return new PageImpl<>(items, pageable, totalRows);
+    }
 }

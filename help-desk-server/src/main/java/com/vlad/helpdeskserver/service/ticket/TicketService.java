@@ -19,9 +19,11 @@ public interface TicketService {
     List<TicketDTO> getAllTickets();
     List<TicketDTO> getAllTicketsBySender(String username);
 
-    List<TicketResponse> getAllTicketResponseBySender(String username);
     List<TicketResponse> getAllTicketResponse();
-    List<TicketResponse> getAllTicketResponseByStatus(TicketStatus status);
+    List<TicketResponse> getAllTicketResponse(TicketStatus status);
 
+    Page<TicketResponse> getAllTicketResponse(Pageable pageable, TicketStatus status);
+    Page<TicketResponse> getAllTicketResponse(Pageable pageable, TicketStatus status, String username);
     Page<TicketResponse> getAllTicketResponse(Pageable pageable);
+    Page<TicketResponse> getAllTicketResponse(Pageable pageable, String username);
 }

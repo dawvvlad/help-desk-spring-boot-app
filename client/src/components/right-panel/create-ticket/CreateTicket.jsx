@@ -42,6 +42,8 @@ export const CreateTicket = () => {
             .then(data => data.json())
             .then(e => console.log(e))
             .catch(err => console.error(err));
+
+        location.reload();
     }
 
     useEffect(() => {

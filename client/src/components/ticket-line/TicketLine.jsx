@@ -3,8 +3,17 @@ import {Link} from "react-router-dom";
 import {useEffect} from "react";
 
 export const TicketLine = ({id, value}) => {
-    // const statuses = ['В работе', 'Закрыта', 'Ожидает']
-    // const priorities = ['Низкий', 'Средний', 'Высокий']
+    const statuses = {
+        OPEN: 'Ожидает',
+        ACTIVE: 'В работе',
+        CLOSED: 'Закрыта',
+        NEW: 'Новая'
+    }
+    const priorities = {
+        LOW: 'Низкий',
+        MEDIUM: 'Средний',
+        HIGH: 'Высокий'
+    }
 
     // function randomInteger(min, max) {
     //     // случайное число от min до (max+1)
@@ -55,10 +64,10 @@ export const TicketLine = ({id, value}) => {
     return (
         <Link className={"tickets-wrapper"} to={`/ticket/${id}`}>
                 <p className={"text ticket-p"}>{"#" + id}</p>
-                <p className={"text ticket-p"}>{value.theme}</p>
-                <p className={"text ticket-p status"}>{value.status}</p>
-                <p className={"text ticket-p"}>Голиков В.</p>
-                <p className={"text ticket-p priority"}>{value.priority}</p>
+                <p className={"text ticket-p"}>{value.theme ? value.theme : 'Нет темы'}</p>
+                <p className={"text ticket-p status"}>{statuses[value.status]}</p>
+                <p className={"text ticket-p"}>{value.executor ? value.executor : 'Нет исполнителя'}</p>
+                <p className={"text ticket-p priority"}>{priorities[value.priority]}</p>
                 <p className={"text ticket-p"}>{value.dateTime}</p>
         </Link>
 

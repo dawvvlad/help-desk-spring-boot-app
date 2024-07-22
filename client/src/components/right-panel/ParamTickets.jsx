@@ -1,15 +1,15 @@
-import { TicketLine } from "../ticket-line/TicketLine.jsx";
-import { TicketTopPanel } from "../ticket-line/TicketTopPanel.jsx";
-import './tickets-panel.css';
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
+import {TicketTopPanel} from "../ticket-line/TicketTopPanel.jsx";
+import {TicketLine} from "../ticket-line/TicketLine.jsx";
+import {useParams} from "react-router-dom";
 
-export const AllTickets = () => {
+export const ParamTickets = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [tickets, setTickets] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [pageSize, setPageSize] = useState(10);
-    const user = 1;
+    const {status} = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,7 +26,7 @@ export const AllTickets = () => {
         };
 
         fetchData();
-    }, [currentPage, pageSize]);
+    }, [currentPage, pageSize, status]);
 
     const handlePageChange = (page) => {
         if (page >= 0 && page < totalPages) {
@@ -34,9 +34,15 @@ export const AllTickets = () => {
         }
     };
 
+    useEffect(() => {
+        console.log(status)
+
+    }, []);
+
     const fetchItems = async (page, size) => {
-        const response = user === 0 ? await fetch(`/api/v1/admin/ticketsPages?page=${page}&size=${size}`):
-            await fetch(`/api/v1/ticketsPages?page=${page}&size=${size}&username=vlad_g`);
+        const response = await fetch(`/api/v1/ticketsPages/${status.toUpperCase()}?page=${page}&size=${size}&username=vlad_g`);
+        //исправить username
+
         if (!response.ok) {
             throw new Error("Failed to fetch tickets");
         }
@@ -70,6 +76,5 @@ export const AllTickets = () => {
                     </div>
                 </div>
             )}
-        </>
-    );
-};
+        </>)
+}

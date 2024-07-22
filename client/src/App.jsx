@@ -4,10 +4,8 @@ import {AdminMain} from "./view/admin/main/AdminMain.jsx"
 import {Layout} from "./common/Layout.jsx";
 import {Context} from "./context/Context.jsx";
 import {AllTickets} from "./components/right-panel/AllTickets.jsx";
-import {OpenTickets} from "./components/right-panel/OpenTickets.jsx";
-import {ClosedTickets} from "./components/right-panel/ClosedTickets.jsx";
+import {ParamTickets} from "./components/right-panel/ParamTickets.jsx";
 import {CreateTicket} from "./components/right-panel/create-ticket/CreateTicket.jsx";
-import {WaitTickets} from "./components/right-panel/WaitTickets.jsx";
 import {TicketPage} from "./view/ticket-page/TicketPage.jsx";
 import {Settings} from "./view/admin/settings/Settings.jsx";
 import {PageNotFound} from "./view/page-not-found/PageNotFound.jsx";
@@ -16,7 +14,7 @@ import {ThemesSettings} from "./view/admin/settings/themes/ThemesSettings.jsx";
 import {UploadOrderSettings} from "./view/admin/settings/upload-order/UploadOrderSettings.jsx";
 
 function App() {
-    let user = 0;
+    let user = 1;
 
     return (
         <>
@@ -30,9 +28,7 @@ function App() {
                                     <Route index element={<Navigate to="tickets/wait" />} />
                                     <Route path="tickets" element={<Navigate to="/tickets/wait" />} />
                                     <Route path="tickets/all" element={<AllTickets/>} />
-                                    <Route path="tickets/wait" element={<WaitTickets/>} />
-                                    <Route path="tickets/open" element={<OpenTickets/>} />
-                                    <Route path="tickets/closed" element={<ClosedTickets />} />
+                                    <Route path="tickets/:status" element={<ParamTickets/>} />
                                     <Route path="tickets/create" element={<CreateTicket />} />
                                     <Route path="ticket/:id" element={<TicketPage />} />
                                 </Route> :
@@ -40,9 +36,7 @@ function App() {
                                     <Route index element={<Navigate to="tickets/new" />} />
                                     <Route path="tickets" element={<Navigate to="/tickets/new" />} />
                                     <Route path="tickets/all" element={<AllTickets/>} />
-                                    <Route path="tickets/new" element={<WaitTickets/>} />
-                                    <Route path="tickets/open" element={<OpenTickets/>} />
-                                    <Route path="tickets/closed" element={<ClosedTickets />} />
+                                    <Route path="tickets/:status" element={<ParamTickets/>} />
                                     <Route path="ticket/:id" element={<TicketPage />} />
                                     <Route path="settings" element={<Settings />} />
                                     <Route path="settings/themes" element={<ThemesSettings />} />

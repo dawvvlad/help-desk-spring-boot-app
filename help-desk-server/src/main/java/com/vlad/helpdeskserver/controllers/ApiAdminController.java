@@ -50,7 +50,6 @@ public class ApiAdminController {
     public Page<TicketResponse> getAllTicketsPages(@RequestParam(defaultValue = "0") int page,
                                                    @RequestParam(defaultValue = "10") int size) {
 
-
         return ticketService.getAllTicketResponse(PageRequest.of(page, size));
     }
 

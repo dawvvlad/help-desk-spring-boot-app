@@ -11,4 +11,43 @@ public class ViewController {
     public String index() {
         return "index.html";
     }
+
+    @GetMapping("tickets/**")
+    public String getTickets() {
+        return "forward:/index.html";
+    }
+
+    @GetMapping("settings/**")
+    public String settings() {
+        return "forward:/index.html";
+    }
+
+//
+//    @GetMapping("tickets/all")
+//    public String newTickets() {
+//        return "index.html";
+//    }
+//
+//    @GetMapping("tickets/all")
+//    public String closedTickets() {
+//        return "index.html";
+//    }
+//
+//    @GetMapping("tickets/all")
+//    public String openTickets() {
+//        return "index.html";
+//    }
+//
+//    @GetMapping("tickets/all")
+//    public String allTickets() {
+//        return "index.html";
+//    }
+//
+//    @GetMapping("tickets/all")
+//    public String allTickets() {
+//        return "index.html";
+//    }
+
+//
+
 }
