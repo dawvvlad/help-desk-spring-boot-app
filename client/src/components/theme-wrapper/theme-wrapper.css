@@ -1,29 +1,169 @@
 .theme-wrapper {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 80%;
-
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
     border: 1px solid rgba(0, 0, 0, 0.09);
     border-radius: 15px;
     padding: 10px 15px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .theme-wrapper > h2 {
     font-size: 20px;
     color: #2f4f8e;
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
 .theme-wrapper__buttons {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
-    width: 40%;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.theme-wrapper__buttons > button {
+    margin-left: 10px;
 }
 
 .theme-wrapper__buttons > button:last-child {
     background-color: #c10202;
+    color: white;
+}
+
+.theme-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    border-radius: 15px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.theme-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.theme-info__buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.theme-info__buttons .button {
+    margin-left: 10px;
+}
+
+.theme-info__buttons .button:last-child {
+    background-color: #c10202;
+    color: white;
+}
+
+.create-theme-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    border-radius: 15px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.create-theme-form textarea {
+    width: 100%;
+    height: 60px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.create-theme-form button {
+    align-self: flex-end;
+    background-color: #2f4f8e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.create-theme-form button:hover {
+    background-color: #1f3c6e;
+}
+
+.edit-theme-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    border-radius: 15px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.edit-theme-form textarea {
+    width: 100%;
+    height: 60px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-bottom: 10px;
+    font-family: Montserrat, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+}
+
+.edit-theme-form button {
+    align-self: flex-end;
+    background-color: #2f4f8e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.edit-theme-form button:hover {
+    background-color: #1f3c6e;
+}
+
+.edit-theme-form .cancel-button {
+    background-color: #c10202;
+    color: white;
+}
+
+.edit-theme-form .cancel-button:hover {
+    background-color: #a00202;
+}
+
+.change {
+    margin-bottom: 10px;
+    background-color: rgba(0, 128, 0, 0.89);
 }

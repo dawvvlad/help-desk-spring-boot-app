@@ -8,6 +8,8 @@ export const ThemesSettings = () => {
     const [themes, setThemes] = useState([]);
     const [showCreateForm, setShowCreateForm] = useState(false);
     const [newThemeName, setNewThemeName] = useState("");
+    const [editThemeId, setEditThemeId] = useState(null);
+    const [editThemeName, setEditThemeName] = useState("");
 
     useEffect(() => {
         setIsLoading(true);
@@ -47,7 +49,43 @@ export const ThemesSettings = () => {
                 setNewThemeName("");
                 setShowCreateForm(false);
             })
-            .catch(err => console.error(err));
+            .catch(err => console.error(err))
+            .finally(() => window.location.reload());
+    };
+
+    const handleEditClick = (id, name) => {
+        setEditThemeId(id);
+        setEditThemeName(name);
+    };
+
+    const handleSaveEdit = (id) => {
+        if (editThemeName.trim() === "") {
+            alert("Название темы не может быть пустым");
+            return;
+        }
+
+        const updatedTheme = { name: editThemeName.trim() };
+
+        fetch(`/api/v1/admin/changeThemeName/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedTheme)
+        })
+            .then(response => response.json())
+            .then(data => {
+                setThemes(themes.map(theme => (theme.id === id ? data : theme)));
+                setEditThemeId(null);
+                setEditThemeName("");
+            })
+            .catch(err => console.error(err))
+            .finally(() => window.location.reload());
+    };
+
+    const handleCancelEdit = () => {
+        setEditThemeId(null);
+        setEditThemeName("");
     };
 
     return (
@@ -75,7 +113,35 @@ export const ThemesSettings = () => {
                                 </div>
                             )}
                             {themes.map(theme => (
-                                <ThemeWrapper key={theme.id} themeInfo={theme} />
+                                <div key={theme.id} className="theme-item">
+                                    {editThemeId === theme.id ? (
+                                        <div className="edit-theme-form">
+                                            <textarea
+                                                value={editThemeName}
+                                                onChange={(e) => setEditThemeName(e.target.value)}
+                                            />
+                                            <button className={"button change"} onClick={() => handleSaveEdit(theme.id)}>
+                                                Сохранить
+                                            </button>
+                                            <button className={"button"} onClick={handleCancelEdit}>
+                                                Отменить
+                                            </button>
+                                        </div>
+                                    ) : (
+                                        <div className="theme-info">
+                                            <span>{theme.name}</span>
+                                            <div className={"theme-info__buttons"}>
+                                                <button className={"button"}
+                                                        onClick={() => handleEditClick(theme.id, theme.name)}>
+                                                    Изменить
+                                                </button>
+                                                <button className={"button"}>
+                                                    Удалить
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
                             ))}
                         </div>
                     </div>
