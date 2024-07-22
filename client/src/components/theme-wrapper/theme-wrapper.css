@@ -147,7 +147,7 @@
     border-radius: 5px;
     padding: 10px 15px;
     cursor: pointer;
-    margin-left: 10px;
+    margin: 6px;
 }
 
 .edit-theme-form button:hover {
@@ -163,7 +163,3 @@
     background-color: #a00202;
 }
 
-.change {
-    margin-bottom: 10px;
-    background-color: rgba(0, 128, 0, 0.89);
-}

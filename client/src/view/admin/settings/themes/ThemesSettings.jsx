@@ -88,6 +88,26 @@ export const ThemesSettings = () => {
         setEditThemeName("");
     };
 
+    function handleDeleteTheme (id) {
+        fetch(`/api/v1/admin/deleteTheme/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    setThemes(themes.filter(theme => theme.id !== id));
+                } else {
+                    alert("Ошибка при удалении темы");
+                }
+            })
+            .catch(err => console.error(err))
+            .finally(() => {
+                window.location.reload();
+            });
+    }
+
     return (
         <>
             {isLoading ? (
@@ -120,7 +140,7 @@ export const ThemesSettings = () => {
                                                 value={editThemeName}
                                                 onChange={(e) => setEditThemeName(e.target.value)}
                                             />
-                                            <button className={"button change"} onClick={() => handleSaveEdit(theme.id)}>
+                                            <button className={"button"} onClick={() => handleSaveEdit(theme.id)}>
                                                 Сохранить
                                             </button>
                                             <button className={"button"} onClick={handleCancelEdit}>
@@ -135,7 +155,7 @@ export const ThemesSettings = () => {
                                                         onClick={() => handleEditClick(theme.id, theme.name)}>
                                                     Изменить
                                                 </button>
-                                                <button className={"button"}>
+                                                <button onClick={() => handleDeleteTheme(theme.id)} className={"button"}>
                                                     Удалить
                                                 </button>
                                             </div>
