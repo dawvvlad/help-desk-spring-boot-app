@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     align-items: start;
-    margin-top: 100px;
+    margin: 100px 0;
     justify-content: start;
     width: 70%;
 }
@@ -17,5 +17,35 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 50px;
+}
 
+.settings-content > .button {
+    margin-bottom: 10px;
+    background-color: rgba(35, 99, 0, 0.85);
+}
+
+.create-theme-form {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.create-theme-form > textarea {
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #f8fbfb;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    box-sizing: border-box;
+    resize: none;
+    border: 1px solid rgba(28, 10, 92, 0.2);
+    font-family: 'Montserrat', serif;
+    font-size: 18px;
 }

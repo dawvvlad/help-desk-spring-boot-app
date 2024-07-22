@@ -1,12 +1,10 @@
 import './theme-wrapper.css'
 
-export const ThemeWrapper = () => {
-
-
+export const ThemeWrapper = ({themeInfo}) => {
     return (
         <>
             <div className={"theme-wrapper"}>
-                <h1>Название</h1>
+                <h2>{themeInfo.name}</h2>
                 <div className={"theme-wrapper__buttons"}>
                     <button className={"button"}>Изменить</button>
                     <button className={"button"}>Удалить</button>

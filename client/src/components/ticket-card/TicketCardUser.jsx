@@ -1,7 +1,16 @@
 import './ticket-card.css'
+import {useEffect, useState} from "react";
 
 // eslint-disable-next-line react/prop-types
 export const TicketCardUser = ({ticketId}) => {
+    const [ticketData, setTicketData] = useState([]);
+
+    useEffect(() => {
+        fetch(`/tickets/${ticketId}`)
+            .then(data => data.json())
+            .then(data => setTicketData(data))
+            .catch(err => console.error(err));
+    }, [])
 
     return (
         <div className={"container right-panel"}>
