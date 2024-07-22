@@ -61,7 +61,7 @@ export const TicketCardUser = ({ ticketId }) => {
 
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Исполнитель:</p>
-                            <p>Hello</p>
+                            <p>{ticketData.executor}</p>
                         </div>
 
                         <div className="ticket-page__column">

@@ -86,6 +86,10 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
                             <p>{priorities[ticketInfo.priority]}</p>
                         </div>
                         <div className="ticket-page__column">
+                            <p className="ticket-title-p">Исполнитель:</p>
+                            <p>{ticketInfo.executor}</p>
+                        </div>
+                        <div className="ticket-page__column">
                             <p className="ticket-title-p">Комментарий:</p>
                             <p>{message.text}</p>
                         </div>
