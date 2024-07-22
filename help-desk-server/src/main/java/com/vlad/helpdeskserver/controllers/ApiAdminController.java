@@ -2,7 +2,6 @@ package com.vlad.helpdeskserver.controllers;
 
 import com.vlad.helpdeskserver.dto.BannerDTO;
 import com.vlad.helpdeskserver.dto.ThemeDTO;
-import com.vlad.helpdeskserver.dto.TicketDTO;
 import com.vlad.helpdeskserver.dto.TicketResponse;
 import com.vlad.helpdeskserver.enums.TicketStatus;
 import com.vlad.helpdeskserver.exception_handling.NoSuchValueException;
@@ -16,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Map;
 
@@ -76,10 +74,15 @@ public class ApiAdminController {
         ticketService.changeStatus(id, body.get("status"));
         System.out.println("Changed status to " + body.get("status"));
     }
+//
+//    @PatchMapping("/changeTicketExecutor/{ticketId}")
+//    public void changePriority(@PathVariable("ticketId") Long id, @RequestBody Map<String, String> body) {
+//        ticketService.changeExecutor(id, body.get("executor"));
+//    }
 
-    @PatchMapping("/changeTicketExecutor/{ticketId}")
-    public void changePriority(@PathVariable("ticketId") Long id, @RequestBody Map<String, String> body) {
-        ticketService.changeExecutor(id, body.get("executor"));
+    @PatchMapping("/takeTicket/{ticketId}")
+    public void takeTicket(@PathVariable("ticketId") Long id, @RequestBody Map<String, String> executor) {
+        ticketService.changeExecutor(id, executor.get("executor"));
     }
 
 //    @PatchMapping("/changeTicketCommentBeforeClose/{ticketId}")

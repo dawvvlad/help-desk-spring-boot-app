@@ -45,7 +45,7 @@ function App() {
                                 <Route path="tickets" element={<Navigate to="/tickets/open" />} />
                                 <Route path="tickets/all" element={<AllTickets />} />
                                 <Route path="tickets/:status" element={<ParamTickets />} />
-                                <Route path="ticket/:id" element={<TicketPage />} />
+                                <Route path="ticket/:id" element={<TicketPage userInfo={userInfo}/>} />
                                 <Route path="settings" element={<Settings />} />
                                 <Route path="settings/themes" element={<ThemesSettings />} />
                                 <Route path="settings/banners" element={<BannerSettings />} />

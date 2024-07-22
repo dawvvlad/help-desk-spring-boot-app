@@ -2,7 +2,6 @@ package com.vlad.helpdeskserver.service.ticket;
 
 import com.vlad.helpdeskserver.dao.theme.ThemeRepo;
 import com.vlad.helpdeskserver.dao.ticket.TicketRepo;
-import com.vlad.helpdeskserver.dto.MessageDTO;
 import com.vlad.helpdeskserver.dto.TicketDTO;
 import com.vlad.helpdeskserver.dto.TicketResponse;
 import com.vlad.helpdeskserver.entity.Message;
@@ -79,6 +78,7 @@ public class TicketServiceImpl implements TicketService {
     public void changeExecutor(Long id, String executorUsername) {
         Ticket ticket = ticketRepo.findById(id);
         ticket.setExecutor(executorUsername);
+        ticket.setStatus(TicketStatus.ACTIVE);
 
         ticketRepo.update(ticket);
 

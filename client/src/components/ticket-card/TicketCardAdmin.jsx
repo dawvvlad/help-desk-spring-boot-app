@@ -2,10 +2,11 @@ import './ticket-card.css';
 import { useEffect, useState } from 'react';
 
 // eslint-disable-next-line react/prop-types
-export const TicketCardAdmin = ({ ticketId }) => {
+export const TicketCardAdmin = ({ ticketId, userInfo }) => {
     const [ticketInfo, setTicketInfo] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState({});
+    const userName = userInfo.info;
 
     const statuses = {
         OPEN: 'Ожидает',
@@ -35,15 +36,14 @@ export const TicketCardAdmin = ({ ticketId }) => {
     }, [ticketId]);
 
     function handleTakeTicket() {
-        fetch(`/api/v1/admin/changeTicketStatus/${ticketId}`, {
+        fetch(`/api/v1/admin/takeTicket/${ticketId}`, {
             method: "PATCH",
             headers:
                 {
                     "Content-type": "application/json"
                 },
             body: JSON.stringify({
-                executor: "",
-                status: "ACTIVE"
+                executor: userName.username,
             })
         })
 
@@ -52,6 +52,7 @@ export const TicketCardAdmin = ({ ticketId }) => {
             status: 'ACTIVE'  // Присваиваем новое значение напрямую, без использования 'statuses'
         }));
     }
+
 
     function handleCloseTicket() {
         setTicketInfo(prevState => ({ ...prevState, status: 'CLOSED' }))
@@ -98,7 +99,7 @@ export const TicketCardAdmin = ({ ticketId }) => {
                         </div>
 
                         {ticketInfo.status === 'ACTIVE' && (
-                            <button className="button closing-button" onClick={}>
+                            <button className="button closing-button" onClick={handleCloseTicket}>
                                 Закрыть заявку
                             </button>
                         )}

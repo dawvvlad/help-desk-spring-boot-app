@@ -27,4 +27,5 @@ public interface TicketService {
     Page<TicketResponse> getAllTicketResponse(Pageable pageable, TicketStatus status, String username);
     Page<TicketResponse> getAllTicketResponse(Pageable pageable);
     Page<TicketResponse> getAllTicketResponse(Pageable pageable, String username);
+
 }
