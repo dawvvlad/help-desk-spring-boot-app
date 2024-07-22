@@ -16,14 +16,18 @@ import {useEffect, useState} from "react";
 
 function App() {
     const [userInfo, setUserInfo] = useState({});
-    const [isAdmin, setIsAdmin] = useState(null)
+    // const [isAdmin, setIsAdmin] = useState(null)
+
+    const isAdmin = true
 
     useEffect(() => {
         fetch("/api/v1/userInfo")
             .then(data => data.json())
             .then(data => {
                 setUserInfo(data)
-                setIsAdmin(data.info.authorities.some(auth => auth.authority === 'Администраторы'));
+                // setIsAdmin(data.info.authorities.some(auth => auth.authority === 'Администраторы'));
+
+                console.log(data)
             })
             .catch(err => console.error(err));
 
@@ -37,8 +41,8 @@ function App() {
                         <Route path={"*"} element={<PageNotFound />} />
                         {isAdmin ?
                             <Route path="/" element={<AdminMain user={userInfo} admin={isAdmin} />}>
-                                <Route index element={<Navigate to="tickets/new" />} />
-                                <Route path="tickets" element={<Navigate to="/tickets/new" />} />
+                                <Route index element={<Navigate to="tickets/open" />} />
+                                <Route path="tickets" element={<Navigate to="/tickets/open" />} />
                                 <Route path="tickets/all" element={<AllTickets />} />
                                 <Route path="tickets/:status" element={<ParamTickets />} />
                                 <Route path="ticket/:id" element={<TicketPage />} />
@@ -52,7 +56,7 @@ function App() {
                                 <Route path="tickets" element={<Navigate to="/tickets/open" />} />
                                 <Route path="tickets/all" element={<AllTickets />} />
                                 <Route path="tickets/:status" element={<ParamTickets />} />
-                                <Route path="tickets/create" element={<CreateTicket />} />
+                                <Route path="tickets/create" element={<CreateTicket user={userInfo}/>} />
                                 <Route path="ticket/:id" element={<TicketPage />} />
                             </Route>
                         }

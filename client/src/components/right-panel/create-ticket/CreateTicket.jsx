@@ -5,7 +5,7 @@ import { MyAccordion } from "../../accordion/MyAccordion.jsx";
 import { useContext, useEffect, useState } from "react";
 import { ContextProvider } from "../../../context/Context.jsx";
 
-export const CreateTicket = () => {
+export const CreateTicket = ({user}) => {
 
     //test - delete
     const ths = [

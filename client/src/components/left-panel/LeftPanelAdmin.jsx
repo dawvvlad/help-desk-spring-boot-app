@@ -11,10 +11,10 @@ export const LeftPanelAdmin = () => {
                         <NavLink className={({isActive}) => isActive ? 'link active' : 'link'} to={"tickets/all"}>
                             Все
                         </NavLink>
-                        <NavLink className={"link"} to={"tickets/new"}>
+                        <NavLink className={"link"} to={"tickets/open"}>
                             Новые
                         </NavLink>
-                        <NavLink className={"link"} to={"tickets/open"}>
+                        <NavLink className={"link"} to={"tickets/active"}>
                             В работе
                         </NavLink>
 
