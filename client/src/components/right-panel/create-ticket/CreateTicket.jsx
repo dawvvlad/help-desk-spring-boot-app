@@ -8,15 +8,15 @@ import { ContextProvider } from "../../../context/Context.jsx";
 export const CreateTicket = ({user}) => {
 
     //test - delete
-    const ths = [
-        { id: '1', name: 'Не работает 1С' },
-        { id: '2', name: 'Сломался принтер' },
-        { id: '3', name: 'Нет туалетной бумаги' },
-        { id: '4', name: 'Нужна новая мышка' },
-        { id: '5', name: 'Требуется настройка VPN' },
-    ];
+    // const ths = [
+    //     { id: '1', name: 'Не работает 1С' },
+    //     { id: '2', name: 'Сломался принтер' },
+    //     { id: '3', name: 'Нет туалетной бумаги' },
+    //     { id: '4', name: 'Нужна новая мышка' },
+    //     { id: '5', name: 'Требуется настройка VPN' },
+    // ];
 
-    const { setResources } = useContext(ContextProvider);
+    const [themes, setThemes] = useState([]);
     const [files, setFiles] = useState([]);
     const [ticket, setTicket] = useState({
         //put username
@@ -47,8 +47,11 @@ export const CreateTicket = ({user}) => {
     }
 
     useEffect(() => {
-        setResources(ths);
-    }, [ths, setResources]);
+        fetch("/api/v1/themes")
+            .then(data => data.json())
+            .then(data => setThemes(data))
+            .catch(err => console.error(err));
+    }, []);
 
     return (
         <div className={"container right-panel"}>
@@ -56,7 +59,7 @@ export const CreateTicket = ({user}) => {
                 Создание новой заявки
             </h2>
             <div className="form-container">
-                <MyAccordion themes={ths} ticket={ticket} setTicket={setTicket} />
+                <MyAccordion themes={themes} ticket={ticket} setTicket={setTicket} />
                 <TicketForm ticket={ticket} setTicket={setTicket} />
                 <DragFileInput fls={files} setFls={setFiles} />
 

@@ -18,7 +18,7 @@ function App() {
     const [userInfo, setUserInfo] = useState({});
     // const [isAdmin, setIsAdmin] = useState(null)
 
-    const isAdmin = true
+    const isAdmin = false
 
     useEffect(() => {
         fetch("/api/v1/userInfo")
