@@ -15,6 +15,7 @@ import { UploadOrderSettings } from "./view/admin/settings/upload-order/UploadOr
 import {useEffect, useState} from "react";
 import { stompClient } from "./websocket/webSocketConfig.js";
 import { showNotification } from "./notifications.js";
+import {Preloader} from "./components/preloader/Preloader.jsx";
 
 function App() {
     const [userInfo, setUserInfo] = useState({});
@@ -122,7 +123,7 @@ function App() {
     return (
         <>
             {loading ? (
-                <h1>Loading...</h1>
+                <Preloader/>
             ) : (
                 <Context>
                     <Router>

@@ -1,5 +1,6 @@
 import './ticket-card.css';
 import { useEffect, useState } from 'react';
+import {Preloader} from "../preloader/Preloader.jsx";
 
 // eslint-disable-next-line react/prop-types
 export const TicketCardAdmin = ({ ticketId, userInfo }) => {
@@ -63,7 +64,7 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
     return (
         <>
             {isLoading ? (
-                <h1>Loading...</h1>
+                <Preloader/>
             ) : (
                 <div className="container right-panel">
                     <div className="ticket-page">

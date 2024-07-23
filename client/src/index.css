@@ -31,7 +31,6 @@ h1, h2, p {
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  overflow-y: hidden;
 }
 
 .text {

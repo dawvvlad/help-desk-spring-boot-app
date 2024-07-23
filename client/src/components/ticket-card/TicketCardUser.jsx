@@ -1,5 +1,6 @@
 import './ticket-card.css'
 import { useEffect, useState } from "react";
+import {Preloader} from "../preloader/Preloader.jsx";
 
 export const TicketCardUser = ({ ticketId }) => {
 
@@ -37,7 +38,7 @@ export const TicketCardUser = ({ ticketId }) => {
     return (
         <>
             {isLoading ? (
-                <h1>Loading...</h1>
+                <Preloader/>
             ) : (
                 <div className="container right-panel">
                     <div className="ticket-page">

@@ -2,6 +2,7 @@ import { TicketLine } from "../ticket-line/TicketLine.jsx";
 import { TicketTopPanel } from "../ticket-line/TicketTopPanel.jsx";
 import './tickets-panel.css';
 import {useEffect, useState} from "react";
+import {Preloader} from "../preloader/Preloader.jsx";
 
 export const AllTickets = ({user, isAdmin}) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -48,7 +49,7 @@ export const AllTickets = ({user, isAdmin}) => {
     return (
         <>
             {isLoading ? (
-                <h1>Loading...</h1>
+                <Preloader/>
             ) : (
                 <div className="container right-panel">
                     <TicketTopPanel />
