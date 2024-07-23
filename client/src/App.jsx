@@ -13,6 +13,7 @@ import { BannerSettings } from "./view/admin/settings/banners/BannerSettings.jsx
 import { ThemesSettings } from "./view/admin/settings/themes/ThemesSettings.jsx";
 import { UploadOrderSettings } from "./view/admin/settings/upload-order/UploadOrderSettings.jsx";
 import { useEffect, useState } from "react";
+import {stompClient, disconnect, connect} from "./websocket/webSocketConfig.js";
 
 function App() {
     const [userInfo, setUserInfo] = useState({});
@@ -32,6 +33,13 @@ function App() {
             .finally(() => {
                 setLoading(false);
             });
+
+        connect();
+        if(stompClient.connected && isAdmin) {
+            stompClient.subscribe('/topic/admin', (message) => {
+                console.log("subscribed");
+            });
+        }
     }, []);
 
     useEffect(() => {
