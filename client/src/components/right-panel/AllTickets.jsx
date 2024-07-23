@@ -3,18 +3,18 @@ import { TicketTopPanel } from "../ticket-line/TicketTopPanel.jsx";
 import './tickets-panel.css';
 import {useEffect, useState} from "react";
 
-export const AllTickets = () => {
+export const AllTickets = ({user, isAdmin}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [tickets, setTickets] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [pageSize, setPageSize] = useState(14);
-
-    const userData = 1
+    const userInfo = user?.info?.username;
 
     useEffect(() => {
+        console.log("AllPages:", isAdmin);
+        setIsLoading(true);
         const fetchData = async () => {
-            setIsLoading(true);
             try {
                 const data = await fetchItems(currentPage, pageSize);
                 setTickets(data.content);
@@ -37,8 +37,8 @@ export const AllTickets = () => {
     };
 
     const fetchItems = async (page, size) => {
-        const response = userData ? await fetch(`/api/v1/admin/ticketsPages?page=${page}&size=${size}`):
-            await fetch(`/api/v1/ticketsPages?page=${page}&size=${size}&username=vlad_g`);
+        const response = isAdmin ? await fetch(`/api/v1/admin/ticketsPages?page=${page}&size=${size}`):
+            await fetch(`/api/v1/ticketsPages?page=${page}&size=${size}&username=${userInfo}`);
         if (!response.ok) {
             throw new Error("Failed to fetch tickets");
         }

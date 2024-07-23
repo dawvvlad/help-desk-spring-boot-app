@@ -8,6 +8,7 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
     const [message, setMessage] = useState({});
     const userName = userInfo.info;
 
+
     const statuses = {
         OPEN: 'Ожидает',
         ACTIVE: 'В работе',
@@ -49,7 +50,8 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
 
         setTicketInfo(prevState => ({
             ...prevState,
-            status: 'ACTIVE'  // Присваиваем новое значение напрямую, без использования 'statuses'
+            status: 'ACTIVE',
+            executor: userName.username// Присваиваем новое значение напрямую, без использования 'statuses'
         }));
     }
 

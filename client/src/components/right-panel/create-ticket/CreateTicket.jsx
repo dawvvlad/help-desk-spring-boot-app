@@ -8,9 +8,15 @@ export const CreateTicket = ({user}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [themes, setThemes] = useState([]);
     const [files, setFiles] = useState([]);
+    const userName = user?.info?.username;
+
+    useEffect(() => {
+        console.log(userName);
+    }, []);
+
     const [ticket, setTicket] = useState({
         //put username
-        sender: "vlad_g",
+        sender: userName,
         executor: null,
         status: "OPEN",
         dateTime: "2024-11-2 19:30",
@@ -19,6 +25,11 @@ export const CreateTicket = ({user}) => {
     });
 
     function postTicket() {
+        if(!ticket.priority) {
+            alert('Выберите приоритет заявки');
+            return;
+        }
+
         const requestData = new FormData();
         requestData.append("message", JSON.stringify(ticket));
         files.forEach(e => {

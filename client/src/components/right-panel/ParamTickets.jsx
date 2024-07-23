@@ -3,13 +3,14 @@ import {TicketTopPanel} from "../ticket-line/TicketTopPanel.jsx";
 import {TicketLine} from "../ticket-line/TicketLine.jsx";
 import {useParams} from "react-router-dom";
 
-export const ParamTickets = () => {
+export const ParamTickets = ({user, isAdmin}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [tickets, setTickets] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [pageSize, setPageSize] = useState(14);
     const {status} = useParams();
+    const userInfo = user?.info?.username;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -40,13 +41,15 @@ export const ParamTickets = () => {
     }, []);
 
     const fetchItems = async (page, size) => {
-        const response = await fetch(`/api/v1/ticketsPages/${status.toUpperCase()}?page=${page}&size=${size}&username=vlad_g`);
+        const response = isAdmin ? await fetch(`/api/v1/admin/ticketsPages/${status.toUpperCase()}?page=${page}&size=${size}`) :
+            await fetch(`/api/v1/ticketsPages/${status.toUpperCase()}?page=${page}&size=${size}&username=${userInfo}`);
         //исправить username
 
         if (!response.ok) {
             throw new Error("Failed to fetch tickets");
         }
         return response.json();
+
     };
 
     return (

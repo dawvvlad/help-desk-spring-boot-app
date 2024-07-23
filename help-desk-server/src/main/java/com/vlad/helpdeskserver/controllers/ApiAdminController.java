@@ -51,6 +51,15 @@ public class ApiAdminController {
         return ticketService.getAllTicketResponse(PageRequest.of(page, size));
     }
 
+    @GetMapping("/ticketsPages/{status}")
+    public Page<TicketResponse> getAllTicketsPages(@PathVariable("status") TicketStatus status,
+                                                   @RequestParam(defaultValue = "0") int page,
+                                                   @RequestParam(defaultValue = "14") int size) {
+
+        return ticketService.getAllTicketResponse(PageRequest.of(page, size), status);
+    }
+
+
     /* theme */
     @PostMapping("/createTheme")
     public ResponseEntity<ThemeDTO> createTheme(@RequestBody ThemeDTO themeDTO) {
