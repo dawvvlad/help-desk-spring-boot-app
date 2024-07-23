@@ -14,21 +14,26 @@ import { ThemesSettings } from "./view/admin/settings/themes/ThemesSettings.jsx"
 import { UploadOrderSettings } from "./view/admin/settings/upload-order/UploadOrderSettings.jsx";
 import {useEffect, useState} from "react";
 import { stompClient } from "./websocket/webSocketConfig.js";
+import { showNotification } from "./notifications.js";
 
 function App() {
     const [userInfo, setUserInfo] = useState({});
     const [isAdmin, setIsAdmin] = useState(null);
     const [loading, setLoading] = useState(false);
     const [username, setUsername] = useState('');
-    const audioMes = new Audio('/sound.mp3')
 
     const connect = (isAdmin) => {
         stompClient.onConnect = (frame) => {
+
             console.log("Connected: " + frame)
             if(isAdmin) {
                 stompClient.subscribe("/topic/admin", (message) => {
                     console.log("Admin message received: ", JSON.parse(message.body));
-                    audioMes.play().then(() => console.log(1));
+
+                    showNotification("Новая заявка", {
+                        body: message.body.recipientUsername,
+                    });
+
                     setTimeout(() => {
                         window.location.reload()
                     }, 1500)
