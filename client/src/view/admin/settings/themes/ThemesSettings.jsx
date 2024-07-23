@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import './themes-settings.css';
-import { ThemeWrapper } from "../../../../components/theme-wrapper/ThemeWrapper.jsx";
 import { useEffect, useState } from "react";
 
 export const ThemesSettings = () => {
@@ -99,7 +98,7 @@ export const ThemesSettings = () => {
                 if (response.ok) {
                     setThemes(themes.filter(theme => theme.id !== id));
                 } else {
-                    alert("Ошибка при удалении темы");
+                    alert("Тема используется в заявках");
                 }
             })
             .catch(err => console.error(err))

@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-d
 import { UserMain } from "./view/user/main/UserMain.jsx";
 import { AdminMain } from "./view/admin/main/AdminMain.jsx";
 import { Layout } from "./common/Layout.jsx";
-import {Context, ContextProvider} from "./context/Context.jsx";
+import { Context } from "./context/Context.jsx";
 import { AllTickets } from "./components/right-panel/AllTickets.jsx";
 import { ParamTickets } from "./components/right-panel/ParamTickets.jsx";
 import { CreateTicket } from "./components/right-panel/create-ticket/CreateTicket.jsx";
@@ -20,6 +20,7 @@ function App() {
     const [isAdmin, setIsAdmin] = useState(null);
     const [loading, setLoading] = useState(false);
     const [username, setUsername] = useState('');
+    const audioMes = new Audio('/sound.mp3')
 
     const connect = (isAdmin) => {
         stompClient.onConnect = (frame) => {
@@ -27,7 +28,10 @@ function App() {
             if(isAdmin) {
                 stompClient.subscribe("/topic/admin", (message) => {
                     console.log("Admin message received: ", JSON.parse(message.body));
-                    window.location.reload();
+                    audioMes.play().then(() => console.log(1));
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1500)
                 })
             } else {
                 stompClient.subscribe(`/user/queue/reply`, (message) => {
