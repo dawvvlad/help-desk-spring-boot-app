@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-d
 import { UserMain } from "./view/user/main/UserMain.jsx";
 import { AdminMain } from "./view/admin/main/AdminMain.jsx";
 import { Layout } from "./common/Layout.jsx";
-import { Context } from "./context/Context.jsx";
+import {Context, ContextProvider} from "./context/Context.jsx";
 import { AllTickets } from "./components/right-panel/AllTickets.jsx";
 import { ParamTickets } from "./components/right-panel/ParamTickets.jsx";
 import { CreateTicket } from "./components/right-panel/create-ticket/CreateTicket.jsx";
@@ -12,7 +12,7 @@ import { PageNotFound } from "./view/page-not-found/PageNotFound.jsx";
 import { BannerSettings } from "./view/admin/settings/banners/BannerSettings.jsx";
 import { ThemesSettings } from "./view/admin/settings/themes/ThemesSettings.jsx";
 import { UploadOrderSettings } from "./view/admin/settings/upload-order/UploadOrderSettings.jsx";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import { stompClient } from "./websocket/webSocketConfig.js";
 
 function App() {
@@ -21,18 +21,18 @@ function App() {
     const [loading, setLoading] = useState(false);
     const [username, setUsername] = useState('');
 
-
-
     const connect = (isAdmin) => {
         stompClient.onConnect = (frame) => {
             console.log("Connected: " + frame)
             if(isAdmin) {
                 stompClient.subscribe("/topic/admin", (message) => {
                     console.log("Admin message received: ", JSON.parse(message.body));
+                    window.location.reload();
                 })
             } else {
                 stompClient.subscribe(`/user/queue/reply`, (message) => {
                     console.log("User message received: ", JSON.parse(message.body));
+                    window.location.reload();
                 })
             }
         };
