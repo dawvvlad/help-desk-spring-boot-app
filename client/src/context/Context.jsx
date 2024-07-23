@@ -8,7 +8,6 @@ const initialValue = {
     resources: [],
     isLoading: false,
     targetId: undefined,
-    isAdmin: false
 }
 
 export const Context = ({ children }) => {

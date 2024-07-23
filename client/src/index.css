@@ -139,3 +139,18 @@ h1 {
     background-color: #f9f9f9;
   }
 }
+
+
+.test-btn {
+  position: absolute;
+  top: 700px;
+  left: 700px;
+  z-index: 1000;
+}
+
+.test-btn2 {
+  position: absolute;
+  top: 700px;
+  left: 400px;
+  z-index: 1000;
+}

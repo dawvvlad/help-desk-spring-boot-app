@@ -2,13 +2,16 @@ import './create-ticket.css';
 import { DragFileInput } from "../../form/DragFileInput.jsx";
 import { TicketForm } from "../../form/TicketForm.jsx";
 import { MyAccordion } from "../../accordion/MyAccordion.jsx";
-import { useEffect, useState } from "react";
+import {useContext, useEffect, useState} from "react";
+import {stompClient} from "../../../websocket/webSocketConfig.js";
+import {ContextProvider} from "../../../context/Context.jsx";
 
 export const CreateTicket = ({user}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [themes, setThemes] = useState([]);
     const [files, setFiles] = useState([]);
     const userName = user?.info?.username;
+    const { resources, setResources } = useContext(ContextProvider);
 
     useEffect(() => {
         console.log(userName);
@@ -47,6 +50,13 @@ export const CreateTicket = ({user}) => {
             })
             .catch(err => console.error(err));
 
+        stompClient.publish({
+            destination: "/app/admin",
+            body: JSON.stringify({
+                message: "Hello",
+                recipientUsername: userName,
+            })
+        })
     }
 
     useEffect(() => {

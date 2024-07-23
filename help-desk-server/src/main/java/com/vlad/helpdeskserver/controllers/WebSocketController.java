@@ -1,6 +1,7 @@
 package com.vlad.helpdeskserver.controllers;
 
 import com.vlad.helpdeskserver.dto.TicketWebsocketMessage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -11,9 +12,11 @@ public class WebSocketController {
 
     private final SimpMessagingTemplate messagingTemplate;
 
+    @Autowired
     public WebSocketController(SimpMessagingTemplate messagingTemplate) {
         this.messagingTemplate = messagingTemplate;
     }
+
 
     @MessageMapping("/admin")
     @SendTo("/topic/admin")
@@ -26,6 +29,7 @@ public class WebSocketController {
         String recipient = message.getRecipientUsername();
         messagingTemplate.convertAndSendToUser(recipient, "/queue/reply", message);
 
+        System.out.println("sended to: " + recipient);
         return message;
     }
 }
