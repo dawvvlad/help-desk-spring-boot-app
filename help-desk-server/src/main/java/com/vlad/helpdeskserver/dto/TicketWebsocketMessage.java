@@ -9,11 +9,8 @@ import lombok.Setter;
 @Getter
 public class TicketWebsocketMessage {
     private String message;
-    private String theme;
-    private TicketStatus status;
     private String recipientUsername;
     private String executor;
-    private TicketPrioriry priority;
     private String dateTime;
 
     public TicketWebsocketMessage() {}

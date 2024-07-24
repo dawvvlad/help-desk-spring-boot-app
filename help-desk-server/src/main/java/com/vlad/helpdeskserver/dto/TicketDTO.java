@@ -18,7 +18,7 @@ public class TicketDTO {
     private TicketStatus status;
     private TicketPrioriry priority;
     private String dateTime;
-    private String commentBeforeClose;
+    private String commentAfterClose = null;
 
     public TicketDTO() {}
     public TicketDTO(Ticket ticket) {
@@ -34,7 +34,7 @@ public class TicketDTO {
         this.priority = ticket.getPriority();
         this.dateTime = ticket.getDateTime();
         this.message = new MessageDTO(ticket.getMessage());
-//        this.commentBeforeClose = ticket.getCommentBeforeClose();
+        this.commentAfterClose = ticket.getCommentAfterClose();
     }
 
     public TicketDTO(TicketRequest ticketWithFileRequest) {
@@ -45,7 +45,6 @@ public class TicketDTO {
         this.status = ticketWithFileRequest.getStatus();
         this.priority = ticketWithFileRequest.getPriority();
         this.dateTime = ticketWithFileRequest.getDateTime();
-        this.commentBeforeClose = ticketWithFileRequest.getCommentBeforeClose();
     }
 
 }

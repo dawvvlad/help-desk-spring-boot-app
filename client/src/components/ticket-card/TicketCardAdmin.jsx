@@ -1,27 +1,21 @@
 import './ticket-card.css';
 import { useEffect, useState } from 'react';
-import {Preloader} from "../preloader/Preloader.jsx";
+import { Preloader } from "../preloader/Preloader.jsx";
+import {CloseTicketModal} from "../modal/CloseTicketModal.jsx";// import the modal
+import {statusColors, statuses, priorities} from "../../objects.js";
+import {stompClient} from "../../websocket/webSocketConfig.js";
 
 // eslint-disable-next-line react/prop-types
 export const TicketCardAdmin = ({ ticketId, userInfo }) => {
     const [ticketInfo, setTicketInfo] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState({});
+    const [isModalOpen, setIsModalOpen] = useState(false); // state to handle modal visibility
     const userName = userInfo.info;
 
-    const statuses = {
-        OPEN: 'Ожидает',
-        ACTIVE: 'В работе',
-        CLOSED: 'Закрыта',
-    };
-
-    const priorities = {
-        LOW: 'Низкий',
-        MEDIUM: 'Средний',
-        HIGH: 'Высокий',
-    };
-
     useEffect(() => {
+        console.log(ticketInfo)
+
         setIsLoading(true);
         fetch(`/api/v1/ticket/${ticketId}`)
             .then((data) => data.json())
@@ -51,13 +45,35 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
         setTicketInfo(prevState => ({
             ...prevState,
             status: 'ACTIVE',
-            executor: userName.username// Присваиваем новое значение напрямую, без использования 'statuses'
+            executor: userName.username
         }));
     }
 
+    function handleCloseTicket(comment) {
+        fetch(`/api/v1/admin/closeTicket/${ticketId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                comment: comment
+            })
+        }).then(() => {
+            setTicketInfo(prevState => ({ ...prevState, status: 'CLOSED' }));
+            setIsModalOpen(false);
+        }).catch(err => console.error(err));
 
-    function handleCloseTicket() {
-        setTicketInfo(prevState => ({ ...prevState, status: 'CLOSED' }))
+        stompClient.publish({
+            destination: "/app/chat",
+            body: JSON.stringify({
+                id: "#",
+                recipientUsername: ticketInfo.sender,
+                executor: userName,
+                theme: "",
+                priority: ticketInfo.priority,
+                dateTime: new Date().toLocaleString().toString(),
+            })
+        })
     }
 
     return (
@@ -71,7 +87,7 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Статус:</p>
                             <p>
-                                <span className="status-circle"> </span>
+                                <span className={`status-circle ${statusColors[ticketInfo.status]}`}> </span>
                                 {statuses[ticketInfo.status]}
                             </p>
                         </div>
@@ -80,16 +96,16 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
                             <p>{ticketInfo.sender}</p>
                         </div>
                         <div className="ticket-page__column">
+                            <p className="ticket-title-p">Дата/Время:</p>
+                            <p>{ticketInfo.dateTime}</p>
+                        </div>
+                        <div className="ticket-page__column">
                             <p className="ticket-title-p">Тема:</p>
-                            <p>{ticketInfo.theme ? ticketInfo.theme : '---'}</p>
+                            <p>{ticketInfo.theme ? ticketInfo.theme : 'Без темы'}</p>
                         </div>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Приоритет:</p>
                             <p>{priorities[ticketInfo.priority]}</p>
-                        </div>
-                        <div className="ticket-page__column">
-                            <p className="ticket-title-p">Исполнитель:</p>
-                            <p>{ticketInfo.executor}</p>
                         </div>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Комментарий:</p>
@@ -99,13 +115,23 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
                             <p className="ticket-title-p">Файлы:</p>
                             <p>F1</p>
                         </div>
+
+
                         <div className="ticket-page__column">
-                            <p className="ticket-title-p">Дата/Время:</p>
-                            <p>{ticketInfo.dateTime}</p>
+                            <p className="ticket-title-p">Исполнитель:</p>
+                            <p>{ticketInfo.executor ? ticketInfo.executor : 'Нет исполнителя'}</p>
                         </div>
 
+                        {ticketInfo.status === 'CLOSED' && (
+                            <div className="ticket-page__column">
+                                <p className="ticket-title-p">Комментарий исполнителя:</p>
+                                <p>{ticketInfo.commentAfterClose ? ticketData.commentAfterClose : '-'}</p>
+                            </div>
+                        )}
+
+
                         {ticketInfo.status === 'ACTIVE' && (
-                            <button className="button closing-button" onClick={handleCloseTicket}>
+                            <button className="button closing-button" onClick={() => setIsModalOpen(true)}>
                                 Закрыть заявку
                             </button>
                         )}
@@ -117,6 +143,9 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
                     </div>
                 </div>
             )}
+
+            <CloseTicketModal show={isModalOpen} handleClose={() => setIsModalOpen(false)}
+                              handleSubmit={handleCloseTicket}/>
         </>
     );
 };

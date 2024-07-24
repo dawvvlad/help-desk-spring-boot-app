@@ -14,7 +14,8 @@ public interface TicketService {
     TicketDTO create(TicketDTO ticketDTO);
     void changeStatus(Long id, TicketStatus ticketStatus);
     void changeExecutor(Long id, String executorUsername);
-//    void changeCommentBefore(Long id, String comment);
+    void closeTicket(Long id, String commentAfterClose);
+
     TicketDTO getTicket(Long id);
     TicketResponse getTicketResponse(Long id);
     List<TicketDTO> getAllTickets();
@@ -27,5 +28,6 @@ public interface TicketService {
     Page<TicketResponse> getAllTicketResponse(Pageable pageable, TicketStatus status, String username);
     Page<TicketResponse> getAllTicketResponse(Pageable pageable);
     Page<TicketResponse> getAllTicketResponse(Pageable pageable, String username);
+
 
 }

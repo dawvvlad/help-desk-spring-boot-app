@@ -40,8 +40,8 @@ public class Ticket {
     @JoinColumn(name = "message")
     private Message message;
 
-//    @Column(name = "COMMENT_BEFORE_CLOSE")
-//    private String commentBeforeClose = null;
+    @Column(name = "comment_after_close")
+    private String commentAfterClose = null;
 
     public Ticket() {}
     public Ticket(String sender, String executor, TicketPrioriry priority, TicketStatus status, String dateTime) {

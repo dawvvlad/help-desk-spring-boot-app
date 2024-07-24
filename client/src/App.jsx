@@ -42,7 +42,9 @@ function App() {
             } else {
                 stompClient.subscribe(`/user/queue/reply`, (message) => {
                     console.log("User message received: ", JSON.parse(message.body));
-                    window.location.reload();
+                    showNotification("Ответ IT-отдела", {
+                        body: message.body.message,
+                    });
                 })
             }
         };

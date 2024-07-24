@@ -86,6 +86,14 @@ public class TicketServiceImpl implements TicketService {
         System.out.println("Исполнитель: " + executorUsername);
     }
 
+    @Override
+    public void closeTicket(Long id, String commentAfterClose) {
+        Ticket ticket = ticketRepo.findById(id);
+        ticket.setCommentAfterClose(commentAfterClose);
+        ticket.setStatus(TicketStatus.CLOSED);
+        ticketRepo.update(ticket);
+    }
+
 //    @Override
 //    public void changeCommentBefore(Long id, String comment) {
 //        Ticket ticket = ticketRepo.findById(id);
