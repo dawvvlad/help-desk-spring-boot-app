@@ -17,7 +17,6 @@ public class WebSocketController {
         this.messagingTemplate = messagingTemplate;
     }
 
-
     @MessageMapping("/admin")
     @SendTo("/topic/admin")
     public TicketWebsocketMessage sendTicketToAdmin(TicketWebsocketMessage message) {

@@ -97,31 +97,6 @@ function App() {
 
     }, [userInfo, isAdmin]);
 
-    function testAdmin() {
-            if(username) {
-                stompClient.publish({
-                    destination: "/app/admin",
-                    body: JSON.stringify({
-                        message: "Hello",
-                        recipientUsername: username,
-                    })
-                })
-            }
-    }
-
-    function testUser() {
-        if(username) {
-            stompClient.publish({
-                destination: `/app/chat`,
-                body: JSON.stringify({
-                    message: "Hello",
-                    recipientUsername: 'golikov_v',
-                })
-            })
-        }
-    }
-
-
     return (
         <>
             {loading ? (

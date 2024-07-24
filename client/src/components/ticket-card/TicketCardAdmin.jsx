@@ -100,7 +100,7 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
                         </div>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Отправитель:</p>
-                            <p>{ticketInfo.sender}</p>
+                            <p>{`${ticketInfo.senderFullName} (${(ticketInfo.sender)})`}</p>
                         </div>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Дата/Время:</p>

@@ -11,6 +11,7 @@ import lombok.Setter;
 public class TicketResponse {
         private Long id;
         private String sender;
+        private String senderFullName;
         private String executor;
         private String theme;
         private MessageDTO message;
@@ -36,5 +37,6 @@ public class TicketResponse {
                 this.message = new MessageDTO(ticket.getMessage());
                 this.commentAfterClose = ticket.getCommentAfterClose();
                 this.closedDateTime = ticket.getClosedDatetime();
+                this.senderFullName = ticket.getSenderFullName();
         }
 }

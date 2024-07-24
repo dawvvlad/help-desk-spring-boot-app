@@ -12,6 +12,7 @@ import lombok.Setter;
 public class TicketDTO {
     private Long id;
     private String sender;
+    private String senderFullName;
     private String executor;
     private Long themeId;
     private MessageDTO message;
@@ -37,6 +38,7 @@ public class TicketDTO {
         this.message = new MessageDTO(ticket.getMessage());
         this.commentAfterClose = ticket.getCommentAfterClose();
         this.closedDateTime = ticket.getClosedDatetime();
+        this.senderFullName = ticket.getSenderFullName();
     }
 
     public TicketDTO(TicketRequest ticketWithFileRequest) {
@@ -47,6 +49,7 @@ public class TicketDTO {
         this.status = ticketWithFileRequest.getStatus();
         this.priority = ticketWithFileRequest.getPriority();
         this.dateTime = ticketWithFileRequest.getDateTime();
+        this.senderFullName = ticketWithFileRequest.getSenderFullName();
     }
 
 }

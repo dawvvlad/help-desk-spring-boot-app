@@ -52,7 +52,8 @@ public class TicketServiceImpl implements TicketService {
                 ticketDTO.getExecutor(),
                 ticketDTO.getPriority(),
                 ticketDTO.getStatus(),
-                ticketDTO.getDateTime());
+                ticketDTO.getDateTime(),
+                ticketDTO.getSenderFullName());
 
         ticket.addTheme(theme);
         ticket.addMessage(message);

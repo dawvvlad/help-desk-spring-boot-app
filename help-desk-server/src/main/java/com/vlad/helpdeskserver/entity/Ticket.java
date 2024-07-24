@@ -22,6 +22,9 @@ public class Ticket {
     @Column(name = "sender_username")
     private String sender;
 
+    @Column(name = "sender_full_name")
+    private String senderFullName;
+
     @Column(name = "executor_username")
     private String executor;
 
@@ -47,12 +50,14 @@ public class Ticket {
     private String closedDatetime = null;
 
     public Ticket() {}
-    public Ticket(String sender, String executor, TicketPrioriry priority, TicketStatus status, String dateTime) {
+    public Ticket(String sender, String executor, TicketPrioriry priority, TicketStatus status, String dateTime,
+                  String senderFullName) {
         this.sender = sender;
         this.executor = executor;
         this.priority = priority;
         this.status = status;
         this.dateTime = dateTime;
+        this.senderFullName = senderFullName;
     }
 
     public void addMessage(Message mes) {

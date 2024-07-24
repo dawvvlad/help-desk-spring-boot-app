@@ -11,6 +11,7 @@ export const CreateTicket = ({user}) => {
     const [themes, setThemes] = useState([]);
     const [files, setFiles] = useState([]);
     const userName = user?.info?.username;
+    const fullName = user?.info?.cn[0];
 
     const dateAndTime = new Date().toLocaleString().toString();
 
@@ -21,6 +22,7 @@ export const CreateTicket = ({user}) => {
     const [ticket, setTicket] = useState({
         //put username
         sender: userName,
+        senderFullName: fullName,
         executor: null,
         status: "OPEN",
         dateTime: dateAndTime,

@@ -15,6 +15,7 @@ import java.util.List;
 public class TicketRequest {
     private Long id;
     private String sender;
+    private String senderFullName;
     private String executor;
     private Long themeId;
 
