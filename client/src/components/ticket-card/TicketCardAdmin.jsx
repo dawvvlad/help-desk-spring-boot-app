@@ -50,6 +50,8 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
     }
 
     function handleCloseTicket(comment) {
+        const datetime = new Date().toLocaleString().toString();
+
         fetch(`/api/v1/admin/closeTicket/${ticketId}`, {
             method: "PATCH",
             headers: {
@@ -60,7 +62,11 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
                 closedDateTime: new Date().toLocaleString().toString()
             })
         }).then(() => {
-            setTicketInfo(prevState => ({ ...prevState, status: 'CLOSED' }));
+            setTicketInfo(prevState => ({
+                ...prevState, status: 'CLOSED',
+                closedDateTime: datetime,
+                commentAfterClose: comment,
+            }));
             setIsModalOpen(false);
         }).catch(err => console.error(err));
 
@@ -72,7 +78,7 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
                 executor: userName,
                 theme: "",
                 priority: ticketInfo.priority,
-                dateTime: new Date().toLocaleString().toString(),
+                dateTime: datetime,
             })
         })
     }
@@ -84,7 +90,7 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
             ) : (
                 <div className="container right-panel">
                     <div className="ticket-page">
-                        <h2>Заявка #{ticketId} (Admin)</h2>
+                        <h2>Заявка #{ticketId}</h2>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Статус:</p>
                             <p>

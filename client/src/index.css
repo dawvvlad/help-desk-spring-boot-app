@@ -63,7 +63,6 @@ h1 {
   font-family: 'Montserrat', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   text-align: center;
   padding: 15px 20px;
-  border-radius: 8px;
   color: white;
   background-color: #2F4F8EFF;
   transition: .2s linear;
@@ -82,7 +81,6 @@ h1 {
 
 .link {
   padding: 15px 20px;
-  border-radius: 8px;
   background-color: white;
   width: 200px;
   transition: .1s linear;

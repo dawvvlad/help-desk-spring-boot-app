@@ -19,14 +19,23 @@
     justify-content: center;
     margin-top: 50px;
 }
-
-.settings-content > .button {
+.settings-content > .button:first-child {
     margin-bottom: 10px;
-    background-color: rgba(35, 99, 0, 0.85);
+}
+
+.theme-info__buttons > .button {
+    background-color: #2F4F8EFF;
+    padding: 10px 15px;
+    margin: 0 10px;
+}
+
+.theme-info__buttons > .button:last-child {
+    background-color: #a10411;
 }
 
 .create-theme-form {
-    width: 80%;
+    width: 100%;
+    height: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -34,11 +43,10 @@
     margin-bottom: 20px;
 }
 
-.create-theme-form > textarea {
-    width: 100%;
-    height: 50px;
+.theme-info > textarea {
+    width: 70%;
     border-radius: 10px;
-    padding: 5px 10px;
+    padding: 5px;
     background-color: #f8fbfb;
     white-space: pre-wrap;
     overflow-wrap: break-word;
@@ -47,5 +55,36 @@
     resize: none;
     border: 1px solid rgba(28, 10, 92, 0.2);
     font-family: 'Montserrat', serif;
-    font-size: 18px;
+    font-size: 15px;
+}
+.theme-info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.theme-info__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.theme-item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.11);
+    padding: 10px;
+    margin: 10px auto;
+
+}
+
+.edit-theme-form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
 }

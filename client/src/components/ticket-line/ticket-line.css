@@ -31,12 +31,10 @@
 
 .priority {
     background-color: rgba(0, 128, 0, 0.27);
-    border-radius: 20px;
     padding: 10px;
 }
 
 .status {
-    border-radius: 20px;
     padding: 10px;
 }
 

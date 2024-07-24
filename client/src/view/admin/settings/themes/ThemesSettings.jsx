@@ -27,6 +27,11 @@ export const ThemesSettings = () => {
         setShowCreateForm(true);
     };
 
+    const handleCancelCreate = () => {
+        setShowCreateForm(false);
+        setNewThemeName("");
+    };
+
     const handleCreateTheme = () => {
         if (newThemeName.trim() === "") {
             alert("Название темы не может быть пустым");
@@ -120,31 +125,40 @@ export const ThemesSettings = () => {
                                 Создать тему
                             </button>
                             {showCreateForm && (
-                                <div className="create-theme-form">
-                                    <textarea
-                                        value={newThemeName}
-                                        onChange={(e) => setNewThemeName(e.target.value)}
-                                        placeholder="Введите название новой темы"
-                                    />
-                                    <button className={"button"} onClick={handleCreateTheme}>
-                                        Отправить
-                                    </button>
+                                <div className="theme-item">
+                                    <div className={"theme-info"}>
+                                        <textarea
+                                            value={newThemeName}
+                                            onChange={(e) => setNewThemeName(e.target.value)}
+                                            placeholder="Введите название новой темы"
+                                        />
+                                        <div className={"theme-info__buttons"}>
+                                            <button className={"button"} onClick={handleCreateTheme}>
+                                                Сохранить
+                                            </button>
+                                            <button className={"button"} onClick={handleCancelCreate}>
+                                                Отменить
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             )}
                             {themes.map(theme => (
                                 <div key={theme.id} className="theme-item">
                                     {editThemeId === theme.id ? (
-                                        <div className="edit-theme-form">
+                                        <div className="theme-info">
                                             <textarea
                                                 value={editThemeName}
                                                 onChange={(e) => setEditThemeName(e.target.value)}
                                             />
-                                            <button className={"button"} onClick={() => handleSaveEdit(theme.id)}>
-                                                Сохранить
-                                            </button>
-                                            <button className={"button"} onClick={handleCancelEdit}>
-                                                Отменить
-                                            </button>
+                                            <div className={"theme-info__buttons"}>
+                                                <button className={"button"} onClick={() => handleSaveEdit(theme.id)}>
+                                                    Сохранить
+                                                </button>
+                                                <button className={"button"} onClick={handleCancelEdit}>
+                                                    Отменить
+                                                </button>
+                                            </div>
                                         </div>
                                     ) : (
                                         <div className="theme-info">
