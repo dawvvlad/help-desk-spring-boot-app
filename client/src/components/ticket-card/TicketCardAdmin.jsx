@@ -9,7 +9,6 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
     const [message, setMessage] = useState({});
     const userName = userInfo.info;
 
-
     const statuses = {
         OPEN: 'Ожидает',
         ACTIVE: 'В работе',
@@ -82,7 +81,7 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
                         </div>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Тема:</p>
-                            <p>{ticketInfo.theme}</p>
+                            <p>{ticketInfo.theme ? ticketInfo.theme : '---'}</p>
                         </div>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Приоритет:</p>
@@ -94,7 +93,7 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
                         </div>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Комментарий:</p>
-                            <p>{message.text}</p>
+                            <p>{message.text ? message.text : '---'}</p>
                         </div>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Файлы:</p>
@@ -102,7 +101,7 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
                         </div>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Дата/Время:</p>
-                            <p>24.12.2023 18:00</p>
+                            <p>{ticketInfo.dateTime}</p>
                         </div>
 
                         {ticketInfo.status === 'ACTIVE' && (

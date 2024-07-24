@@ -11,6 +11,8 @@ export const CreateTicket = ({user}) => {
     const [files, setFiles] = useState([]);
     const userName = user?.info?.username;
 
+    const dateAndTime = new Date().toLocaleString().toString();
+
     useEffect(() => {
         console.log(userName);
     }, []);
@@ -20,7 +22,7 @@ export const CreateTicket = ({user}) => {
         sender: userName,
         executor: null,
         status: "OPEN",
-        dateTime: "2024-11-2 19:30",
+        dateTime: dateAndTime,
         priority: '', // Инициализируем приоритет
         text: ''   // Инициализируем сообщение
     });

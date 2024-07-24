@@ -30,7 +30,8 @@ h1, h2, p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: start;
+  overflow-y: hidden;
 }
 
 .text {

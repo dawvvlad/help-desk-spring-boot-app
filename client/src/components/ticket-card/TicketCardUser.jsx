@@ -53,7 +53,7 @@ export const TicketCardUser = ({ ticketId }) => {
 
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Тема:</p>
-                            <p>{ticketData.theme}</p>
+                            <p>{ticketData.theme ? ticketData.theme : '---'}</p>
                         </div>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Приоритет:</p>
@@ -62,12 +62,12 @@ export const TicketCardUser = ({ ticketId }) => {
 
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Исполнитель:</p>
-                            <p>{ticketData.executor}</p>
+                            <p>{ticketData.executor ? ticketData.executor : 'Нет исполнителя'}</p>
                         </div>
 
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Комментарий:</p>
-                            <p>{message.text}</p>
+                            <p>{message.text ? message.text : '---'}</p>
                         </div>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Файлы:</p>
@@ -75,7 +75,7 @@ export const TicketCardUser = ({ ticketId }) => {
                         </div>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Дата/Время:</p>
-                            <p>24.12.2023 18:00</p>
+                            <p>{ticketData.dateTime}</p>
                         </div>
                     </div>
                 </div>

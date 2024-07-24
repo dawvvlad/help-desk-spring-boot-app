@@ -13,7 +13,6 @@ public class TicketWebsocketMessage {
     private TicketStatus status;
     private String recipientUsername;
     private String executor;
-//    private String recipientFullName;
     private TicketPrioriry priority;
     private String dateTime;
 
