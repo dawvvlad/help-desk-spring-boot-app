@@ -87,9 +87,10 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public void closeTicket(Long id, String commentAfterClose) {
+    public void closeTicket(Long id, String commentAfterClose, String closedDateTime) {
         Ticket ticket = ticketRepo.findById(id);
         ticket.setCommentAfterClose(commentAfterClose);
+        ticket.setClosedDatetime(closedDateTime);
         ticket.setStatus(TicketStatus.CLOSED);
         ticketRepo.update(ticket);
     }

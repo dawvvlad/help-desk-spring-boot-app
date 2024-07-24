@@ -18,6 +18,7 @@ public class TicketResponse {
         private TicketPrioriry priority;
         private String dateTime;
         private String commentAfterClose = null;
+        private String closedDateTime = null;
 
         public TicketResponse() {}
         public TicketResponse(Ticket ticket) {
@@ -34,5 +35,6 @@ public class TicketResponse {
                 this.dateTime = ticket.getDateTime();
                 this.message = new MessageDTO(ticket.getMessage());
                 this.commentAfterClose = ticket.getCommentAfterClose();
+                this.closedDateTime = ticket.getClosedDatetime();
         }
 }

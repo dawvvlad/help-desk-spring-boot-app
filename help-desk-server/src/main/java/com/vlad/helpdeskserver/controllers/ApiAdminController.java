@@ -95,8 +95,8 @@ public class ApiAdminController {
     }
 
     @PatchMapping("/closeTicket/{ticketId}")
-    public void closeTicket(@PathVariable("ticketId") Long id, @RequestBody Map<String, String> commentAfterClose) {
-        ticketService.closeTicket(id, commentAfterClose.get("comment"));
+    public void closeTicket(@PathVariable("ticketId") Long id, @RequestBody Map<String, String> afterClose) {
+        ticketService.closeTicket(id, afterClose.get("comment"), afterClose.get("closedDateTime"));
     }
 
 //    @PatchMapping("/changeTicketCommentBeforeClose/{ticketId}")

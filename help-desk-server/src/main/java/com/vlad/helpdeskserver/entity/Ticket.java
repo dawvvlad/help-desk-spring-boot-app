@@ -43,6 +43,9 @@ public class Ticket {
     @Column(name = "comment_after_close")
     private String commentAfterClose = null;
 
+    @Column(name = "closed_datetime")
+    private String closedDatetime = null;
+
     public Ticket() {}
     public Ticket(String sender, String executor, TicketPrioriry priority, TicketStatus status, String dateTime) {
         this.sender = sender;

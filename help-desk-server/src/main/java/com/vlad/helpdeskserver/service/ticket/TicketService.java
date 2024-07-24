@@ -14,7 +14,7 @@ public interface TicketService {
     TicketDTO create(TicketDTO ticketDTO);
     void changeStatus(Long id, TicketStatus ticketStatus);
     void changeExecutor(Long id, String executorUsername);
-    void closeTicket(Long id, String commentAfterClose);
+    void closeTicket(Long id, String commentAfterClose, String closedDateTime);
 
     TicketDTO getTicket(Long id);
     TicketResponse getTicketResponse(Long id);

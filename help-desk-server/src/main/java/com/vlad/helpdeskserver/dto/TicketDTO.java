@@ -19,6 +19,7 @@ public class TicketDTO {
     private TicketPrioriry priority;
     private String dateTime;
     private String commentAfterClose = null;
+    private String closedDateTime = null;
 
     public TicketDTO() {}
     public TicketDTO(Ticket ticket) {
@@ -35,6 +36,7 @@ public class TicketDTO {
         this.dateTime = ticket.getDateTime();
         this.message = new MessageDTO(ticket.getMessage());
         this.commentAfterClose = ticket.getCommentAfterClose();
+        this.closedDateTime = ticket.getClosedDatetime();
     }
 
     public TicketDTO(TicketRequest ticketWithFileRequest) {

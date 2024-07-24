@@ -56,7 +56,8 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
                 "Content-type": "application/json"
             },
             body: JSON.stringify({
-                comment: comment
+                comment: comment,
+                closedDateTime: new Date().toLocaleString().toString()
             })
         }).then(() => {
             setTicketInfo(prevState => ({ ...prevState, status: 'CLOSED' }));
@@ -124,8 +125,15 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
 
                         {ticketInfo.status === 'CLOSED' && (
                             <div className="ticket-page__column">
+                                <p className="ticket-title-p">Дата/Время закрытия:</p>
+                                <p>{ticketInfo.closedDateTime ? ticketInfo.closedDateTime : '-'}</p>
+                            </div>
+                        )}
+
+                        {ticketInfo.status === 'CLOSED' && (
+                            <div className="ticket-page__column">
                                 <p className="ticket-title-p">Комментарий исполнителя:</p>
-                                <p>{ticketInfo.commentAfterClose ? ticketData.commentAfterClose : '-'}</p>
+                                <p>{ticketInfo.commentAfterClose ? ticketInfo.commentAfterClose : '-'}</p>
                             </div>
                         )}
 
