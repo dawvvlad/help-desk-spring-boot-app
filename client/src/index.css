@@ -30,7 +30,7 @@ h1, h2, p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
+  justify-content: space-between;
 }
 
 .text {
