@@ -1,3 +1,4 @@
+import { Preloader } from "../preloader/Preloader.jsx";
 import { TicketLine } from "../ticket-line/TicketLine.jsx";
 import { TicketTopPanel } from "../ticket-line/TicketTopPanel.jsx";
 import './tickets-panel.css';
@@ -101,7 +102,7 @@ export const AllTickets = ({ user, isAdmin }) => {
     return (
         <>
             {isLoading ? (
-                <h1>Loading...</h1>
+                <Preloader/>
             ) : (
                 <div className="container right-panel">
                     <TicketTopPanel />

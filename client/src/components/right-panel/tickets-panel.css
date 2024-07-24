@@ -17,11 +17,21 @@
 }
 
 .pagination > .button {
-    padding: 0 10px;
+    padding: 5px 10px;
     z-index: 1000;
     margin: 0 5px;
+    background-color: white;
+    color: #2F4F8EFF;
+    border: 1px solid rgba(0, 0, 0, 0.137);
+
+}
+
+.pagination > button:hover {
+    background-color: #2f4f8e;
+    color: white;
 }
 
 .pagination > button:disabled {
-    background-color: #9f9f9f;
+    background-color: #b9b9b9;
+    color: white;
 }

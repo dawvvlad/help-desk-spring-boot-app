@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { TicketTopPanel } from "../ticket-line/TicketTopPanel.jsx";
 import { TicketLine } from "../ticket-line/TicketLine.jsx";
 import { useParams } from "react-router-dom";
+import { Preloader } from "../preloader/Preloader.jsx";
 
 export const ParamTickets = ({ user, isAdmin }) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -103,7 +104,7 @@ export const ParamTickets = ({ user, isAdmin }) => {
     return (
         <>
             {isLoading ? (
-                <h1>Loading...</h1>
+                <Preloader/>
             ) : (
                 <div className="container right-panel">
                     <TicketTopPanel />

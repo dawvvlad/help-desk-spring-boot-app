@@ -4,6 +4,7 @@ import { TicketForm } from "../../form/TicketForm.jsx";
 import { MyAccordion } from "../../accordion/MyAccordion.jsx";
 import {useEffect, useState} from "react";
 import {stompClient} from "../../../websocket/webSocketConfig.js";
+import {Preloader} from "../../preloader/Preloader.jsx";
 
 export const CreateTicket = ({user}) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -80,7 +81,7 @@ export const CreateTicket = ({user}) => {
     return (
         <>
             {isLoading ?
-                <h1> Loading...</h1> :
+                <Preloader/> :
                 <div className={"container right-panel"}>
                     <h2 className={"create-h2"}>
                         Создание новой заявки
