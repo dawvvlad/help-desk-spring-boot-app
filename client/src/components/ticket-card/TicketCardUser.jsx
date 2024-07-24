@@ -70,6 +70,13 @@ export const TicketCardUser = ({ ticketId }) => {
 
                         {ticketData.status === 'CLOSED' && (
                             <div className="ticket-page__column">
+                                <p className="ticket-title-p">Дата/Время закрытия:</p>
+                                <p>{ticketData.closedDateTime ? ticketData.closedDateTime : '-'}</p>
+                            </div>
+                        )}
+
+                        {ticketData.status === 'CLOSED' && (
+                            <div className="ticket-page__column">
                                 <p className="ticket-title-p">Комментарий исполнителя:</p>
                                 <p>{ticketData.commentAfterClose ? ticketData.commentAfterClose : '-'}</p>
                             </div>
