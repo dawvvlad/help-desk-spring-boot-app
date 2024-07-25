@@ -23,9 +23,10 @@ public class CreateReportController {
     }
 
     @GetMapping("/excel")
-    public ResponseEntity<InputStreamResource> createReport(@RequestBody Map<String, String> dates) throws IOException {
+    public ResponseEntity<InputStreamResource> createReport(@RequestParam("startDate") String startDate,
+                                                            @RequestParam ("endDate") String endDate) throws IOException {
 
-        ByteArrayInputStream in = createReportService.generateReport(dates.get("startDate"), dates.get("endDate"));
+        ByteArrayInputStream in = createReportService.generateReport(startDate, endDate);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "attachment; filename=tickets_report.xlsx");

@@ -6,6 +6,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.ByteArrayInputStream;
@@ -26,7 +27,7 @@ public class CreateReportService {
         List<Ticket> tickets = ticketRepo.findByDateBetween(startDate, endDate);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-        try(Workbook wb = new HSSFWorkbook()) {
+        try(Workbook wb = new XSSFWorkbook()) {
             Sheet sheet = wb.createSheet("Report");
 
             Row header = sheet.createRow(0);
@@ -46,7 +47,13 @@ public class CreateReportService {
                 Row row = sheet.createRow(rowIdx++);
                 row.createCell(0).setCellValue(ticket.getId());
                 row.createCell(1).setCellValue(ticket.getSenderFullName());
-                row.createCell(3).setCellValue(ticket.getDateTime());
+                row.createCell(2).setCellValue(ticket.getDateTime());
+                if(ticket.getTheme() != null) {
+                    row.createCell(4).setCellValue(ticket.getStatus().toString());
+                } else {
+                    row.createCell(4).setCellValue("Нет темы");
+                }
+
                 row.createCell(4).setCellValue(ticket.getStatus().toString());
                 row.createCell(5).setCellValue(ticket.getPriority().toString());
                 row.createCell(6).setCellValue(ticket.getMessage().getText());

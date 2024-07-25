@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import {DateSelector} from "../../../../components/date-selector/DateSelector.jsx";
 
 
 export const UploadOrderSettings = () => {
@@ -7,7 +8,7 @@ export const UploadOrderSettings = () => {
         <>
             <div className={"container right-panel"}>
                 <Link to="/settings">Назад</Link>
-                <h1>Upload Order</h1>
+                <DateSelector/>
             </div>
         </>
     )
