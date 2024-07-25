@@ -4,6 +4,7 @@ import { Preloader } from "../preloader/Preloader.jsx";
 import {CloseTicketModal} from "../modal/CloseTicketModal.jsx";// import the modal
 import {statusColors, statuses, priorities} from "../../objects.js";
 import {stompClient} from "../../websocket/webSocketConfig.js";
+import {FileLink} from "../../common/FileLink.jsx";
 
 // eslint-disable-next-line react/prop-types
 export const TicketCardAdmin = ({ ticketId, userInfo }) => {
@@ -12,10 +13,11 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
     const [message, setMessage] = useState({});
     const [isModalOpen, setIsModalOpen] = useState(false); // state to handle modal visibility
     const userName = userInfo.info;
+    const fileMessage = ticketInfo.message;
 
     useEffect(() => {
         console.log(ticketInfo)
-
+        console.log(fileMessage)
         setIsLoading(true);
         fetch(`/api/v1/ticket/${ticketId}`)
             .then((data) => data.json())
@@ -28,6 +30,8 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
             .finally(() => {
                 setIsLoading(false);
             });
+
+
     }, [ticketId]);
 
     function handleTakeTicket() {
@@ -122,7 +126,14 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
                         </div>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Файлы:</p>
-                            <p>F1</p>
+                            {fileMessage?.fileUrlList?.length > 0 ? (
+                                fileMessage.fileUrlList.map((e, index) => {
+                                    return <a key={index} href={`/${e}`}>📄</a>;
+                                    // return <FileLink key={index} fileUrl={e}/>
+                                })
+                            ) : (
+                                <p>Нет файлов</p>
+                            )}
                         </div>
 
 
