@@ -2,6 +2,8 @@ package com.vlad.helpdeskserver.service;
 
 import com.vlad.helpdeskserver.dao.ticket.TicketRepo;
 import com.vlad.helpdeskserver.entity.Ticket;
+import com.vlad.helpdeskserver.enums.TicketPrioriry;
+import com.vlad.helpdeskserver.enums.TicketStatus;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -48,14 +50,29 @@ public class CreateReportService {
                 row.createCell(0).setCellValue(ticket.getId());
                 row.createCell(1).setCellValue(ticket.getSenderFullName());
                 row.createCell(2).setCellValue(ticket.getDateTime());
+
                 if(ticket.getTheme() != null) {
-                    row.createCell(4).setCellValue(ticket.getStatus().toString());
+                    row.createCell(3).setCellValue(ticket.getTheme().getName());
                 } else {
-                    row.createCell(4).setCellValue("Нет темы");
+                    row.createCell(3).setCellValue("Нет темы");
                 }
 
-                row.createCell(4).setCellValue(ticket.getStatus().toString());
-                row.createCell(5).setCellValue(ticket.getPriority().toString());
+                String orderStatus = switch (ticket.getStatus()) {
+                    case TicketStatus.ACTIVE -> "В работе";
+                    case TicketStatus.OPEN -> "Ожидает";
+                    case TicketStatus.CLOSED -> "Закрыта";
+                    default -> "";
+                };
+
+                String orderPriority = switch (ticket.getPriority()) {
+                    case TicketPrioriry.LOW -> "Низкий";
+                    case TicketPrioriry.MEDIUM -> "Средний";
+                    case TicketPrioriry.HIGH -> "Высокий";
+                    default -> "";
+                };
+
+                row.createCell(4).setCellValue(orderStatus);
+                row.createCell(5).setCellValue(orderPriority);
                 row.createCell(6).setCellValue(ticket.getMessage().getText());
                 row.createCell(7).setCellValue(ticket.getExecutor());
                 row.createCell(8).setCellValue(ticket.getClosedDatetime());

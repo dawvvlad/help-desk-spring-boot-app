@@ -1,12 +1,20 @@
-import {useState} from "react";
+import { useState } from "react";
 
 export const DateSelector = () => {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
+    const formatDate = (dateString) => {
+        const [year, month, day] = dateString.split('-');
+        return `${day}.${month}.${year}`;
+    };
+
     const handleDownload = async () => {
         try {
-            const response = await fetch(`/api/v1/excel?startDate=${startDate}&endDate=${endDate}`, {
+            const formattedStartDate = formatDate(startDate);
+            const formattedEndDate = formatDate(endDate);
+
+            const response = await fetch(`/api/v1/excel?startDate=${formattedStartDate}&endDate=${formattedEndDate}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -15,7 +23,7 @@ export const DateSelector = () => {
 
             if (response.ok) {
                 const blob = await response.blob();
-                const url = window.URL.createObjectURL(new Blob([blob]));
+                const url = window.URL.createObjectURL(blob);
                 const link = document.createElement('a');
                 link.href = url;
                 link.setAttribute('download', 'tickets_report.xlsx');
@@ -35,8 +43,7 @@ export const DateSelector = () => {
             <label>
                 Start Date:
                 <input
-                    type="text"
-                    placeholder="DD.MM.YYYY, HH:MM:SS"
+                    type="date"
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
                 />
@@ -44,8 +51,7 @@ export const DateSelector = () => {
             <label>
                 End Date:
                 <input
-                    type="text"
-                    placeholder="DD.MM.YYYY, HH:MM:SS"
+                    type="date"
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
                 />
@@ -53,4 +59,4 @@ export const DateSelector = () => {
             <button onClick={handleDownload}>Create Report</button>
         </div>
     );
-}
+};
