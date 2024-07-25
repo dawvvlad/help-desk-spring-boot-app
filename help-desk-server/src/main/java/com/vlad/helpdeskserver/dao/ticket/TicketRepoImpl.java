@@ -2,16 +2,14 @@ package com.vlad.helpdeskserver.dao.ticket;
 
 import com.vlad.helpdeskserver.entity.Ticket;
 import com.vlad.helpdeskserver.enums.TicketStatus;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -67,6 +65,7 @@ public class TicketRepoImpl implements TicketRepo {
     }
 
     @Override
+    @Transactional
     public List<Ticket> findAllByStatus(TicketStatus status) {
         try {
             return entityManager.createQuery("select t from Ticket t where t.status=:status ORDER BY t.id DESC", Ticket.class)
@@ -92,6 +91,7 @@ public class TicketRepoImpl implements TicketRepo {
     }
 
     @Override
+    @Transactional
     public Page<Ticket> findAll(Pageable pageable, TicketStatus status) {
         String queryStr = "select t from Ticket t where t.status=:status order by t.id desc";
         TypedQuery<Ticket> query = entityManager.createQuery(queryStr, Ticket.class)
@@ -108,6 +108,7 @@ public class TicketRepoImpl implements TicketRepo {
 
 
     @Override
+    @Transactional
     public Page<Ticket> findAll(Pageable pageable, TicketStatus status, String username) {
         String queryStr = "select t from Ticket t where t.status=:status and t.sender=:username order by t.id desc";
         TypedQuery<Ticket> query = entityManager.createQuery(queryStr, Ticket.class)
@@ -124,6 +125,7 @@ public class TicketRepoImpl implements TicketRepo {
     }
 
     @Override
+    @Transactional
     public Page<Ticket> findAll(Pageable pageable, String username) {
         String queryStr = "select t from Ticket t where t.sender=:username order by t.id desc";
         TypedQuery<Ticket> query = entityManager.createQuery(queryStr, Ticket.class)
@@ -136,5 +138,22 @@ public class TicketRepoImpl implements TicketRepo {
         List<Ticket> items = query.getResultList();
 
         return new PageImpl<>(items, pageable, totalRows);
+    }
+
+    @Override
+    @Transactional
+    public List<Ticket> findByDateBetween(String dateFrom, String dateTo) {
+        try {
+            String sql = "SELECT * FROM tickets t WHERE TO_DATE(t.datetime, 'DD.MM.YYYY') BETWEEN TO_DATE(?1, 'DD.MM.YYYY') AND TO_DATE(?2, 'DD.MM.YYYY') ORDER BY t.id DESC";
+            Query query = entityManager.createNativeQuery(sql, Ticket.class)
+                    .setParameter(1, dateFrom)
+                    .setParameter(2, dateTo);
+
+            // Execute the query and cast the result to List<Ticket>
+            List<Ticket> resultList = query.getResultList();
+            return (resultList != null && !resultList.isEmpty()) ? resultList : Collections.emptyList();
+        } catch(NoResultException e) {
+            return Collections.emptyList();
+        }
     }
 }

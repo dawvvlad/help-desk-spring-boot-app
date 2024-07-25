@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -21,4 +22,5 @@ public interface TicketRepo {
     Page<Ticket> findAll(Pageable pageable, TicketStatus status);
     Page<Ticket> findAll(Pageable pageable, TicketStatus status, String username);
     Page<Ticket> findAll(Pageable pageable, String username);
+    List<Ticket> findByDateBetween(String dateFrom, String dateTo);
 }

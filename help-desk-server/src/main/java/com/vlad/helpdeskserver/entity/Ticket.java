@@ -5,11 +5,13 @@ import com.vlad.helpdeskserver.enums.TicketStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "tickets")
 @Getter
 @Setter
+@ToString
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
