@@ -1,5 +1,5 @@
 const stompClient = new StompJs.Client({
-    brokerURL: 'ws://192.168.128.1:8080/ws'
+    brokerURL: 'ws://192.168.11.126:8080/ws'
 });
 
 export {stompClient}

@@ -16,6 +16,8 @@ import {useEffect, useState} from "react";
 import { stompClient } from "./websocket/webSocketConfig.js";
 import { showNotification } from "./notifications.js";
 import {Preloader} from "./components/preloader/Preloader.jsx";
+import {ToastContainer, toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
     const [userInfo, setUserInfo] = useState({});
@@ -31,19 +33,38 @@ function App() {
                 stompClient.subscribe("/topic/admin", (message) => {
                     console.log("Admin message received: ", JSON.parse(message.body));
 
+                    toast('Новая заявка!', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
+
                     showNotification("Новая заявка", {
                         body: message.body.recipientUsername,
                     });
-
-                    setTimeout(() => {
-                        window.location.reload()
-                    }, 1500)
                 })
             } else {
                 stompClient.subscribe(`/user/queue/reply`, (message) => {
                     console.log("User message received: ", JSON.parse(message.body));
+
+                    toast(`Ваша заявка обновлена!`, {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
+
                     showNotification("Ответ IT-отдела", {
-                        body: message.body.message,
+                        body: "Заявка обновлена",
                     });
                 })
             }
@@ -99,10 +120,11 @@ function App() {
 
     return (
         <>
-            {loading ? (
+            { loading ?
                 <Preloader/>
-            ) : (
+                :
                 <Context>
+                    <ToastContainer />
                     <Router>
                         <Routes>
                             <Route path="/" element={<Layout user={userInfo} admin={isAdmin}/>}>
@@ -136,8 +158,7 @@ function App() {
                             </Route>
                         </Routes>
                     </Router>
-                </Context>
-            )}
+                </Context>}
         </>
     );
 }

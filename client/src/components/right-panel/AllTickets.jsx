@@ -1,8 +1,8 @@
-import { Preloader } from "../preloader/Preloader.jsx";
-import { TicketLine } from "../ticket-line/TicketLine.jsx";
-import { TicketTopPanel } from "../ticket-line/TicketTopPanel.jsx";
+import {Preloader} from "../preloader/Preloader.jsx";
+import {TicketLine} from "../ticket-line/TicketLine.jsx";
+import {TicketTopPanel} from "../ticket-line/TicketTopPanel.jsx";
 import './tickets-panel.css';
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
 export const AllTickets = ({ user, isAdmin }) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -18,14 +18,13 @@ export const AllTickets = ({ user, isAdmin }) => {
             try {
                 const data = await fetchItems(currentPage, pageSize);
                 setTickets(data.content);
-                setTotalPages(data.totalPages);
+                setTotalPages(data.totalPages || 0);
             } catch (error) {
                 console.error("Error fetching tickets:", error);
             } finally {
                 setIsLoading(false);
             }
         };
-
         fetchData();
     }, [currentPage, pageSize, isAdmin, userInfo]);
 
@@ -42,7 +41,7 @@ export const AllTickets = ({ user, isAdmin }) => {
         if (!response.ok) {
             throw new Error("Failed to fetch tickets");
         }
-        return response.json();
+        return await response.json() || [];
     };
 
     const renderPageButtons = () => {

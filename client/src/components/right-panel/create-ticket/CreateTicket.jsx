@@ -5,6 +5,7 @@ import { MyAccordion } from "../../accordion/MyAccordion.jsx";
 import {useEffect, useState} from "react";
 import {stompClient} from "../../../websocket/webSocketConfig.js";
 import {Preloader} from "../../preloader/Preloader.jsx";
+import {toast} from "react-toastify";
 
 export const CreateTicket = ({user}) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +21,6 @@ export const CreateTicket = ({user}) => {
     }, []);
 
     const [ticket, setTicket] = useState({
-        //put username
         sender: userName,
         senderFullName: fullName,
         executor: null,
@@ -49,19 +49,30 @@ export const CreateTicket = ({user}) => {
             .then(data => data.json())
             .then(e => console.log(e))
             .then(() => {
-                window.location.reload();
+                toast(`Заявка отправлена`, {
+                    position: "bottom-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            })
+            .then(() => {
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000)
             })
             .catch(err => console.error(err));
 
         stompClient.publish({
             destination: "/app/admin",
             body: JSON.stringify({
-                id: "#",
                 recipientUsername: userName,
-                executor: "Нет исполнителя",
-                theme: "",
-                priority: ticket.priority,
-                dateTime: "24",
+                message: "Новая заявка!",
+                dateTime: new Date().toLocaleString().toString(),
             })
         })
     }

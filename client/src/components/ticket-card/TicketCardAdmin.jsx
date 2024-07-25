@@ -47,6 +47,13 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
             status: 'ACTIVE',
             executor: userName.username
         }));
+
+        stompClient.publish({
+            destination: "/app/chat",
+            body: JSON.stringify({
+                recipientUsername: ticketInfo.sender,
+            })
+        })
     }
 
     function handleCloseTicket(comment) {
@@ -73,12 +80,7 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
         stompClient.publish({
             destination: "/app/chat",
             body: JSON.stringify({
-                id: "#",
                 recipientUsername: ticketInfo.sender,
-                executor: userName,
-                theme: "",
-                priority: ticketInfo.priority,
-                dateTime: datetime,
             })
         })
     }

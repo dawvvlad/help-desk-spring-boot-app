@@ -197,3 +197,7 @@ h1 {
 .message-text::-webkit-scrollbar-thumb:hover {
   background: #555; /* Цвет ползунка при наведении */
 }
+
+.toast-theme {
+  background-color: rgba(31, 60, 110, 0.91);
+}

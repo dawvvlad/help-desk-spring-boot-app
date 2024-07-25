@@ -19,7 +19,9 @@ export const ParamTickets = ({ user, isAdmin }) => {
             try {
                 const data = await fetchItems(currentPage, pageSize);
                 setTickets(data.content);
-                setTotalPages(data.totalPages);
+                setTotalPages(data.totalPages || 0);
+
+                console.log(data)
             } catch (error) {
                 console.error("Error fetching tickets:", error);
             } finally {
