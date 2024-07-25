@@ -24,6 +24,7 @@ public class CreateReportService {
 
     public ByteArrayInputStream generateReport(String startDate, String endDate) throws IOException {
         List<Ticket> tickets = ticketRepo.findByDateBetween(startDate, endDate);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         try(Workbook wb = new HSSFWorkbook()) {
             Sheet sheet = wb.createSheet("Report");
@@ -53,14 +54,14 @@ public class CreateReportService {
                 row.createCell(8).setCellValue(ticket.getClosedDatetime());
                 row.createCell(9).setCellValue(ticket.getCommentAfterClose());
             }
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
+
             wb.write(out);
 
-            return new ByteArrayInputStream(out.toByteArray());
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
+        return new ByteArrayInputStream(out.toByteArray());
     }
 
 }
