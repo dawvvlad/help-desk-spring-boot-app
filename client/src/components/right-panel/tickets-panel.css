@@ -35,3 +35,7 @@
     background-color: #b9b9b9;
     color: white;
 }
+
+@media screen and (min-width: 300px) and (max-width: 899px) {
+
+}

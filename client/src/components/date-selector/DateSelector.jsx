@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './date-selector.css'
 
 export const DateSelector = () => {
     const [startDate, setStartDate] = useState('');
@@ -39,24 +40,24 @@ export const DateSelector = () => {
     };
 
     return (
-        <div>
+        <div className={"dates"}>
             <label>
-                Start Date:
-                <input
+                От:
+                <input className={"date-input"}
                     type="date"
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
                 />
             </label>
             <label>
-                End Date:
-                <input
+                До:
+                <input className={"date-input"}
                     type="date"
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
                 />
             </label>
-            <button onClick={handleDownload}>Create Report</button>
+            <button className={"button"} onClick={handleDownload}>Скачать отчёт</button>
         </div>
     );
 };

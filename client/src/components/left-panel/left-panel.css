@@ -8,7 +8,9 @@
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.11);
     position: fixed;
     height: 100vh;
+    overflow-y: auto;
 }
+
 
 .link-wrapper {
     width: 100%;
@@ -17,7 +19,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    top: 50px;
+    margin: 30px auto;
 }
 
 .user-panel__h2 {
@@ -47,4 +49,32 @@
     font-weight: 700;
     font-size: 20px;
     margin: 120px auto 20px auto;
+}
+
+
+@media screen and (min-width: 900px) and (max-width: 1500px){
+    .admin-panel__h2 {
+        font-size: 15px;
+    }
+    .link {
+        width: 50%;
+        font-size: 11px;
+    }
+
+    .nav-button {
+        width: 50%;
+        font-size: 11px;
+    }
+}
+
+@media screen and (min-width: 300px) and (max-width: 899px) {
+    .left-panel {
+        width: 100%;
+        bottom: 0;
+        height: 100px;
+    }
+
+    .link-wrapper > h2 {
+        display: none;
+    }
 }

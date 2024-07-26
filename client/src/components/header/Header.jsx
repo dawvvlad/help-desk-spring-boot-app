@@ -1,5 +1,6 @@
 import './header.css'
 import {useEffect} from "react";
+import {NavLink} from "react-router-dom";
 
 export const Header = ({user}) => {
     const username = user.info?.cn?.[0] || "Имя пользователя";
@@ -21,6 +22,8 @@ export const Header = ({user}) => {
                 <p className={"text"}>
                     {username}
                 </p>
+                
+                <NavLink to={"/login"}>Выйти</NavLink>
             </div>
         </header>
     )

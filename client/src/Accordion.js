@@ -5,6 +5,7 @@ export class ItcAccordion {
             alwaysOpen: true,
             duration: 350
         };
+
         this._config = Object.assign(defaultConfig, config);
         this.addEventListener();
     }

@@ -125,6 +125,41 @@ h1 {
   color: black;
 }
 
+
+@media screen and (min-width: 300px) and (max-width: 899px){
+    .right-panel {
+      width: 100%;
+    }
+
+    .tickets-panel {
+      display: flex;
+      flex-wrap: wrap; /* позволяет элементам переноситься на следующую строку */
+      width: 100%; /* гарантирует, что контейнер занимает всю доступную ширину */
+    }
+
+    .tickets-panel > p {
+      width: 100%;
+      flex: 1 1 0;
+      text-align: center;
+      border-right: 1px solid rgba(0, 0, 0, 0.38);
+      padding: 10px;
+      margin-left: 3px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+  }
+
+@media screen and (min-width: 900px) and (max-width: 1500px) {
+  .tickets-panel {
+    width: 80%;
+    display: flex;
+  }
+
+  .tickets-panel > p {
+    font-size: 12px;
+  }
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
