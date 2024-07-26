@@ -33,3 +33,24 @@
     width: 30%;
     padding: 25px;
 }
+
+@media screen and (min-width: 300px) and (max-width: 899px) {
+
+    .settings-panel {
+        margin-top: 40px;
+    }
+
+    .settings-panel > h2 {
+        font-size: 15px;
+    }
+
+    .settings-panel > .link {
+        width: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+    }
+
+    .settings-panel > .link:last-child {
+        width: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+    }
+}

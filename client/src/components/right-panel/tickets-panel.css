@@ -23,7 +23,6 @@
     background-color: white;
     color: #2F4F8EFF;
     border: 1px solid rgba(0, 0, 0, 0.137);
-
 }
 
 .pagination > button:hover {
@@ -37,5 +36,9 @@
 }
 
 @media screen and (min-width: 300px) and (max-width: 899px) {
+    .tickets-container {
+        overflow-y: auto;
+        height: 55vh;
+    }
 
 }

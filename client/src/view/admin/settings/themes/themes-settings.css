@@ -86,5 +86,41 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
 
+@media screen and (min-width: 300px) and (max-width: 899px) {
+
+    .settings-container {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: 55vh;
+        overflow-y: auto;
+    }
+
+    .theme-info > textarea {
+        width: 80%;
+        padding: 10px;
+        margin: 0 auto;
+        height: 80px;
+        font-size: 12px;
+    }
+
+    .theme-info > span {
+        width: 60%;
+    }
+
+    .theme-info__buttons {
+        width: 80%;
+        flex-direction: column;
+    }
+
+    .theme-info__buttons > .button {
+        width: 80%;
+        margin: 5px 5px 5px auto;
+    }
+
+    .theme-item {
+        width: 90%;
+    }
 }

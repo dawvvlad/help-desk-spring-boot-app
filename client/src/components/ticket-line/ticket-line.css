@@ -53,3 +53,14 @@
 .red {
     background-color: rgba(255, 0, 0, 0.59);
 }
+
+
+@media screen and (min-width: 300px) and (max-width: 899px) {
+    .tickets-wrapper {
+        height: 50px;
+    }
+
+    .tickets-wrapper > p {
+        font-size: 12px;
+    }
+}
