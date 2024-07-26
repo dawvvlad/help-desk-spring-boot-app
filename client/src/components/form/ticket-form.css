@@ -84,3 +84,22 @@
 .form {
     width: 100%;
 }
+
+@media screen and (min-width: 300px) and (max-width: 899px) {
+    .upload-container {
+        padding: 0;
+        width: 99%;
+    }
+
+    .upload-container > #fileInput {
+        display: block;
+    }
+
+    .preview-item {
+         height: auto;
+    }
+
+    .form > textarea {
+        height: 100px;
+    }
+}

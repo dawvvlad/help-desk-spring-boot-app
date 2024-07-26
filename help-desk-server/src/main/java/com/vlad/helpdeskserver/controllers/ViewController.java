@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class ViewController {
+
     @GetMapping
     public String index() {
         return "index.html";

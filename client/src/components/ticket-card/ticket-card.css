@@ -22,6 +22,18 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.13);
 }
 
+.file-links {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.file-links > a {
+    font-size: 23px;
+    text-align: center;
+}
+
 .ticket-page__column > p {
     text-align: justify;
 }
@@ -67,4 +79,11 @@
         width: 85%;
     }
 
+    .ticket-page > .button {
+        margin-top: 10px;
+    }
+
+    .closing-button {
+        margin-top: 10px;
+    }
 }

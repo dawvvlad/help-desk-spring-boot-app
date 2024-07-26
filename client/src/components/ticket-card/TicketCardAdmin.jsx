@@ -5,6 +5,7 @@ import {CloseTicketModal} from "../modal/CloseTicketModal.jsx";// import the mod
 import {statusColors, statuses, priorities} from "../../objects.js";
 import {stompClient} from "../../websocket/webSocketConfig.js";
 import {FileLink} from "../../common/FileLink.jsx";
+import {NavLink} from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 export const TicketCardAdmin = ({ ticketId, userInfo }) => {
@@ -126,14 +127,16 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
                         </div>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Файлы:</p>
-                            {fileMessage?.fileUrlList?.length > 0 ? (
-                                fileMessage.fileUrlList.map((e, index) => {
-                                    return <a key={index} href={`/${e}`}>📄</a>;
-                                    // return <FileLink key={index} fileUrl={e}/>
-                                })
-                            ) : (
-                                <p>Нет файлов</p>
-                            )}
+                            <div className={"file-links"}>
+                                {fileMessage?.fileUrlList?.length > 0 ? (
+                                    fileMessage.fileUrlList.map((e, index) => {
+                                        return <a key={index} href={`/${e}`}>📄</a>;
+                                        // return <FileLink key={index} fileUrl={e}/>
+                                    })
+                                ) : (
+                                    <p>Нет файлов</p>
+                                )}
+                            </div>
                         </div>
 
 

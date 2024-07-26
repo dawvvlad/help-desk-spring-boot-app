@@ -7,7 +7,7 @@ export const TicketCardUser = ({ ticketId }) => {
     const [ticketData, setTicketData] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState({});
-
+    const fileMessage = ticketData.message;
     useEffect(() => {
         setIsLoading(true);
         fetch(`/api/v1/ticket/${ticketId}`)
@@ -57,9 +57,18 @@ export const TicketCardUser = ({ ticketId }) => {
                             <p className="ticket-title-p">Комментарий:</p>
                             <p>{message.text ? message.text : '---'}</p>
                         </div>
-                        <div className="ticket-page__column">
+                        <div className="ticket-page__column links">
                             <p className="ticket-title-p">Файлы:</p>
-                            <p>F1</p>
+                            <div className={"file-links"}>
+                                {fileMessage?.fileUrlList?.length > 0 ? (
+                                    fileMessage.fileUrlList.map((e, index) => {
+                                        return <a key={index} href={`/${e}`}>📄</a>;
+                                        // return <FileLink key={index} fileUrl={e}/>
+                                    })
+                                ) : (
+                                    <p>Нет файлов</p>
+                                )}
+                            </div>
                         </div>
 
 

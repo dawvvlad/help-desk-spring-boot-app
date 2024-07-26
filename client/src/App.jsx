@@ -127,6 +127,7 @@ function App() {
                     <ToastContainer />
                     <Router>
                         <Routes>
+                            <Route path="/login" component={() => window.location.href = "/login"} />
                             <Route path="/" element={<Layout user={userInfo} admin={isAdmin}/>}>
                                 <Route path={"*"} element={<PageNotFound/>}/>
                                 {isAdmin ? (

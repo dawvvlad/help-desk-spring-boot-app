@@ -18,3 +18,15 @@
     margin: 10px auto 30px auto;
 }
 
+@media screen and (min-width: 300px) and (max-width: 899px) {
+    .right-panel > h2 {
+        font-size: 20px;
+    }
+
+    .form-container {
+        width: 89%;
+        height: 55vh;
+        overflow-y: scroll;
+        justify-content: start;
+    }
+}

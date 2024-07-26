@@ -5,9 +5,7 @@ import {NavLink} from "react-router-dom";
 export const Header = ({user}) => {
     const username = user.info?.cn?.[0] || "Имя пользователя";
 
-    // Разделите имя на части
     let avatarArray = username.split(" ");
-    // Создайте аватар из первых букв имени и фамилии
     const avatar = avatarArray.length > 1
         ? avatarArray[0][0] + avatarArray[1][0]
         : username[0] || "A"; // Значение по умолчанию если имя пустое
@@ -19,7 +17,7 @@ export const Header = ({user}) => {
             </div>
             <div className={"container user-info"}>
                 <p className={"text avatar"}>{avatar}</p>
-                <p className={"text"}>
+                <p className={"text name-text"}>
                     {username}
                 </p>
                 
