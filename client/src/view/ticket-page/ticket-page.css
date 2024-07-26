@@ -45,3 +45,10 @@
     margin-right: 30px;
 }
 
+@media screen and (min-width: 300px) and (max-width: 899px) {
+
+
+    .tickets-wrapper > p {
+        font-size: 12px;
+    }
+}

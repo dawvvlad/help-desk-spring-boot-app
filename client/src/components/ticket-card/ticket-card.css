@@ -1,17 +1,3 @@
-.ticket-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    width: 60%;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    margin-top: 50px;
-    border-radius: 10px;
-    padding-bottom: 30px;
-    height: 700px;
-    background-color: rgba(237, 240, 248, 0.51);
-}
-
 .ticket-page > h2 {
     color: #2F4F8EFF;
     font-weight: 700;
@@ -63,4 +49,22 @@
 
 .red {
     background-color: rgba(255, 0, 0, 0.59);
+}
+
+@media screen and (min-width: 300px) and (max-width: 899px) {
+    .ticket-page {
+        width: 99%;
+        margin: 0 auto;
+        height: 65vh;
+        overflow-y: auto;
+    }
+
+    .ticket-page > h2 {
+        margin: 40px auto;
+    }
+
+    .ticket-page__column {
+        width: 85%;
+    }
+
 }
