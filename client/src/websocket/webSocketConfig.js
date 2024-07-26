@@ -1,5 +1,7 @@
+const host = document.location.host;
+
 const stompClient = new StompJs.Client({
-    brokerURL: 'ws://192.168.11.126:8080/ws'
+    brokerURL: `ws://${host}/ws`
 });
 
 export {stompClient}
