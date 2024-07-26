@@ -9,7 +9,6 @@
 
 .dates > label {
     margin: 10px 10px;
-    width: 30%;
 }
 
 .date-input {
@@ -23,4 +22,10 @@
 
 .dates > .button {
     margin-top: 50px;
+}
+
+@media screen and (min-width: 300px) and (max-width: 899px) {
+    .dates > label {
+        width: 50%;
+    }
 }

@@ -1,0 +1,17 @@
+.upload-settings {
+    width: 100%;
+    margin-top: 40px;
+}
+.upload-settings > a {
+    margin: 40px auto 0 40px;
+}
+
+@media screen and (min-width: 300px) and (max-width: 899px) {
+    .upload-settings > a {
+        margin: 40px auto 0 40px;
+    }
+
+    .upload-settings {
+        margin-top: 40px;
+    }
+}
