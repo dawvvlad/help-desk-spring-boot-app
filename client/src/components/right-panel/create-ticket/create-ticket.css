@@ -30,3 +30,10 @@
         justify-content: start;
     }
 }
+
+@media screen and (min-width: 300px) and (max-width: 899px) and (max-height: 799px) {
+    .right-panel > h2 {
+        font-size: 12px;
+        margin: 20px auto;
+    }
+}
