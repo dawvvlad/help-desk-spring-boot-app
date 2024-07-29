@@ -1,9 +1,28 @@
 import './header.css'
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
 
 export const Header = ({user}) => {
     const username = user.info?.cn?.[0] || "Имя пользователя";
+    const [banner, setBanner] = useState({});
+    const [isVisible, setIsVisible] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    useEffect(() => {
+        console.log(user.info?.authorities);
+
+        fetch("/api/v1/admin/banners")
+            .then(data => data.json())
+            .then(e => {
+                console.log("Banners:", e);
+                setBanner(e[0]);
+            });
+    }, []);
+
+    useEffect(() => {
+        setIsAdmin(user.info?.authorities.some(auth => auth.authority === 'Администраторы'));
+        console.log("header admin:", isAdmin);
+    }, [isAdmin]);
 
     let avatarArray = username.split(" ");
     const avatar = avatarArray.length > 1
@@ -16,11 +35,13 @@ export const Header = ({user}) => {
                 <h2>Служба техподдержки</h2>
             </div>
             <div className={"container user-info"}>
-                <p className={"text avatar"}>{avatar}</p>
-                <p className={"text name-text"}>
-                    {username}
-                </p>
-                
+                <div className={"user-info__panel"}>
+                    <p className={"text avatar"}>{avatar}</p>
+                    <p className={"text name-text"}>
+                        {username}
+                    </p>
+                </div>
+
                 <NavLink to={"/login"}>Выйти</NavLink>
             </div>
         </header>
