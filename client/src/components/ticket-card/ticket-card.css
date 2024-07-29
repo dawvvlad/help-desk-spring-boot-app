@@ -18,14 +18,13 @@
     justify-content: space-between;
     align-items: start;
     padding: 20px 0;
-
     border-bottom: 1px solid rgba(0, 0, 0, 0.13);
 }
 
 .file-links {
     width: 50%;
     display: flex;
-    justify-content: space-around;
+    justify-content: end;
     align-items: center;
 }
 

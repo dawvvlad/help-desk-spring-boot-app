@@ -53,8 +53,8 @@
 
 
 @media screen and (min-width: 900px) and (max-width: 1500px){
-    .admin-panel__h2 {
-        font-size: 15px;
+    .admin-panel__h2, .user-panel__h2 {
+        font-size: 20px;
     }
     .link {
         width: 50%;

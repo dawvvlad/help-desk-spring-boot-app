@@ -1,6 +1,6 @@
 import './banner.css'
 
-export const Banner = ({banner, isVisible, setIsVisible}) => {
+export const Banner = ({banner, setIsVisible}) => {
 
     const handleCloseBanner = () => {
         setIsVisible(false)
@@ -11,11 +11,10 @@ export const Banner = ({banner, isVisible, setIsVisible}) => {
             <div className={"banner"}>
                 <div className={"banner__text"}>
                     <h2>
-                        Внимание!
+                        {banner.title}
                     </h2>
-
-                    <p>Наблюдаются сбои в работе 1С!
-                        Ведутся ремонтные работы.
+                    <p>
+                        {banner.description}
                     </p>
                 </div>
 

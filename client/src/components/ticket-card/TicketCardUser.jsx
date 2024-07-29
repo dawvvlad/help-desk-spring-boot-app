@@ -57,7 +57,7 @@ export const TicketCardUser = ({ ticketId }) => {
                             <p className="ticket-title-p">Комментарий:</p>
                             <p>{message.text ? message.text : '---'}</p>
                         </div>
-                        <div className="ticket-page__column links">
+                        <div className="ticket-page__column">
                             <p className="ticket-title-p">Файлы:</p>
                             <div className={"file-links"}>
                                 {fileMessage?.fileUrlList?.length > 0 ? (
