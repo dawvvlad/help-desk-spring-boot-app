@@ -2,7 +2,14 @@
     color: #2F4F8EFF;
     font-weight: 700;
     font-size: 30px;
-    margin: 50px auto 10px auto
+    margin: 20px auto 10px auto
+}
+
+.ticket-page > p {
+    color: #2F4F8EFF;
+    font-weight: 700;
+    font-size: 14px;
+    margin: 30px auto 10px auto
 }
 
 .status-circle {

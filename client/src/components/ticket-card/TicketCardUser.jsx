@@ -1,7 +1,7 @@
 import './ticket-card.css'
 import { useEffect, useState } from "react";
 import {Preloader} from "../preloader/Preloader.jsx";
-import {statusColors, statuses, priorities} from "../../objects.js";
+import {statusColors, statuses, priorities, priorityColors} from "../../objects.js";
 
 export const TicketCardUser = ({ ticketId }) => {
     const [ticketData, setTicketData] = useState({});
@@ -51,10 +51,13 @@ export const TicketCardUser = ({ ticketId }) => {
                         </div>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Приоритет:</p>
-                            <p>{priorities[ticketData.priority]}</p>
+                            <p>
+                                <span className={`status-circle ${priorityColors[ticketData.priority]}`}> </span>
+                                {priorities[ticketData.priority]}
+                            </p>
                         </div>
                         <div className="ticket-page__column">
-                            <p className="ticket-title-p">Комментарий:</p>
+                        <p className="ticket-title-p">Комментарий:</p>
                             <p>{message.text ? message.text : '---'}</p>
                         </div>
                         <div className="ticket-page__column">

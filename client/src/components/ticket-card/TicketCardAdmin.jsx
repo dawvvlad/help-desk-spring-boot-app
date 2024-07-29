@@ -97,7 +97,7 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
             ) : (
                 <div className="container right-panel">
                     <div className="ticket-page">
-                        <p>Заявка #{ticketId}</p>
+                        <p className={""}>Заявка #{ticketId}</p>
                         <h2>{ticketInfo.theme ? ticketInfo.theme : 'Без темы'}</h2>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Статус:</p>
@@ -116,8 +116,10 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
                         </div>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Приоритет:</p>
-                            <span className={`status-circle ${priorityColors[ticketInfo.priority]}`}> </span>
-                            <p>{priorities[ticketInfo.priority]}</p>
+                            <p>
+                                <span className={`status-circle ${priorityColors[ticketInfo.priority]}`}> </span>
+                                {priorities[ticketInfo.priority]}
+                            </p>
                         </div>
                         <div className="ticket-page__column">
                         <p className="ticket-title-p">Комментарий:</p>
