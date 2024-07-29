@@ -126,18 +126,18 @@ public class ApiAdminController {
     }
 
     @PatchMapping("/changeBannerStatus/{id}")
-    public void changeBannerStatus(@PathVariable("id") Long id, @RequestBody Map<String, String> status) {
+    public ResponseEntity<BannerDTO> changeBannerStatus(@PathVariable("id") Long id, @RequestBody Map<String, String> status) {
         bannerService.changeStatus(id, status.get("status"));
+        BannerDTO bannerDTO = bannerService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(bannerDTO);
     }
 
     @PatchMapping("/changeBanner/{id}")
-    public void changeBanner(@PathVariable("id") Long id, Map<String, String> changes) {
-        if(changes.get("title") != null) {
-            bannerService.changeTitle(id, changes.get("status"));
-        }
-        if(changes.get("description") != null) {
-            bannerService.changeDescription(id, changes.get("description"));
-        }
+    public ResponseEntity<BannerDTO> changeBanner(@PathVariable("id") Long id, @RequestBody Map<String, String> changes) {
+        bannerService.changeBanner(id, changes.get("title"), changes.get("description"));
+        BannerDTO bannerDTO = bannerService.findById(id);
+        System.out.println("Received changes: " + changes);
+        return ResponseEntity.status(HttpStatus.OK).body(bannerDTO);
     }
 
     @GetMapping("/banners")

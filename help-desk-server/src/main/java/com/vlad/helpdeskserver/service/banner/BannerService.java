@@ -12,6 +12,7 @@ public interface BannerService {
     void changeStatus(Long id, String status);
     void changeDescription(Long id, String description);
     void delete(Long id);
+    void changeBanner(Long id, String title,String description);
 
     BannerDTO findById(Long id);
     List<BannerDTO> findAll();

@@ -5,6 +5,7 @@ import com.vlad.helpdeskserver.dto.BannerDTO;
 import com.vlad.helpdeskserver.entity.Banner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,14 +40,22 @@ public class BannerServiceImpl implements BannerService {
     @Override
     public void changeStatus(Long id, String status) {
         Banner banner = bannerRepo.find(id);
-        banner.setTitle(status);
+        banner.setStatus(status);
         bannerRepo.update(banner);
     }
 
     @Override
     public void changeDescription(Long id, String description) {
         Banner banner = bannerRepo.find(id);
-        banner.setTitle(description);
+        banner.setDescription(description);
+        bannerRepo.update(banner);
+    }
+
+    @Override
+    public void changeBanner(Long id, String title, String description) {
+        Banner banner = bannerRepo.find(id);
+        banner.setTitle(title);
+        banner.setDescription(description);
         bannerRepo.update(banner);
     }
 

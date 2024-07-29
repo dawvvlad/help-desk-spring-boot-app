@@ -1,0 +1,81 @@
+.back-link {
+    align-self: flex-start;
+    margin: 40px 0 0 40px;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.edit-panel {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.save-button {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.cancel-button {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.toggle-button {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.edit-button {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.ACTIVE {
+    background-color: red;
+}
+
+.INACTIVE {
+    background-color: green;
+}
+
+.banner-wrapper > p {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 10px auto;
+}
+
+.banner-wrapper {
+    margin: 20px auto;
+}
