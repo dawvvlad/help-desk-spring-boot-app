@@ -144,7 +144,7 @@ public class TicketRepoImpl implements TicketRepo {
     @Transactional
     public List<Ticket> findByDateBetween(String dateFrom, String dateTo) {
         try {
-            String sql = "SELECT * FROM tickets t WHERE TO_DATE(t.datetime, 'DD.MM.YYYY') BETWEEN TO_DATE(?1, 'DD.MM.YYYY') AND TO_DATE(?2, 'DD.MM.YYYY') ORDER BY t.id DESC";
+            String sql = "SELECT * FROM tickets t WHERE STR_TO_DATE(t.datetime, '%d.%m.%Y') BETWEEN STR_TO_DATE(?1, '%d.%m.%Y') AND STR_TO_DATE(?2, '%d.%m.%Y') ORDER BY t.id DESC";
             Query query = entityManager.createNativeQuery(sql, Ticket.class)
                     .setParameter(1, dateFrom)
                     .setParameter(2, dateTo);

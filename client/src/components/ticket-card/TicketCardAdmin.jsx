@@ -2,7 +2,7 @@ import './ticket-card.css';
 import { useEffect, useState } from 'react';
 import { Preloader } from "../preloader/Preloader.jsx";
 import {CloseTicketModal} from "../modal/CloseTicketModal.jsx";// import the modal
-import {statusColors, statuses, priorities} from "../../objects.js";
+import {statusColors, statuses, priorities, priorityColors} from "../../objects.js";
 import {stompClient} from "../../websocket/webSocketConfig.js";
 import {FileLink} from "../../common/FileLink.jsx";
 import {NavLink} from "react-router-dom";
@@ -97,7 +97,8 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
             ) : (
                 <div className="container right-panel">
                     <div className="ticket-page">
-                        <h2>Заявка #{ticketId}</h2>
+                        <p>Заявка #{ticketId}</p>
+                        <h2>{ticketInfo.theme ? ticketInfo.theme : 'Без темы'}</h2>
                         <div className="ticket-page__column">
                             <p className="ticket-title-p">Статус:</p>
                             <p>
@@ -114,15 +115,12 @@ export const TicketCardAdmin = ({ ticketId, userInfo }) => {
                             <p>{ticketInfo.dateTime}</p>
                         </div>
                         <div className="ticket-page__column">
-                            <p className="ticket-title-p">Тема:</p>
-                            <p>{ticketInfo.theme ? ticketInfo.theme : 'Без темы'}</p>
-                        </div>
-                        <div className="ticket-page__column">
                             <p className="ticket-title-p">Приоритет:</p>
+                            <span className={`status-circle ${priorityColors[ticketInfo.priority]}`}> </span>
                             <p>{priorities[ticketInfo.priority]}</p>
                         </div>
                         <div className="ticket-page__column">
-                            <p className="ticket-title-p">Комментарий:</p>
+                        <p className="ticket-title-p">Комментарий:</p>
                             <p>{message.text ? message.text : '---'}</p>
                         </div>
                         <div className="ticket-page__column">
