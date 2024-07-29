@@ -1,6 +1,7 @@
 import './header.css'
 import {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
+import {Banner} from '../banner/Banner.jsx';
 
 export const Header = ({user}) => {
     const username = user.info?.cn?.[0] || "Имя пользователя";
@@ -30,20 +31,25 @@ export const Header = ({user}) => {
         : username[0] || "A"; // Значение по умолчанию если имя пустое
 
     return (
-        <header className={"header"}>
-            <div className={"logo"}>
-                <h2>Служба техподдержки</h2>
-            </div>
-            <div className={"container user-info"}>
-                <div className={"user-info__panel"}>
-                    <p className={"text avatar"}>{avatar}</p>
-                    <p className={"text name-text"}>
-                        {username}
-                    </p>
-                </div>
+        <>
+            {isVisible && !isAdmin ?
+                <Banner banner={banner} isVisible = {isVisible} setIsVisible ={setIsVisible}/> :
+                <header className={"header"}>
+                    <div className={"logo"}>
+                        <h2>Служба техподдержки</h2>
+                    </div>
+                    <div className={"container user-info"}>
+                        <div className={"user-info__panel"}>
+                            <p className={"text avatar"}>{avatar}</p>
+                            <p className={"text name-text"}>
+                                {username}
+                            </p>
+                        </div>
 
-                <NavLink to={"/login"}>Выйти</NavLink>
-            </div>
-        </header>
+                        <NavLink to={"/login"}>Выйти</NavLink>
+                    </div>
+                </header>
+            }
+        </>
     )
 }
