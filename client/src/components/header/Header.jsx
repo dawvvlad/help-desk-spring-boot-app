@@ -16,7 +16,10 @@ export const Header = ({user}) => {
             .then(data => data.json())
             .then(e => {
                 console.log("Banners:", e);
-                setBanner(e[0]);
+                if(e[0].status === 'ACTIVE') {
+                    setBanner(e[0]);
+                    setIsVisible(true);
+                }
             });
     }, []);
 
