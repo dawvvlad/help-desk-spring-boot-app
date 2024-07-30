@@ -66,7 +66,7 @@ spring.datasource.hikari.connection-timeout=30000
 ```
 ### Внедрение настроек в приложение:
 
-1. Создайте файл application.properties
+1. Перейдите в /help-desk-server/src/main/resources/ и найдите файл *application.properties*
 2. Впишите необходимые данные после знака "=", например:
 ```
 active.directory.domain=mydomain.local
