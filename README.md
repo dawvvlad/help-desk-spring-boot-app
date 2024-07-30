@@ -5,3 +5,4 @@
 ## Сборка серверной части:
 1. Клонируйте репозиторий командой:
 >`git clone https://github.com/dawvvlad/help-desk-spring-boot-app.git`
+2. Перейдите в папку `[/help-desk-server]((https://github.com/dawvvlad/help-desk-spring-boot-app/tree/master/help-desk-server))`
