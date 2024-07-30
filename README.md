@@ -12,3 +12,8 @@
 > Для сборки необходимо установить [JDK](https://www.oracle.com/cis/java/technologies/downloads/) и [Maven](https://maven.apache.org/)
 
 4. Сборка сохраняется в `/help-desk-server/target/help-desk-server-0.0.1-SNAPSHOT.jar`
+5. Полученный файл разместить на сервере и запустить командой:
+> `java -jar help-desk-server-0.0.1-SNAPSHOT.jar`
+
+## Настройка серверной части
+
