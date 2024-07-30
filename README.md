@@ -86,7 +86,7 @@ spring.datasource.hikari.connection-timeout=30000
 4. Замените отстутствующие значения на Ваши корректные
 5. Запустите сервер слудющей командой:
    ```
-   java -jar help-desk-server-0.0.1-SNAPSHOT.jar --spring.config.location=file:/полный/путь/к вашему/файлу
+   java -jar help-desk-server-0.0.1-SNAPSHOT.jar --spring.config.location=file:/путь/к вашему/файлу
    ```
 
 > [!NOTE]
