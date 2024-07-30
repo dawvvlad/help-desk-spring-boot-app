@@ -55,6 +55,28 @@ export const DragFileInput = ({fls, setFls}) => {
         });
     };
 
+    useEffect(() => {
+        const handlePaste = (event) => {
+            const items = event.clipboardData.items;
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].kind === 'file') {
+                    const file = items[i].getAsFile();
+                    setFiles((prevFiles) => [...prevFiles, file]);
+
+                    // Если нужно вставить файл в input[type="file"]
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                }
+            }
+        };
+
+        window.addEventListener('paste', handlePaste);
+
+        return () => {
+            window.removeEventListener('paste', handlePaste);
+        };
+    }, []);
+
     return (
         <div className="upload-container">
             <input
