@@ -19,7 +19,8 @@
 > [!NOTE]
 > настройка сервера и базы данных осуществляется в файле [application.properties](https://github.com/dawvvlad/help-desk-spring-boot-app/tree/master/help-desk-server/src/main/resources)
 
-```spring.application.name=help-desk-server
+```
+spring.application.name=help-desk-server
 
 spring.jpa.hibernate.ddl-auto=update
 spring.datasource.url=jdbc:mysql://localhost:3306/*название_базы_данных*
@@ -36,4 +37,5 @@ server.address=0.0.0.0
 server.port=80
 
 active.directory.domain=domain.domain
-active.directory.ldap=ldap://*ip-address*/```
+active.directory.ldap=ldap://*ip-address*/
+```
