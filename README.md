@@ -65,6 +65,8 @@ spring.datasource.hikari.max-lifetime=1800000
 spring.datasource.hikari.connection-timeout=30000
 ```
 ### Внедрение настроек в приложение:
+> [!NOTE]
+> Это второй способ, использующий пересборку приложения и переразмещения его на сервере
 
 1. Перейдите в /help-desk-server/src/main/resources/ и найдите файл *application.properties*
 2. Впишите необходимые данные после знака "=", например:
@@ -73,4 +75,4 @@ active.directory.domain=mydomain.local
 active.directory.ldap=ldap://192.111.11.11/
 ```
 3. Скопируйте текст в файл application.properties
-4. Соберите приложение, как указано выше
+4. Соберите приложение, как указано ранее
