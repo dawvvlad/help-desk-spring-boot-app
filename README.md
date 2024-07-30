@@ -64,6 +64,7 @@ spring.datasource.hikari.idle-timeout=30000
 spring.datasource.hikari.max-lifetime=1800000
 spring.datasource.hikari.connection-timeout=30000
 ```
+### Внедрение настроек в приложение:
 
 1. Создайте файл application.properties
 2. Впишите необходимые данные после знака "=", например:
