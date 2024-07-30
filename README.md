@@ -26,6 +26,8 @@ java -jar help-desk-server-0.0.1-SNAPSHOT.jar
 Основные настройки сервера представлены ниже:
 
 ```
+spring.application.name=help-desk-server` // данная строка должна присутствовать в конфигурационном файле
+
 spring.jpa.hibernate.ddl-auto=update
 spring.datasource.url=jdbc:mysql://localhost:3306/название_базы_данных 
 spring.datasource.username=имя_пользователя
@@ -67,7 +69,7 @@ spring.datasource.hikari.connection-timeout=30000
 > Это первый способ, использующий создание нового внешнего конфигурационного файла *application.properties* и доступ к нему из приложения в .jar
 
 1. Создайте файл *application.properties* в удобной для Вас директории
-2. Вставьте в начало файла строку `spring.application.name=help-desk-server`
+2. Вставьте в начало файла строку `spring.application.name=help-desk-server`, если она отсутствует
 3. Вставьте в файл остальную информацию, представленную выше
 4. Замените отстутствующие значения на Ваши корректные
 5. Запустите сервер слудющей командой:
@@ -79,8 +81,9 @@ spring.datasource.hikari.connection-timeout=30000
 > Это второй способ, использующий пересборку приложения и переразмещения его на сервере
 
 1. Перейдите в /help-desk-server/src/main/resources/ и найдите файл *application.properties*
-2. Скопируйте текст в файл application.properties
-3. Замените необходимые данные после знака "=", например:
+2. Вставьте в начало файла строку `spring.application.name=help-desk-server`, если она отсутствует
+3. Скопируйте текст в файл application.properties
+4. Замените необходимые данные после знака "=", например:
 ```
 active.directory.domain=mydomain.local
 active.directory.ldap=ldap://192.111.11.11/
