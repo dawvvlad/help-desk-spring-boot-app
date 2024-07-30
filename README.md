@@ -73,4 +73,4 @@ active.directory.domain=mydomain.local
 active.directory.ldap=ldap://192.111.11.11/
 ```
 3. Скопируйте текст в файл application.properties
-4. Разместите файл в удобной директории
+4. Соберите приложение, как указано выше
