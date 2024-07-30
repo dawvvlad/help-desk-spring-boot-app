@@ -28,6 +28,8 @@ java -jar help-desk-server-0.0.1-SNAPSHOT.jar
 ```
 spring.application.name=help-desk-server` // данная строка должна присутствовать в конфигурационном файле
 
+
+// настройки базы данных
 spring.jpa.hibernate.ddl-auto=update
 spring.datasource.url=jdbc:mysql://localhost:3306/название_базы_данных 
 spring.datasource.username=имя_пользователя
@@ -39,12 +41,16 @@ spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
 spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
 
+
+// настройки адреса и порта сервера приложения
 server.address=0.0.0.0
 server.port=80
 
+// настройка Active Directory
 active.directory.domain=domain.domain
 active.directory.ldap=ldap://ip-address/
 
+// Настройка многопоточности 
 spring.servlet.multipart.max-file-size=10MB
 spring.servlet.multipart.max-request-size=10MB
 
@@ -58,6 +64,7 @@ spring.task.execution.pool.max-size=50
 spring.task.execution.pool.queue-capacity=100
 spring.task.execution.pool.keep-alive=60s
 
+// Настройка многопоточности запросов к БД
 spring.datasource.hikari.maximum-pool-size=20
 spring.datasource.hikari.minimum-idle=10
 spring.datasource.hikari.idle-timeout=30000
