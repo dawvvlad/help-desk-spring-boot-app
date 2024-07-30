@@ -90,7 +90,7 @@ spring.datasource.hikari.connection-timeout=30000
    ```
 
 > [!NOTE]
-> Это второй способ, использующий пересборку приложения и переразмещения его на сервере
+> Это второй способ, использующий пересборку приложения и переразмещение его на сервере
 
 1. Перейдите в /help-desk-server/src/main/resources/ и найдите файл *application.properties*
 2. Вставьте в начало файла строку `spring.application.name=help-desk-server`, если она отсутствует
