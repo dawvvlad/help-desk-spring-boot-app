@@ -26,7 +26,7 @@ java -jar help-desk-server-0.0.1-SNAPSHOT.jar
 Основные настройки сервера представлены ниже:
 
 ```
-spring.application.name=help-desk-server` // данная строка должна присутствовать в конфигурационном файле
+spring.application.name=help-desk-server // данная строка должна присутствовать в конфигурационном файле
 
 
 // настройки базы данных
