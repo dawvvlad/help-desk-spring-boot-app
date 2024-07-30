@@ -3,5 +3,5 @@
 - [Клиентская часть](https://github.com/dawvvlad/help-desk-spring-boot-app/tree/master/client)
 
 ## Сборка серверной части:
-1. Клонируйте репозиторий:
-   `git clone https://github.com/dawvvlad/help-desk-spring-boot-app.git`
+Клонируйте репозиторий командой:
+`git clone https://github.com/dawvvlad/help-desk-spring-boot-app.git`
