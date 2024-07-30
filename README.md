@@ -64,7 +64,7 @@ spring.datasource.hikari.connection-timeout=30000
 ```
 ### Внедрение настроек в приложение:
 > [!NOTE]
-> Это первый способ, использующий создание нового конфигурационного файла *application.properties* и доступ к нему из приложения в .jar
+> Это первый способ, использующий создание нового внешнего конфигурационного файла *application.properties* и доступ к нему из приложения в .jar
 
 1. Создайте файл *application.properties* в удобной для Вас директории
 2. Вставьте в начало файла строку `spring.application.name=help-desk-server`
