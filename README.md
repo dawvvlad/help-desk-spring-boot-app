@@ -90,7 +90,7 @@ spring.datasource.password=password
 ```
 3. Сохраните файл и запустите сервер следующей командой:
 ```
-java -jar your-application.jar --spring.config.additional-location=file:/opt/external/config/application.properties
+java -jar your-application.jar --spring.config.additional-location=file:/путь/к вашему/файлу
 ```
 
 > [!NOTE]
