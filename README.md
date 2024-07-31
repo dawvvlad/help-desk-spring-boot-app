@@ -77,6 +77,22 @@ spring.datasource.hikari.max-lifetime=1800000
 spring.datasource.hikari.connection-timeout=30000
 ```
 ### Внедрение настроек в приложение:
+
+> [!NOTE]
+> Это способ изменения конкретных переменных в *application.properties*
+> 
+1. Создайте внешний конфигурационный файл *application.properties* в удобной для Вас директории
+2. Вставьте в него ту информацию, которую Вам необходимо изменить, например:
+```
+spring.datasource.url=jdbc:mysql://localhost:3306/my_db
+spring.datasource.username=myusername
+spring.datasource.password=password
+```
+3. Сохраните файл и запустите сервер следующей командой:
+```
+java -jar your-application.jar --spring.config.additional-location=file:/opt/external/config/application.properties
+```
+
 > [!NOTE]
 > Это первый способ, использующий создание нового внешнего конфигурационного файла *application.properties* и доступ к нему из приложения в .jar
 
@@ -84,7 +100,7 @@ spring.datasource.hikari.connection-timeout=30000
 2. Вставьте в начало файла строку `spring.application.name=help-desk-server`, если она отсутствует
 3. Вставьте в файл остальную информацию, представленную выше
 4. Замените отстутствующие значения на Ваши корректные
-5. Запустите сервер слудющей командой:
+5. Запустите сервер следующей командой:
    ```
    java -jar help-desk-server-0.0.1-SNAPSHOT.jar --spring.config.location=file:/путь/к вашему/файлу
    ```
