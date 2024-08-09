@@ -75,6 +75,8 @@ spring.datasource.hikari.minimum-idle=10
 spring.datasource.hikari.idle-timeout=30000
 spring.datasource.hikari.max-lifetime=1800000
 spring.datasource.hikari.connection-timeout=30000
+
+server.servlet.session.timeout=240m
 ```
 ### Внедрение настроек в приложение:
 
